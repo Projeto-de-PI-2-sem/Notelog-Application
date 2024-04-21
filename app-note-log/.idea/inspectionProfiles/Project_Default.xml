@@ -6,15 +6,21 @@
       <option name="ignoredModules">
         <list>
           <option value="app-note-log" />
+          <option value="app-note-log" />
+          <option value="app-note-log" />
         </list>
       </option>
       <option name="ignoredPackages">
         <list>
           <option value="com.google.guava:guava:31.1-jre" />
+          <option value="org.springframework:spring-core:5.2.25.RELEASE" />
+          <option value="com.mysql:mysql-connector-j:8.1.0" />
         </list>
       </option>
       <option name="ignoredReasons">
         <list>
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
           <option value="Not exploitable" />
         </list>
       </option>

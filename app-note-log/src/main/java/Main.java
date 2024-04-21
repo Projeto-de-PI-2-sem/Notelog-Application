@@ -9,9 +9,8 @@ public class Main {
         Looca looca = new Looca();
 
         System.out.println("Informações do sistema: ");
-        System.out.println(looca.getSistema());
+        System.out.println(looca.getSistema().getArquitetura());
 
-        System.out.println();
 
         //Criação do gerenciador
         DiscoGrupo grupoDeDiscos = looca.getGrupoDeDiscos();
