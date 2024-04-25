@@ -1,9 +1,11 @@
+package org.notelog.entidades.notebook;
+
 import com.github.britooo.looca.api.core.Looca;
 
 public class Notebook {
     Looca looca = new Looca();
 
-    private Integer idNotebook;
+    private Integer id;
     private String sistemaOperacional;
     private String fabricante;
     private Integer arquitetura;
@@ -15,12 +17,12 @@ public class Notebook {
         this.arquitetura = looca.getSistema().getArquitetura();
     }
 
-    public Integer getIdNotebook() {
-        return idNotebook;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdNotebook(Integer idNotebook) {
-        this.idNotebook = idNotebook;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getSistemaOperacional() {
@@ -63,6 +65,6 @@ public class Notebook {
                 Fabricante: %s
                 Arquiteta: %s
                 fkFuncionario: %d
-                """.formatted(idNotebook, sistemaOperacional, fabricante, arquitetura, fkFuncionario);
+                """.formatted(id, sistemaOperacional, fabricante, arquitetura, fkFuncionario);
     }
 }

@@ -1,0 +1,18 @@
+package org.notelog.entidades.logs.cpu;
+
+import com.github.britooo.looca.api.core.Looca;
+import org.notelog.config.Conexao;
+import org.notelog.entidades.cpu.Cpu;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+public class LogCpuDAO {
+    public void adicionarLogCpu(LogCpu logCpu) {
+        Conexao conexao = new Conexao();
+        JdbcTemplate con = conexao.getConexaoDoBanco();
+        Looca looca = new Looca();
+
+        String sql = "INSERT INTO LogCpu (porcentagemUso) VALUES ('%s')"
+                .formatted(looca.getProcessador().getUso());
+        con.update(sql);
+    }
+}

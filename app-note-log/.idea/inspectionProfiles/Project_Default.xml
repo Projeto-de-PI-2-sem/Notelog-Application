@@ -8,6 +8,7 @@
           <option value="app-note-log" />
           <option value="app-note-log" />
           <option value="app-note-log" />
+          <option value="app-note-log" />
         </list>
       </option>
       <option name="ignoredPackages">
@@ -15,10 +16,12 @@
           <option value="com.google.guava:guava:31.1-jre" />
           <option value="org.springframework:spring-core:5.2.25.RELEASE" />
           <option value="com.mysql:mysql-connector-j:8.1.0" />
+          <option value="com.fasterxml.jackson.core:jackson-databind:2.13.0" />
         </list>
       </option>
       <option name="ignoredReasons">
         <list>
+          <option value="Not exploitable" />
           <option value="Not exploitable" />
           <option value="Not exploitable" />
           <option value="Not exploitable" />
