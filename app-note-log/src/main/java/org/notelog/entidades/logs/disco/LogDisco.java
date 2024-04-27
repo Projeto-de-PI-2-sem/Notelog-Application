@@ -12,7 +12,7 @@ public class LogDisco {
     private String escritas;
     private String bytesEscritas;
 
-    public LogDisco() {
+    public LogDisco(Integer fkNotebook,Integer fkDisco, String leituras, String bytesLeitura, String escritas, String bytesEscritas) {
         this.fkNotebook = fkNotebook;
         this.fkDisco = fkDisco;
         this.leituras = leituras;

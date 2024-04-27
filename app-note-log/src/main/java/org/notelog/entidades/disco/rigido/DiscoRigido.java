@@ -51,7 +51,7 @@ public class DiscoRigido {
 
     @Override
     public String toString() {
-        return "DiscoRigido{" +
+        return "DiscosRigidos{" +
                 "idDisco=" + id +
                 ", modelo='" + modelo + '\'' +
                 ", serial='" + serial + '\'' +

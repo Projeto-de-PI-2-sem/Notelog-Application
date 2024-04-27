@@ -16,7 +16,7 @@ public class DiscoRigidoDAO {
         Conexao conexao = new Conexao();
         JdbcTemplate con = conexao.getConexaoDoBanco();
 
-        String sql = "INSERT INTO DiscoRigido (modelo, serial, tamanho) VALUES ('%s', '%s', '%s')"
+        String sql = "INSERT INTO DiscosRigidos(modelo, serial, tamanho) VALUES ('%s', '%s', '%s')"
                 .formatted(discoRigido.getModelo(), discoRigido.getSerial(), discoRigido.getTamanho());
         con.update(sql);
     }
@@ -25,7 +25,7 @@ public class DiscoRigidoDAO {
         Conexao conexao = new Conexao();
         JdbcTemplate con = conexao.getConexaoDoBanco();
 
-        Integer quantidade = con.queryForObject("select count(*) from DiscoRigido where modelo = '%s' and serial = '%s'".formatted(disco.getModelo(), disco.getSerial()), Integer.class);
+        Integer quantidade = con.queryForObject("select count(*) from DiscosRigidos where modelo = '%s' and serial = '%s'".formatted(disco.getModelo(), disco.getSerial()), Integer.class);
 
         if (quantidade != null) {
             return quantidade > 0;

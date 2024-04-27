@@ -11,7 +11,7 @@ public class LogRamDAO {
         JdbcTemplate con = conexao.getConexaoDoBanco();
         Looca looca = new Looca();
 
-        String sql = "INSERT INTO LogRAM (usoMemoria, memoriaDisponivel) VALUES ('%s', '%s')"
+        String sql = "INSERT INTO LogRam (usoMemoria, memoriaDisponivel) VALUES ('%s', '%s')"
                 .formatted(looca.getMemoria().getEmUso(), looca.getMemoria().getDisponivel());
         con.update(sql);
     }

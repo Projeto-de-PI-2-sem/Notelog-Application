@@ -5,6 +5,7 @@ import org.notelog.entidades.cpu.CpuDAO;
 import org.notelog.entidades.disco.rigido.DiscoRigidoDAO;
 import org.notelog.entidades.logs.cpu.LogCpu;
 import org.notelog.entidades.logs.cpu.LogCpuDAO;
+import org.notelog.entidades.logs.disco.LogDiscoDAO;
 import org.notelog.entidades.logs.janelas.LogJanelas;
 import org.notelog.entidades.logs.janelas.LogJanelasDAO;
 import org.notelog.entidades.logs.ram.LogRam;
@@ -19,9 +20,11 @@ import org.notelog.entidades.tempo.atividade.TempoDeAtividadeDAO;
 public class Main {
     public static void main(String[] args) {
         //Instâncias
+        //BD
         CpuDAO cpuDAO = new CpuDAO();
         DiscoRigidoDAO discoRigidoDAO = new DiscoRigidoDAO();
         LogCpuDAO logCpuDAO = new LogCpuDAO();
+        LogDiscoDAO logDiscoDAO = new LogDiscoDAO();
         //LogDisco
         LogJanelasDAO logJanelasDAO = new LogJanelasDAO();
         LogRamDAO logRamDAO = new LogRamDAO();
@@ -30,16 +33,18 @@ public class Main {
         RamDAO ramDAO = new RamDAO();
         TempoDeAtividadeDAO tempoDeAtividadeDAO = new TempoDeAtividadeDAO();
 
-        //
+        // Hardware
         cpuDAO.adicionarCpu(new Cpu());
         discoRigidoDAO.adiconarNovoDisco();
         notebookDAO.adicionarNotebook(new Notebook());
-        //logCpuDAO.adicionarLogCpu(new LogCpu());
-        //LogDisco
-        //logJanelasDAO.adicionarLogJanelas(new LogJanelas());
-        logRamDAO.adicionarLogRam(new LogRam());
-
         ramDAO.adicionarRam(new Ram());
+
+        // Logs
+        logCpuDAO.adicionarLogCpu(new LogCpu());
+        logJanelasDAO.adicionarNovoLogJanelas();
+        logRamDAO.adicionarLogRam(new LogRam());
+        logDiscoDAO.adiconarNovoLogDisco();
+
         tempoDeAtividadeDAO.adicionarTempoDeAtividade(new TempoDeAtividade());
 
     }
