@@ -16,14 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LogJanelasDAO {
-    private List<LogJanelas> buscarTodosOsDiscos() {
-        Conexao conexao = new Conexao();
-        JdbcTemplate con = conexao.getConexaoDoBanco();
-
-        List<LogJanelas> janelas = con.query("select * from disco;", new BeanPropertyRowMapper<>(LogJanelas.class));
-
-        return new ArrayList<>(janelas);
-    }
 
     private boolean logJanelasExiste(LogJanelas janela) {
         Conexao conexao = new Conexao();
@@ -43,10 +35,11 @@ public class LogJanelasDAO {
         JdbcTemplate con = conexao.getConexaoDoBanco();
         Looca looca = new Looca();
         JanelaGrupo grupoDeJanelas = looca.getGrupoDeJanelas();
+        int fkNotebook = con.queryForObject("SELECT id FROM Notebook ORDER BY id DESC LIMIT 1", Integer.class);
 
         List<Janela> janelas = grupoDeJanelas.getJanelas();
         for (Janela janela : janelas) {
-            LogJanelas novaLogJanela = new LogJanelas(null, janela.getJanelaId().toString(), null);
+            LogJanelas novaLogJanela = new LogJanelas(null, janela.getJanelaId().toString(), fkNotebook);
 
             if (!logJanelasExiste(novaLogJanela)) {
                 adicionarLogJanelas(novaLogJanela);
@@ -58,8 +51,10 @@ public class LogJanelasDAO {
         Conexao conexao = new Conexao();
         JdbcTemplate con = conexao.getConexaoDoBanco();
         Looca looca = new Looca();
-            String sql = "INSERT INTO LogJanelas (idJanela) VALUES ('%s')"
-                    .formatted(logJanelas.getIdJanela());
+        int fkNotebook = con.queryForObject("SELECT id FROM Notebook ORDER BY id DESC LIMIT 1", Integer.class);
+
+            String sql = "INSERT INTO LogJanelas (idJanela, fkNotebook) VALUES ('%s')"
+                    .formatted(logJanelas.getIdJanela(), fkNotebook);
             con.update(sql);
     }
 }

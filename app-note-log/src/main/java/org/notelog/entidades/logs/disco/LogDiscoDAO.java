@@ -9,17 +9,16 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
 
-public class LogDiscoDAO {
+public class
+LogDiscoDAO {
     public void adicionarLogDisco(LogDisco logDisco) {
         Conexao conexao = new Conexao();
         JdbcTemplate con = conexao.getConexaoDoBanco();
         Looca looca = new Looca();
-        int fkDisco = con.queryForObject("SELECT id from DiscosRigidos ORDER BY id DESC LIMIT 1", Integer.class);
-        int fkNotebook = con.queryForObject("SELECT id FROM Notebook ORDER BY id DESC LIMIT 1", Integer.class);
+        int fkDiscoRigido = con.queryForObject("SELECT id from DiscosRigidos ORDER BY id DESC LIMIT 1", Integer.class);
 
-
-        String sql = "INSERT INTO LogDiscos (fkDisco, fkNotebook, leitura, bytesLeitura, escrita, bytesEscrita) VALUES (%d, %d, '%s', '%s', '%s', '%s')"
-                .formatted(fkDisco, fkNotebook, logDisco.getLeituras(), logDisco.getBytesLeitura(), logDisco.getEscritas(), logDisco.getBytesEscritas());
+        String sql = "INSERT INTO LogDiscos (fkDiscoRigido, fkNotebook, leitura, bytesLeitura, escrita, bytesEscrita) VALUES (%d, %d, '%s', '%s', '%s', '%s')"
+                .formatted(fkDiscoRigido, logDisco.getLeituras(), logDisco.getBytesLeitura(), logDisco.getEscritas(), logDisco.getBytesEscritas());
         con.update(sql);
     }
 

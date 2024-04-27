@@ -11,8 +11,10 @@ public class LogRamDAO {
         JdbcTemplate con = conexao.getConexaoDoBanco();
         Looca looca = new Looca();
 
-        String sql = "INSERT INTO LogRam (usoMemoria, memoriaDisponivel) VALUES ('%s', '%s')"
-                .formatted(looca.getMemoria().getEmUso(), looca.getMemoria().getDisponivel());
+        int fkRam = con.queryForObject("SELECT id from RAM ORDER BY id DESC LIMIT 1", Integer.class);
+
+        String sql = "INSERT INTO LogRam (fkRAM, usoMemoria, memoriaDisponivel) VALUES ('%s', '%s')"
+                .formatted(fkRam, looca.getMemoria().getEmUso(), looca.getMemoria().getDisponivel());
         con.update(sql);
     }
 }

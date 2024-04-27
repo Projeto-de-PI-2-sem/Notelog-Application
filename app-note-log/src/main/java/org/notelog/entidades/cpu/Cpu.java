@@ -11,6 +11,7 @@ public class Cpu {
     private String numerologico;
     private String frequencia;
     private String idFisicoProcessador;
+    private String fkNotebook;
 
     public Cpu() {
         this.nome = nome;
@@ -66,6 +67,22 @@ public class Cpu {
 
     public void setIdFisicoProcessador(String idFisicoProcessador) {
         this.idFisicoProcessador = idFisicoProcessador;
+    }
+
+    public Looca getLooca() {
+        return looca;
+    }
+
+    public void setLooca(Looca looca) {
+        this.looca = looca;
+    }
+
+    public String getFkNotebook() {
+        return fkNotebook;
+    }
+
+    public void setFkNotebook(String fkNotebook) {
+        this.fkNotebook = fkNotebook;
     }
 
     @Override

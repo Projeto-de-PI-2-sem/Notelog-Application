@@ -7,7 +7,6 @@ public class LogCpu {
 
     private Integer id;
     private String porcentagemUso;
-    private Integer fkNotebook;
     private Integer fkCPU;
 
     public LogCpu() {
@@ -30,14 +29,6 @@ public class LogCpu {
         this.porcentagemUso = porcentagemUso;
     }
 
-    public Integer getFkNotebook() {
-        return fkNotebook;
-    }
-
-    public void setFkNotebook(Integer fkNotebook) {
-        this.fkNotebook = fkNotebook;
-    }
-
     public Integer getFkCPU() {
         return fkCPU;
     }
@@ -51,7 +42,6 @@ public class LogCpu {
         return "org.notelog.entidades.log.cpu.LogCPU{" +
                 "idLogCPU=" + id +
                 ", porcentagemUso='" + porcentagemUso + '\'' +
-                ", fkNotebook=" + fkNotebook +
                 ", fkCPU=" + fkCPU +
                 '}';
     }

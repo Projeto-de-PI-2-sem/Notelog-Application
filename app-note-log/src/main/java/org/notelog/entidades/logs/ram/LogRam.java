@@ -5,13 +5,11 @@ import com.github.britooo.looca.api.core.Looca;
 public class LogRam {
     Looca looca = new Looca();
     private Integer id;
-    private Integer fkNotebook;
     private Integer fkRAM;
     private String usoMemoria;
     private String memoriaDisponivel;
 
     public LogRam() {
-        this.fkNotebook = fkNotebook;
         this.fkRAM = fkRAM;
         this.usoMemoria = usoMemoria;
         this.memoriaDisponivel = memoriaDisponivel;
@@ -23,14 +21,6 @@ public class LogRam {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getFkNotebook() {
-        return fkNotebook;
-    }
-
-    public void setFkNotebook(Integer fkNotebook) {
-        this.fkNotebook = fkNotebook;
     }
 
     public Integer getFkRAM() {
@@ -61,7 +51,6 @@ public class LogRam {
     public String toString() {
         return "org.notelog.entidades.logs.ram.LogRAM{" +
                 "idLogRAM=" + id +
-                ", fkNotebook=" + fkNotebook +
                 ", fkRAM=" + fkRAM +
                 ", usoMemoria='" + usoMemoria + '\'' +
                 ", memoriaDisponivel='" + memoriaDisponivel + '\'' +

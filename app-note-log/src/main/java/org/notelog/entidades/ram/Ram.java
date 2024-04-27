@@ -6,6 +6,7 @@ public class Ram {
     Looca looca = new Looca();
     private Integer id;
     private String totalMemoria;
+    private Integer fkNotebook;
 
     public Ram() {
         this.totalMemoria = totalMemoria;
@@ -25,6 +26,14 @@ public class Ram {
 
     public void setTotalMemoria(String totalMemoria) {
         this.totalMemoria = totalMemoria;
+    }
+
+    public Integer getFkNotebook() {
+        return fkNotebook;
+    }
+
+    public void setFkNotebook(Integer fkNotebook) {
+        this.fkNotebook = fkNotebook;
     }
 
     @Override

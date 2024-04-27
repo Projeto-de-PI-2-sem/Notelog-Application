@@ -5,16 +5,14 @@ import com.github.britooo.looca.api.core.Looca;
 public class LogDisco {
     Looca looca = new Looca();
     private Integer id;
-    private Integer fkNotebook;
-    private Integer fkDisco;
+    private Integer fkDiscoRigido;
     private String leituras;
     private String bytesLeitura;
     private String escritas;
     private String bytesEscritas;
 
-    public LogDisco(Integer fkNotebook,Integer fkDisco, String leituras, String bytesLeitura, String escritas, String bytesEscritas) {
-        this.fkNotebook = fkNotebook;
-        this.fkDisco = fkDisco;
+    public LogDisco(Integer fkDisco, String leituras, String bytesLeitura, String escritas, String bytesEscritas) {
+        this.fkDiscoRigido = fkDiscoRigido;
         this.leituras = leituras;
         this.bytesLeitura = bytesLeitura;
         this.escritas = escritas;
@@ -29,20 +27,12 @@ public class LogDisco {
         this.id = id;
     }
 
-    public Integer getFkNotebook() {
-        return fkNotebook;
-    }
-
-    public void setFkNotebook(Integer fkNotebook) {
-        this.fkNotebook = fkNotebook;
-    }
-
     public Integer getFkDisco() {
-        return fkDisco;
+        return fkDiscoRigido;
     }
 
     public void setFkDisco(Integer fkDisco) {
-        this.fkDisco = fkDisco;
+        this.fkDiscoRigido = fkDisco;
     }
 
     public String getLeituras() {
@@ -81,7 +71,6 @@ public class LogDisco {
     public String toString() {
         return "org.notelog.entidades.logs.disco.LogDisco{" +
                 "idLogDisco=" + id +
-                ", fkNotebook=" + fkNotebook +
                 ", fkDisco=" + fkDisco +
                 ", leituras='" + leituras + '\'' +
                 ", bytesLeitura='" + bytesLeitura + '\'' +

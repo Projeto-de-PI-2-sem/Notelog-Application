@@ -10,9 +10,10 @@ public class TempoDeAtividadeDAO {
         Conexao conexao = new Conexao();
         JdbcTemplate con = conexao.getConexaoDoBanco();
         Looca looca = new Looca();
+        int fkNotebook = con.queryForObject("SELECT id FROM Notebook ORDER BY id DESC LIMIT 1", Integer.class);
 
-        String sql = "INSERT INTO TempoDeAtividade (tempoDeAtividade, tempoInicializado) VALUES ('%s', '%s')"
-                .formatted(looca.getSistema().getTempoDeAtividade(),looca.getSistema().getInicializado());
+        String sql = "INSERT INTO TempoDeAtividade (fkNotebook, tempoDeAtividade, tempoInicializado) VALUES ('%s', '%s')"
+                .formatted(fkNotebook, looca.getSistema().getTempoDeAtividade(),looca.getSistema().getInicializado());
         con.update(sql);
     }
 }

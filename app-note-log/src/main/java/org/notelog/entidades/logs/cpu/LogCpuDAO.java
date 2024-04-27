@@ -11,8 +11,10 @@ public class LogCpuDAO {
         JdbcTemplate con = conexao.getConexaoDoBanco();
         Looca looca = new Looca();
 
-        String sql = "INSERT INTO LogCpu (porcentagemUso) VALUES ('%s')"
-                .formatted(looca.getProcessador().getUso());
+        int fkCPU = con.queryForObject("SELECT id from CPU ORDER BY id DESC LIMIT 1", Integer.class);
+
+        String sql = "INSERT INTO LogCpu (porcentagemUso, fkCPU) VALUES ('%s')"
+                .formatted(looca.getProcessador().getUso(), fkCPU);
         con.update(sql);
     }
 }

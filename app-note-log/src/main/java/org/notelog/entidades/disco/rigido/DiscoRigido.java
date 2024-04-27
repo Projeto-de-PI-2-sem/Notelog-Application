@@ -6,6 +6,7 @@ public class DiscoRigido {
     private String modelo;
     private String serial;
     private String tamanho;
+    private Integer fkNotebook;
 
     public DiscoRigido(Integer idDisco, String modelo, String serial, String tamanho) {
         this.id = idDisco;
@@ -47,6 +48,14 @@ public class DiscoRigido {
 
     public void setTamanho(String tamanho) {
         this.tamanho = tamanho;
+    }
+
+    public Integer getFkNotebook() {
+        return fkNotebook;
+    }
+
+    public void setFkNotebook(Integer fkNotebook) {
+        this.fkNotebook = fkNotebook;
     }
 
     @Override
