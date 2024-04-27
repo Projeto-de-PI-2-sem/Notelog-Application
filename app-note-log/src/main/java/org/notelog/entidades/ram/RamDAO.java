@@ -12,7 +12,7 @@ public class  RamDAO {
         Looca looca = new Looca();
         int fkNotebook = con.queryForObject("SELECT id FROM Notebook ORDER BY id DESC LIMIT 1", Integer.class);
 
-        String sql = "INSERT INTO Ram (totalMemoria, fkNotebook) VALUES ('%s')"
+        String sql = "INSERT INTO Ram (totalMemoria, fkNotebook) VALUES ('%s', '%d')"
                 .formatted(looca.getMemoria().getTotal(), fkNotebook);
         con.update(sql);
     }

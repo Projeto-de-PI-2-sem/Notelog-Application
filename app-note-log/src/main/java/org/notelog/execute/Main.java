@@ -34,9 +34,9 @@ public class Main {
         TempoDeAtividadeDAO tempoDeAtividadeDAO = new TempoDeAtividadeDAO();
 
         // Hardware
+        notebookDAO.adicionarNotebook(new Notebook());
         cpuDAO.adicionarCpu(new Cpu());
         discoRigidoDAO.adiconarNovoDisco();
-        notebookDAO.adicionarNotebook(new Notebook());
         ramDAO.adicionarRam(new Ram());
 
         // Logs

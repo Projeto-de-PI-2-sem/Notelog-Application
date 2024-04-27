@@ -15,9 +15,9 @@ LogDiscoDAO {
         Conexao conexao = new Conexao();
         JdbcTemplate con = conexao.getConexaoDoBanco();
         Looca looca = new Looca();
-        int fkDiscoRigido = con.queryForObject("SELECT id from DiscosRigidos ORDER BY id DESC LIMIT 1", Integer.class);
+        int fkDiscoRigido = con.queryForObject("SELECT id from DiscoRigido ORDER BY id DESC LIMIT 1", Integer.class);
 
-        String sql = "INSERT INTO LogDiscos (fkDiscoRigido, fkNotebook, leitura, bytesLeitura, escrita, bytesEscrita) VALUES (%d, %d, '%s', '%s', '%s', '%s')"
+        String sql = "INSERT INTO LogDisco (fkDiscoRigido, leitura, bytesLeitura, escrita, bytesEscrita) VALUES (%d, '%s', '%s', '%s', '%s')"
                 .formatted(fkDiscoRigido, logDisco.getLeituras(), logDisco.getBytesLeitura(), logDisco.getEscritas(), logDisco.getBytesEscritas());
         con.update(sql);
     }
@@ -27,13 +27,13 @@ LogDiscoDAO {
         JdbcTemplate con = conexao.getConexaoDoBanco();
 
         //Pega o ultimo Id inserido do DiscoRigido, porem é necessário uma melhor alternativa futuramente
-        int fkDisco = con.queryForObject("SELECT LAST_INSERT_ID() from DiscosRigidos", Integer.class);
+        int fkDiscoRigido = con.queryForObject("SELECT id from DiscoRigido ORDER BY id DESC LIMIT 1", Integer.class);
 
         // Dar um jeito de identificar se o registro existe ou não
-        Integer quantidade = con.queryForObject(("select count(*) from DiscosRigidos join LogDiscos on fkDisco = DiscosRigidos.id " +
-                "where DiscosRigidos.id = %d and leitura = '%s' and " +
+        Integer quantidade = con.queryForObject(("select count(*) from DiscoRigido join LogDisco on fkDiscoRigido = DiscoRigido.id " +
+                "where DiscoRigido.id = %d and leitura = '%s' and " +
                 "bytesLeitura = '%s' and  escrita = '%s' and " +
-                "bytesEscrita = '%s'").formatted(fkDisco, logDisco.getLeituras(), logDisco.getBytesLeitura(), logDisco.getEscritas(), logDisco.getBytesEscritas()), Integer.class);
+                "bytesEscrita = '%s'").formatted(fkDiscoRigido, logDisco.getLeituras(), logDisco.getBytesLeitura(), logDisco.getEscritas(), logDisco.getBytesEscritas()), Integer.class);
 
         if (quantidade != null) {
             return quantidade > 0;
@@ -50,7 +50,7 @@ LogDiscoDAO {
         List<Disco> discos = grupoDeDiscos.getDiscos();
 
         for (Disco disco : discos) {
-            LogDisco novoLogDiscoRigido = new LogDisco(null, null, disco.getLeituras().toString(), disco.getBytesDeLeitura().toString(), disco.getEscritas().toString(), disco.getBytesDeEscritas().toString());
+            LogDisco novoLogDiscoRigido = new LogDisco( null, disco.getLeituras().toString(), disco.getBytesDeLeitura().toString(), disco.getEscritas().toString(), disco.getBytesDeEscritas().toString());
 
 
             if (!logDiscoExiste(novoLogDiscoRigido)) {

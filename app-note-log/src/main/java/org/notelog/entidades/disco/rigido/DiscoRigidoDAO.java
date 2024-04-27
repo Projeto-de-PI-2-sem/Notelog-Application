@@ -16,7 +16,7 @@ public class DiscoRigidoDAO {
         Conexao conexao = new Conexao();
         JdbcTemplate con = conexao.getConexaoDoBanco();
 
-        String sql = "INSERT INTO DiscosRigidos(modelo, serial, tamanho) VALUES ('%s', '%s', '%s')"
+        String sql = "INSERT INTO DiscoRigido(modelo, serial, tamanho) VALUES ('%s', '%s', '%s')"
                 .formatted(discoRigido.getModelo(), discoRigido.getSerial(), discoRigido.getTamanho());
         con.update(sql);
     }
@@ -25,7 +25,7 @@ public class DiscoRigidoDAO {
         Conexao conexao = new Conexao();
         JdbcTemplate con = conexao.getConexaoDoBanco();
 
-        Integer quantidade = con.queryForObject("select count(*) from DiscosRigidos where modelo = '%s' and serial = '%s'".formatted(disco.getModelo(), disco.getSerial()), Integer.class);
+        Integer quantidade = con.queryForObject("select count(*) from DiscoRigido where modelo = '%s' and serial = '%s'".formatted(disco.getModelo(), disco.getSerial()), Integer.class);
 
         if (quantidade != null) {
             return quantidade > 0;
@@ -38,7 +38,7 @@ public class DiscoRigidoDAO {
         Conexao conexao = new Conexao();
         JdbcTemplate con = conexao.getConexaoDoBanco();
 
-        List<DiscoRigido> discos = con.query("select * from disco;", new BeanPropertyRowMapper<>(DiscoRigido.class));
+        List<DiscoRigido> discos = con.query("select * from DiscoRigido;", new BeanPropertyRowMapper<>(DiscoRigido.class));
 
         return new ArrayList<>(discos);
     }
@@ -47,7 +47,7 @@ public class DiscoRigidoDAO {
         Conexao conexao = new Conexao();
         JdbcTemplate con = conexao.getConexaoDoBanco();
 
-        DiscoRigido discos = con.queryForObject("select * from disco where serial = '%s'".formatted(serial), new BeanPropertyRowMapper<>(DiscoRigido.class));
+        DiscoRigido discos = con.queryForObject("select * from DiscoRigido where serial = '%s'".formatted(serial), new BeanPropertyRowMapper<>(DiscoRigido.class));
 
         return discos;
     }

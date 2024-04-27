@@ -10,8 +10,7 @@ public class Notebook {
     private Integer arquitetura;
     private Integer fkFuncionario;
 
-    public Notebook(Integer id, String sistemaOperacional, String fabricante, Integer arquitetura, Integer fkFuncionario) {
-        this.id = id;
+    public Notebook() {
         this.sistemaOperacional = sistemaOperacional;
         this.fabricante = fabricante;
         this.arquitetura = arquitetura;

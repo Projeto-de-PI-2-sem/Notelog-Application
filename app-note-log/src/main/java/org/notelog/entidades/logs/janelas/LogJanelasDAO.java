@@ -53,7 +53,7 @@ public class LogJanelasDAO {
         Looca looca = new Looca();
         int fkNotebook = con.queryForObject("SELECT id FROM Notebook ORDER BY id DESC LIMIT 1", Integer.class);
 
-            String sql = "INSERT INTO LogJanelas (idJanela, fkNotebook) VALUES ('%s')"
+            String sql = "INSERT INTO LogJanelas (idJanela, fkNotebook) VALUES ('%s', '%d')"
                     .formatted(logJanelas.getIdJanela(), fkNotebook);
             con.update(sql);
     }

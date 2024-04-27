@@ -13,7 +13,7 @@ public class LogRamDAO {
 
         int fkRam = con.queryForObject("SELECT id from RAM ORDER BY id DESC LIMIT 1", Integer.class);
 
-        String sql = "INSERT INTO LogRam (fkRAM, usoMemoria, memoriaDisponivel) VALUES ('%s', '%s')"
+        String sql = "INSERT INTO LogRam (fkRAM, usoMemoria, memoriaDisponivel) VALUES ('%d', '%s', '%s')"
                 .formatted(fkRam, looca.getMemoria().getEmUso(), looca.getMemoria().getDisponivel());
         con.update(sql);
     }

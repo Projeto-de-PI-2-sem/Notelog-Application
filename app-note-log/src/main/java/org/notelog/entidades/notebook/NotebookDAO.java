@@ -12,7 +12,7 @@ public class NotebookDAO {
         Looca looca = new Looca();
         int fkFuncionario = con.queryForObject("SELECT id FROM Funcionario ORDER BY id DESC LIMIT 1", Integer.class);
 
-        String sql = "INSERT INTO Notebook (sistemaOperacional, fabricante, arquitetura, fkFuncionario) VALUES ('%s', '%s', '%s', 'd')"
+        String sql = "INSERT INTO Notebook (sistemaOperacional, fabricante, arquitetura, fkFuncionario) VALUES ('%s', '%s', '%s', '%d')"
                 .formatted(looca.getSistema().getSistemaOperacional() , looca.getSistema().getFabricante(),
                         looca.getSistema().getArquitetura(),fkFuncionario);
         con.update(sql);

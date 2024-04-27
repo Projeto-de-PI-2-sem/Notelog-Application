@@ -11,7 +11,7 @@ public class LogDisco {
     private String escritas;
     private String bytesEscritas;
 
-    public LogDisco(Integer fkDisco, String leituras, String bytesLeitura, String escritas, String bytesEscritas) {
+    public LogDisco(Integer fkDiscoRigido, String leituras, String bytesLeitura, String escritas, String bytesEscritas) {
         this.fkDiscoRigido = fkDiscoRigido;
         this.leituras = leituras;
         this.bytesLeitura = bytesLeitura;
@@ -27,12 +27,12 @@ public class LogDisco {
         this.id = id;
     }
 
-    public Integer getFkDisco() {
+    public Integer getFkDiscoRigido() {
         return fkDiscoRigido;
     }
 
-    public void setFkDisco(Integer fkDisco) {
-        this.fkDiscoRigido = fkDisco;
+    public void setFkDiscoRigido(Integer fkDiscoRigido) {
+        this.fkDiscoRigido = fkDiscoRigido;
     }
 
     public String getLeituras() {
@@ -71,7 +71,7 @@ public class LogDisco {
     public String toString() {
         return "org.notelog.entidades.logs.disco.LogDisco{" +
                 "idLogDisco=" + id +
-                ", fkDisco=" + fkDisco +
+                ", fkDiscoRigido=" + fkDiscoRigido +
                 ", leituras='" + leituras + '\'' +
                 ", bytesLeitura='" + bytesLeitura + '\'' +
                 ", escritas='" + escritas + '\'' +
