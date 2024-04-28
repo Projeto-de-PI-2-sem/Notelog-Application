@@ -22,7 +22,7 @@ import org.notelog.entidades.tempo.atividade.TempoDeAtividadeDAO;
 import org.notelog.entidades.usuario.Usuario;
 import org.notelog.entidades.usuario.UsuarioDAO;
 import org.notelog.geolocalizacao.Geolocalizacao;
-import org.notelog.geolocalizacao.GeolocalizacaoBD;
+import org.notelog.geolocalizacao.GeolocalizacaoDAO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,15 +32,30 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
 
         // Título em ASCII
-        System.out.println(" _   _           _              _");
-        System.out.println("| \\ | |         | |            | |");
-        System.out.println("|  \\| |   ___   | |_    ___    | |    ___     __ _  ");
-        System.out.println("| . ` |  / _ \\  | __|  / _ \\   | |   / _ \\  /  _  |");
-        System.out.println("| |\\  | | (_) | | |_  |  ___/  | |  | (_) | | (_| |");
-        System.out.println("|_| \\_|  \\___/  \\__|   \\___|   |_|   \\___/   \\__, |");
-        System.out.println("                                            ____/ |");
-        System.out.println("                                            |___ /");
-        System.out.println();
+        System.out.println("""
+                            _____                   _______           _____                    _____                    _____     _______                   _____         \s
+                           /\\    \\                 /::\\    \\         /\\    \\                  /\\    \\                  /\\    \\   /::\\    \\                 /\\    \\        \s
+                          /::\\____\\               /::::\\    \\       /::\\    \\                /::\\    \\                /::\\____\\ /::::\\    \\               /::\\    \\       \s
+                         /::::|   |              /::::::\\    \\      \\:::\\    \\              /::::\\    \\              /:::/    //::::::\\    \\             /::::\\    \\      \s
+                        /:::::|   |             /::::::::\\    \\      \\:::\\    \\            /::::::\\    \\            /:::/    //::::::::\\    \\           /::::::\\    \\     \s
+                       /::::::|   |            /:::/~~\\:::\\    \\      \\:::\\    \\          /:::/\\:::\\    \\          /:::/    //:::/~~\\:::\\    \\         /:::/\\:::\\    \\    \s
+                      /:::/|::|   |           /:::/    \\:::\\    \\      \\:::\\    \\        /:::/__\\:::\\    \\        /:::/    //:::/    \\:::\\    \\       /:::/  \\:::\\    \\   \s
+                     /:::/ |::|   |          /:::/    / \\:::\\    \\     /::::\\    \\      /::::\\   \\:::\\    \\      /:::/    //:::/    / \\:::\\    \\     /:::/    \\:::\\    \\  \s
+                    /:::/  |::|   | _____   /:::/____/   \\:::\\____\\   /::::::\\    \\    /::::::\\   \\:::\\    \\    /:::/    //:::/____/   \\:::\\____\\   /:::/    / \\:::\\    \\ \s
+                   /:::/   |::|   |/\\    \\ |:::|    |     |:::|    | /:::/\\:::\\    \\  /:::/\\:::\\   \\:::\\    \\  /:::/    /|:::|    |     |:::|    | /:::/    /   \\:::\\ ___\\\s
+                  /:: /    |::|   /::\\____\\|:::|____|     |:::|    |/:::/  \\:::\\____\\/:::/__\\:::\\   \\:::\\____\\/:::/____/ |:::|____|     |:::|    |/:::/____/  ___\\:::|    |
+                  \\::/    /|::|  /:::/    / \\:::\\    \\   /:::/    //:::/    \\::/    /\\:::\\   \\:::\\   \\::/    /\\:::\\    \\  \\:::\\    \\   /:::/    / \\:::\\    \\ /\\  /:::|____|
+                   \\/____/ |::| /:::/    /   \\:::\\    \\ /:::/    //:::/    / \\/____/  \\:::\\   \\:::\\   \\/____/  \\:::\\    \\  \\:::\\    \\ /:::/    /   \\:::\\    /::\\ \\::/    /\s
+                           |::|/:::/    /     \\:::\\    /:::/    //:::/    /            \\:::\\   \\:::\\    \\       \\:::\\    \\  \\:::\\    /:::/    /     \\:::\\   \\:::\\ \\/____/ \s
+                           |::::::/    /       \\:::\\__/:::/    //:::/    /              \\:::\\   \\:::\\____\\       \\:::\\    \\  \\:::\\__/:::/    /       \\:::\\   \\:::\\____\\   \s
+                           |:::::/    /         \\::::::::/    / \\::/    /                \\:::\\   \\::/    /        \\:::\\    \\  \\::::::::/    /         \\:::\\  /:::/    /   \s
+                           |::::/    /           \\::::::/    /   \\/____/                  \\:::\\   \\/____/          \\:::\\    \\  \\::::::/    /           \\:::\\/:::/    /    \s
+                           /:::/    /             \\::::/    /                              \\:::\\    \\               \\:::\\    \\  \\::::/    /             \\::::::/    /     \s
+                          /:::/    /               \\::/____/                                \\:::\\____\\               \\:::\\____\\  \\::/____/               \\::::/    /      \s
+                          \\::/    /                 ~~                                       \\::/    /                \\::/    /   ~~                      \\::/____/       \s
+                           \\/____/                                                            \\/____/                  \\/____/                                            \s
+                                                                                                                                                                          \s
+                """);
         System.out.println("Solução de monitoramento para notebooks - Notelog 0.18.2 (Versão Alpha)");
 
         Thread.sleep(3000);
@@ -72,55 +87,52 @@ public class Main {
 
 
 
-//        //Instâncias BD
-//        CpuDAO cpuDAO = new CpuDAO();
-//        DiscoRigidoDAO discoRigidoDAO = new DiscoRigidoDAO();
-//        LogCpuDAO logCpuDAO = new LogCpuDAO();
-//        LogDiscoDAO logDiscoDAO = new LogDiscoDAO();
-//
-//        //LogDisco
-//        LogJanelasDAO logJanelasDAO = new LogJanelasDAO();
-//        LogRamDAO logRamDAO = new LogRamDAO();
-//
-//        //LogDisco
-//        NotebookDAO notebookDAO = new NotebookDAO();
-//        RamDAO ramDAO = new RamDAO();
-//        TempoDeAtividadeDAO tempoDeAtividadeDAO = new TempoDeAtividadeDAO();
-//
-//        // Hardware
-//        notebookDAO.adicionarNotebook(new Notebook());
-//        cpuDAO.adicionarCpu(new Cpu());
-//        discoRigidoDAO.adiconarNovoDisco();
-//        ramDAO.adicionarRam(new Ram());
-//
-//        // Logs
-//        logCpuDAO.adicionarLogCpu(new LogCpu());
-//        logJanelasDAO.adicionarNovoLogJanelas();
-//        logRamDAO.adicionarLogRam(new LogRam());
-//        logDiscoDAO.adiconarNovoLogDisco();
-//        tempoDeAtividadeDAO.adicionarTempoDeAtividade(new TempoDeAtividade());
-//
-//        Looca janelaGroup = new Looca();
-//        FucionalidadeConsole func = new FucionalidadeConsole();
-//        List<String> processosBloqueados = new ArrayList<>();
-//
-//
-//        Geolocalizacao geolocalizacao = new Geolocalizacao();
-//        GeolocalizacaoBD geoBD = new GeolocalizacaoBD();
-//
-//        String publicIPAddress = geolocalizacao.ObterIP();
-//        String jsonString = geolocalizacao.ObterGeoPorIP(publicIPAddress);
-//
-//        geolocalizacao.preencherDados(jsonString);
-//        String dadosFormatados = geolocalizacao.formatarDados();
-//        geoBD.adicionaGeolocalizacao();
+       //Instâncias comuns
+        Looca janelaGroup = new Looca();
+        FucionalidadeConsole func = new FucionalidadeConsole();
+        List<String> processosBloqueados = new ArrayList<>();
+        Geolocalizacao geolocalizacao = new Geolocalizacao();
+
+        //Metodos comuns
+        String publicIPAddress = geolocalizacao.ObterIP();
+        String jsonString = geolocalizacao.ObterGeoPorIP(publicIPAddress);
+        geolocalizacao.preencherDados(jsonString);
+        String dadosFormatados = geolocalizacao.formatarDados();
+
+        //DAO - Instancias
+        NotebookDAO notebookDAO = new NotebookDAO();
+        CpuDAO cpuDAO = new CpuDAO();
+        RamDAO ramDAO = new RamDAO();
+        DiscoRigidoDAO discoRigidoDAO = new DiscoRigidoDAO();
+        TempoDeAtividadeDAO tempoDeAtividadeDAO = new TempoDeAtividadeDAO();
+        GeolocalizacaoDAO geoDAO = new GeolocalizacaoDAO();
+
+
+        //DAO - Metodos
+        notebookDAO.adicionarNotebook(new Notebook());
+        cpuDAO.adicionarCpu(new Cpu());
+        ramDAO.adicionarRam(new Ram());
+        discoRigidoDAO.adiconarNovoDisco();
+        tempoDeAtividadeDAO.adicionarTempoDeAtividade(new TempoDeAtividade());
 
 
 
-        //ELIZEU COLOCA ESSAS insTÃNCIAS NAS SUAS RESPECTIVAS FUNÇÕES DE MONITORAMENTO.
-        // eSSAS AÍ DE CIMA, AS COMENTADAS
+
+        //Logs
+
+        //LogDAO - Instancias
+        LogCpuDAO logCpuDAO = new LogCpuDAO();
+        LogRamDAO logRamDAO = new LogRamDAO();
+        LogDiscoDAO logDiscoDAO = new LogDiscoDAO();
+        LogJanelasDAO logJanelasDAO = new LogJanelasDAO();
 
 
+        //LogDAO - Metodos
+        logCpuDAO.adicionarLogCpu(new LogCpu());
+        logRamDAO.adicionarLogRam(new LogRam());
+        logDiscoDAO.adiconarNovoLogDisco();
+        logJanelasDAO.adicionarNovoLogJanelas();
+        geoDAO.adicionaGeolocalizacao();
     }
 
     private static void escolherMonitoramento(Usuario usuario) throws InterruptedException {
@@ -172,27 +184,27 @@ public class Main {
     // Funções de monitoramento
     private static void monitorarCPU(Usuario usuario) {
         Scanner scanner = new Scanner(System.in);
-
-        while (true) {
+        do {
+            System.out.println("Monitorando CPU...");
             try {
-                System.out.println("Monitorando CPU...");
                 Thread.sleep(1000); // Espera 1 segundo
-                System.out.println("Dados da CPU:");
-                Thread.sleep(5000); // Espera 5 segundos
-                System.out.println("Inserindo processos no Banco...");
-
-                //ELIZEU tenta arrumar essa interrupçâo aqui
-                // a idei É PARAR ESSA FUNÇÃO QUANDO O USUÁRIO APERTAR ALGUMA TECLA, PIQUE CTRL + c.
-
             } catch (InterruptedException e) {
-                // A exceção InterruptedException é lançada quando o usuário pressiona Ctrl + C
-                System.out.println("Monitoramento interrompido pelo usuário.");
-                System.out.println("Deseja parar o monitoramento? (S/N)");
-                String resposta = scanner.nextLine();
-                if (resposta.equalsIgnoreCase("S")) {
-                    return; // Retorna para a função escolherMonitoramento
-                }
+                e.printStackTrace();
             }
+            System.out.println("Dados da CPU:");
+            try {
+                Thread.sleep(5000); // Espera 5 segundos
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Inserindo processos no Banco...");
+        } while (!scanner.nextLine().equalsIgnoreCase("exit"));
+        System.out.println("Saindo do monitoramento de CPU...");
+
+        try {
+            escolherMonitoramento(usuario);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
@@ -201,22 +213,27 @@ public class Main {
     private static void monitorarDisco(Usuario usuario) {
         Scanner scanner = new Scanner(System.in);
 
-        while (true) {
+        do {
+            System.out.println("Monitorando Disco...");
             try {
-                System.out.println("Monitorando CPU...");
                 Thread.sleep(1000); // Espera 1 segundo
-                System.out.println("Dados da CPU:");
-                Thread.sleep(5000); // Espera 5 segundos
-                System.out.println("Inserindo processos no Banco...");
-
             } catch (InterruptedException e) {
-                System.out.println("Monitoramento interrompido pelo usuário.");
-                System.out.println("Deseja parar o monitoramento? (S/N)");
-                String resposta = scanner.nextLine();
-                if (resposta.equalsIgnoreCase("S")) {
-                    return; // Retorna para a função escolherMonitoramento
-                }
+                e.printStackTrace();
             }
+            System.out.println("Dados de Discos:");
+            try {
+                Thread.sleep(5000); // Espera 5 segundos
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Inserindo processos no Banco...");
+        } while (!scanner.nextLine().equalsIgnoreCase("exit"));
+        System.out.println("Saindo do monitoramento de Disco...");
+
+        try {
+            escolherMonitoramento(usuario);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
@@ -224,45 +241,54 @@ public class Main {
     private static void monitorarJanelas(Usuario usuario) {
         Scanner scanner = new Scanner(System.in);
 
-        while (true) {
+        do {
+            System.out.println("Monitorando Janelas...");
             try {
-                System.out.println("Monitorando CPU...");
                 Thread.sleep(1000); // Espera 1 segundo
-                System.out.println("Dados da CPU:");
-                Thread.sleep(5000); // Espera 5 segundos
-                System.out.println("Inserindo processos no Banco...");
-
             } catch (InterruptedException e) {
-                System.out.println("Monitoramento interrompido pelo usuário.");
-                System.out.println("Deseja parar o monitoramento? (S/N)");
-                String resposta = scanner.nextLine();
-                if (resposta.equalsIgnoreCase("S")) {
-                    return; // Retorna para a função escolherMonitoramento
-                }
+                e.printStackTrace();
             }
+            System.out.println("Dados de Janelas:");
+            try {
+                Thread.sleep(5000); // Espera 5 segundos
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Inserindo processos no Banco...");
+        } while (!scanner.nextLine().equalsIgnoreCase("exit"));
+        System.out.println("Saindo do monitoramento de Janelas...");
+
+        try {
+            escolherMonitoramento(usuario);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
 
     private static void monitorarRAM(Usuario usuario) {
         Scanner scanner = new Scanner(System.in);
-
-        while (true) {
+        do {
+            System.out.println("Monitorando RAM...");
             try {
-                System.out.println("Monitorando CPU...");
                 Thread.sleep(1000); // Espera 1 segundo
-                System.out.println("Dados da CPU:");
-                Thread.sleep(5000); // Espera 5 segundos
-                System.out.println("Inserindo processos no Banco...");
-
             } catch (InterruptedException e) {
-                System.out.println("Monitoramento interrompido pelo usuário.");
-                System.out.println("Deseja parar o monitoramento? (S/N)");
-                String resposta = scanner.nextLine();
-                if (resposta.equalsIgnoreCase("S")) {
-                    return; // Retorna para a função escolherMonitoramento
-                }
+                e.printStackTrace();
             }
+            System.out.println("Dados de memória RAM:");
+            try {
+                Thread.sleep(5000); // Espera 5 segundos
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Inserindo processos no Banco...");
+        } while (!scanner.nextLine().equalsIgnoreCase("exit"));
+        System.out.println("Saindo do monitoramento de RAM...");
+
+        try {
+            escolherMonitoramento(usuario);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
@@ -272,7 +298,7 @@ public class Main {
         while (true) {
             try {
                 Geolocalizacao geolocalizacao = new Geolocalizacao();
-                GeolocalizacaoBD geoBD = new GeolocalizacaoBD();
+                GeolocalizacaoDAO geoDAO = new GeolocalizacaoDAO();
 
                 String publicIPAddress = geolocalizacao.ObterIP();
                 String jsonString = geolocalizacao.ObterGeoPorIP(publicIPAddress);
@@ -284,7 +310,7 @@ public class Main {
                 System.out.println(dadosFormatados);
                 Thread.sleep(5000); // Espera 5 segundos
                 System.out.println("Dados capturados e enviados ao Banco...");
-                geoBD.adicionaGeolocalizacao();
+                geoDAO.adicionaGeolocalizacao();
                 return;
 
             } catch (InterruptedException e) {}
