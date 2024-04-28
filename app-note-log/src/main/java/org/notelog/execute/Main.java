@@ -134,7 +134,8 @@ public class Main {
             System.out.println("2 - Monitorar Disco");
             System.out.println("3 - Monitorar Janelas");
             System.out.println("4 - Monitorar RAM");
-            System.out.println("5 - Sair");
+            System.out.println("5 - Capturar Geolocalização do dispositivo");
+            System.out.println("6 - Sair");
 
             opcao = scanner.nextInt();
 
@@ -152,6 +153,9 @@ public class Main {
                     monitorarRAM(usuario);
                     break;
                 case 5:
+                    monitorarGeolocalizacao(usuario);
+                    break;
+                case 6:
                     System.out.println("Encerrando o programa...");
                     Thread.sleep(5000);
                     break;
@@ -259,6 +263,31 @@ public class Main {
                     return; // Retorna para a função escolherMonitoramento
                 }
             }
+        }
+    }
+
+    private static void monitorarGeolocalizacao(Usuario usuario) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            try {
+                Geolocalizacao geolocalizacao = new Geolocalizacao();
+                GeolocalizacaoBD geoBD = new GeolocalizacaoBD();
+
+                String publicIPAddress = geolocalizacao.ObterIP();
+                String jsonString = geolocalizacao.ObterGeoPorIP(publicIPAddress);
+
+                geolocalizacao.preencherDados(jsonString);
+                String dadosFormatados = geolocalizacao.formatarDados();
+                System.out.println("Geolocalização do dispositivo:");
+                Thread.sleep(1000); // Espera 1 segundo
+                System.out.println(dadosFormatados);
+                Thread.sleep(5000); // Espera 5 segundos
+                System.out.println("Dados capturados e enviados ao Banco...");
+                geoBD.adicionaGeolocalizacao();
+                return;
+
+            } catch (InterruptedException e) {}
         }
     }
 
