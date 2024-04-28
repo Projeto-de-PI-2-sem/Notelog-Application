@@ -27,59 +27,38 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-//        Instâncias BD
+//      Instâncias BD
+        CpuDAO cpuDAO = new CpuDAO();
+        DiscoRigidoDAO discoRigidoDAO = new DiscoRigidoDAO();
+        LogCpuDAO logCpuDAO = new LogCpuDAO();
+        LogDiscoDAO logDiscoDAO = new LogDiscoDAO();
 
-        System.out.println("Realizando Monitoramento de Processos do dispositivo...");
-        Thread.sleep(5000);
-//
-//        CpuDAO cpuDAO = new CpuDAO();
-//        DiscoRigidoDAO discoRigidoDAO = new DiscoRigidoDAO();
-//        LogCpuDAO logCpuDAO = new LogCpuDAO();
-//        LogDiscoDAO logDiscoDAO = new LogDiscoDAO();
-//
-//        //LogDisco
-//        LogJanelasDAO logJanelasDAO = new LogJanelasDAO();
-//        LogRamDAO logRamDAO = new LogRamDAO();
-//
-//        //LogDisco
-//        NotebookDAO notebookDAO = new NotebookDAO();
-//        RamDAO ramDAO = new RamDAO();
-//        TempoDeAtividadeDAO tempoDeAtividadeDAO = new TempoDeAtividadeDAO();
-//
-//        // Hardware
-//        notebookDAO.adicionarNotebook(new Notebook());
-//        cpuDAO.adicionarCpu(new Cpu());
-//        discoRigidoDAO.adiconarNovoDisco();
-//        ramDAO.adicionarRam(new Ram());
-//
-//        // Logs
-//        logCpuDAO.adicionarLogCpu(new LogCpu());
-//        logJanelasDAO.adicionarNovoLogJanelas();
-//        logRamDAO.adicionarLogRam(new LogRam());
-//        logDiscoDAO.adiconarNovoLogDisco();
-//        tempoDeAtividadeDAO.adicionarTempoDeAtividade(new TempoDeAtividade());
-//
+        //LogDisco
+        LogJanelasDAO logJanelasDAO = new LogJanelasDAO();
+        LogRamDAO logRamDAO = new LogRamDAO();
+
+        //LogDisco
+        NotebookDAO notebookDAO = new NotebookDAO();
+        RamDAO ramDAO = new RamDAO();
+        TempoDeAtividadeDAO tempoDeAtividadeDAO = new TempoDeAtividadeDAO();
+
+        // Hardware
+        notebookDAO.adicionarNotebook(new Notebook());
+        cpuDAO.adicionarCpu(new Cpu());
+        discoRigidoDAO.adiconarNovoDisco();
+        ramDAO.adicionarRam(new Ram());
+
+        // Logs
+        logCpuDAO.adicionarLogCpu(new LogCpu());
+        logJanelasDAO.adicionarNovoLogJanelas();
+        logRamDAO.adicionarLogRam(new LogRam());
+        logDiscoDAO.adiconarNovoLogDisco();
+        tempoDeAtividadeDAO.adicionarTempoDeAtividade(new TempoDeAtividade());
+
         Looca janelaGroup = new Looca();
         FucionalidadeConsole func = new FucionalidadeConsole();
         List<String> processosBloqueados = new ArrayList<>();
 
-
-
-        System.out.println("Encerrando processos indevídos...");
-
-        Thread.sleep(5000);
-
-        processosBloqueados.add("WhatsApp");
-        for (Janela janela : janelaGroup.getGrupoDeJanelas().getJanelas()) {
-            for (int i = 0; i < processosBloqueados.size(); i++) {
-                if (janela.getTitulo().contains(processosBloqueados.get(i))) {
-                    func.encerraProcesso(Math.toIntExact(janela.getPid()));
-                    System.out.println("Processo '" + janela.getTitulo() + "' foi encerrado por violar as políticas de segurança da empresa!");
-                    Thread.sleep(5000);
-
-                }
-            }
-        }
 
         Geolocalizacao geolocalizacao = new Geolocalizacao();
         GeolocalizacaoBD geoBD = new GeolocalizacaoBD();
@@ -89,10 +68,8 @@ public class Main {
 
         geolocalizacao.preencherDados(jsonString);
         String dadosFormatados = geolocalizacao.formatarDados();
-        System.out.println("Geolocalização do dispositivo:");
-        System.out.println(dadosFormatados);
-        System.out.println("Dados capturados e enviados ao Banco...");
         geoBD.adicionaGeolocalizacao();
+
 
     }
 }
