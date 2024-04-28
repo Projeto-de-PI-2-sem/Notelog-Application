@@ -19,9 +19,12 @@ public class Conexao {
                 jdbc:mysql://localhost:3306/mydb <- EXEMPLO PARA MYSQL
                 jdbc:sqlserver://localhost:1433;database=mydb <- EXEMPLO PARA SQL SERVER
         */
+
         dataSource.setUrl("jdbc:mysql://localhost:3306/Notelog");
-        dataSource.setUsername("root");
-        dataSource.setPassword("#Gf54939177858");
+        dataSource.setUsername("");
+        dataSource.setPassword("");
+
+
 
         conexaoDoBanco = new JdbcTemplate(dataSource);
     }

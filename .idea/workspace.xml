@@ -5,17 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1736246-9749-4ca3-ae1e-198b920a3c3b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/logs/janelas/FucionalidadeConsole.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/config/Conexao.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/config/Conexao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/disco/rigido/DiscoRigido.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/disco/rigido/DiscoRigido.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/disco/rigido/DiscoRigidoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/disco/rigido/DiscoRigidoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/logs/disco/LogDisco.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/logs/disco/LogDisco.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/logs/disco/LogDiscoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/logs/disco/LogDiscoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/logs/janelas/LogJanelas.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/logs/janelas/LogJanelas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/logs/janelas/LogJanelasDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/logs/janelas/LogJanelasDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/logs/ram/LogRamDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/logs/ram/LogRamDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/execute/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/execute/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/geolocalizacao/Geolocalizacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/geolocalizacao/Geolocalizacao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/geolocalizacao/GeolocalizacaoBD.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/geolocalizacao/GeolocalizacaoBD.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,10 +41,17 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/zeu/Desktop/Projetos/Faculdade/Notelog-Proj/Notelog-Application",
+    "last_opened_file_path": "C:/Users/Zak/Downloads/Notelog-Application",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2"
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RunManager" selected="Application.Main">
@@ -82,6 +84,13 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -90,7 +99,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1713470626964</updated>
+      <workItem from="1714264320414" duration="9351000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>
