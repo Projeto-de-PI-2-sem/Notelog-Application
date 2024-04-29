@@ -23,7 +23,6 @@ import org.notelog.entidades.usuario.Usuario;
 import org.notelog.entidades.usuario.UsuarioDAO;
 import org.notelog.geolocalizacao.Geolocalizacao;
 import org.notelog.geolocalizacao.GeolocalizacaoDAO;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -84,56 +83,65 @@ public class Main {
                 System.out.println("Email ou senha incorretos. Tente novamente.");
             }
         }
-
-
-
-       //Instâncias comuns
-        Looca janelaGroup = new Looca();
-        FucionalidadeConsole func = new FucionalidadeConsole();
-        List<String> processosBloqueados = new ArrayList<>();
-        Geolocalizacao geolocalizacao = new Geolocalizacao();
-
-        //Metodos comuns
-        String publicIPAddress = geolocalizacao.ObterIP();
-        String jsonString = geolocalizacao.ObterGeoPorIP(publicIPAddress);
-        geolocalizacao.preencherDados(jsonString);
-        String dadosFormatados = geolocalizacao.formatarDados();
-
-        //DAO - Instancias
-        NotebookDAO notebookDAO = new NotebookDAO();
-        CpuDAO cpuDAO = new CpuDAO();
-        RamDAO ramDAO = new RamDAO();
-        DiscoRigidoDAO discoRigidoDAO = new DiscoRigidoDAO();
-        TempoDeAtividadeDAO tempoDeAtividadeDAO = new TempoDeAtividadeDAO();
-        GeolocalizacaoDAO geoDAO = new GeolocalizacaoDAO();
-
-
-        //DAO - Metodos
-        notebookDAO.adicionarNotebook(new Notebook());
-        cpuDAO.adicionarCpu(new Cpu());
-        ramDAO.adicionarRam(new Ram());
-        discoRigidoDAO.adiconarNovoDisco();
-        tempoDeAtividadeDAO.adicionarTempoDeAtividade(new TempoDeAtividade());
-
-
-
-
-        //Logs
-
-        //LogDAO - Instancias
-        LogCpuDAO logCpuDAO = new LogCpuDAO();
-        LogRamDAO logRamDAO = new LogRamDAO();
-        LogDiscoDAO logDiscoDAO = new LogDiscoDAO();
-        LogJanelasDAO logJanelasDAO = new LogJanelasDAO();
-
-
-        //LogDAO - Metodos
-        logCpuDAO.adicionarLogCpu(new LogCpu());
-        logRamDAO.adicionarLogRam(new LogRam());
-        logDiscoDAO.adiconarNovoLogDisco();
-        logJanelasDAO.adicionarNovoLogJanelas();
-        geoDAO.adicionaGeolocalizacao();
     }
+
+        private static void inserirDadosNoBanco(Usuario usuario) {
+            while (true) {
+                try {
+                    Thread.sleep(10000); // Espera 10 segundo
+                    //Instâncias comuns
+                    Looca janelaGroup = new Looca();
+                    FucionalidadeConsole func = new FucionalidadeConsole();
+                    List<String> processosBloqueados = new ArrayList<>();
+                    Geolocalizacao geolocalizacao = new Geolocalizacao();
+
+                    //Metodos comuns
+                    String publicIPAddress = geolocalizacao.ObterIP();
+                    String jsonString = geolocalizacao.ObterGeoPorIP(publicIPAddress);
+                    geolocalizacao.preencherDados(jsonString);
+                    String dadosFormatados = geolocalizacao.formatarDados();
+
+                    //DAO - Instancias
+                    NotebookDAO notebookDAO = new NotebookDAO();
+                    CpuDAO cpuDAO = new CpuDAO();
+                    RamDAO ramDAO = new RamDAO();
+                    DiscoRigidoDAO discoRigidoDAO = new DiscoRigidoDAO();
+                    TempoDeAtividadeDAO tempoDeAtividadeDAO = new TempoDeAtividadeDAO();
+                    GeolocalizacaoDAO geoDAO = new GeolocalizacaoDAO();
+
+
+                    //DAO - Metodos
+                    notebookDAO.adicionarNotebook(new Notebook());
+                    cpuDAO.adicionarCpu(new Cpu());
+                    ramDAO.adicionarRam(new Ram());
+                    discoRigidoDAO.adiconarNovoDisco();
+                    tempoDeAtividadeDAO.adicionarTempoDeAtividade(new TempoDeAtividade());
+
+
+                    //Logs
+
+                    //LogDAO - Instancias
+                    LogCpuDAO logCpuDAO = new LogCpuDAO();
+                    LogRamDAO logRamDAO = new LogRamDAO();
+                    LogDiscoDAO logDiscoDAO = new LogDiscoDAO();
+                    LogJanelasDAO logJanelasDAO = new LogJanelasDAO();
+
+
+                    //LogDAO - Metodos
+                    logCpuDAO.adicionarLogCpu(new LogCpu());
+                    logRamDAO.adicionarLogRam(new LogRam());
+                    logDiscoDAO.adiconarNovoLogDisco();
+                    logJanelasDAO.adicionarNovoLogJanelas();
+                    geoDAO.adicionaGeolocalizacao();
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+
+
 
     private static void escolherMonitoramento(Usuario usuario) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
@@ -147,7 +155,7 @@ public class Main {
             System.out.println("3 - Monitorar Janelas");
             System.out.println("4 - Monitorar RAM");
             System.out.println("5 - Capturar Geolocalização do dispositivo");
-            System.out.println("6 - Sair");
+            System.out.println("6 - Ocultar ação do Notelog");
 
             opcao = scanner.nextInt();
 
@@ -168,36 +176,45 @@ public class Main {
                     monitorarGeolocalizacao(usuario);
                     break;
                 case 6:
-                    System.out.println("Encerrando o programa...");
-                    Thread.sleep(5000);
+                    System.out.println("Os inserts continuaram sendo executados, porém de forma invisivel");
+                    inserirDadosNoBanco(usuario);
+                    break;
+                case 7:
                     break;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
             }
-        } while (opcao != 5);
-
-
-
-
+        } while (opcao != 6);
     }
 
     // Funções de monitoramento
     private static void monitorarCPU(Usuario usuario) {
         Scanner scanner = new Scanner(System.in);
+        Looca looca = new Looca();
         do {
             System.out.println("Monitorando CPU...");
             try {
-                Thread.sleep(1000); // Espera 1 segundo
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("Dados da CPU:");
+
+            System.out.println("Dados de CPU:");
             try {
-                Thread.sleep(5000); // Espera 5 segundos
+                Thread.sleep(5000);
+                System.out.println(looca.getProcessador().toString());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
             System.out.println("Inserindo processos no Banco...");
+            try {
+                Thread.sleep(9000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println("Concluido!!");
         } while (!scanner.nextLine().equalsIgnoreCase("exit"));
         System.out.println("Saindo do monitoramento de CPU...");
 
@@ -208,11 +225,9 @@ public class Main {
         }
     }
 
-
-
     private static void monitorarDisco(Usuario usuario) {
         Scanner scanner = new Scanner(System.in);
-
+        Looca looca = new Looca();
         do {
             System.out.println("Monitorando Disco...");
             try {
@@ -220,13 +235,23 @@ public class Main {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
             System.out.println("Dados de Discos:");
             try {
-                Thread.sleep(5000); // Espera 5 segundos
+                Thread.sleep(5000);
+                System.out.println(looca.getGrupoDeDiscos().getDiscos().toString());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
             System.out.println("Inserindo processos no Banco...");
+            try {
+                Thread.sleep(9000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println("Concluido!!");
         } while (!scanner.nextLine().equalsIgnoreCase("exit"));
         System.out.println("Saindo do monitoramento de Disco...");
 
@@ -240,7 +265,7 @@ public class Main {
 
     private static void monitorarJanelas(Usuario usuario) {
         Scanner scanner = new Scanner(System.in);
-
+        Looca looca = new Looca();
         do {
             System.out.println("Monitorando Janelas...");
             try {
@@ -248,13 +273,23 @@ public class Main {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
             System.out.println("Dados de Janelas:");
             try {
                 Thread.sleep(5000); // Espera 5 segundos
+                System.out.println(looca.getGrupoDeJanelas().getJanelas().toString());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
             System.out.println("Inserindo processos no Banco...");
+            try {
+                Thread.sleep(9000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println("Concluido!!");
         } while (!scanner.nextLine().equalsIgnoreCase("exit"));
         System.out.println("Saindo do monitoramento de Janelas...");
 
@@ -268,20 +303,32 @@ public class Main {
 
     private static void monitorarRAM(Usuario usuario) {
         Scanner scanner = new Scanner(System.in);
+        Looca looca = new Looca();
         do {
+
             System.out.println("Monitorando RAM...");
             try {
                 Thread.sleep(1000); // Espera 1 segundo
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
             System.out.println("Dados de memória RAM:");
             try {
                 Thread.sleep(5000); // Espera 5 segundos
+                looca.getMemoria().toString();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
             System.out.println("Inserindo processos no Banco...");
+            try {
+                Thread.sleep(9000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println("Concluido!!");
         } while (!scanner.nextLine().equalsIgnoreCase("exit"));
         System.out.println("Saindo do monitoramento de RAM...");
 
