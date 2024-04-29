@@ -85,21 +85,32 @@ public class Main {
         }
     }
 
-        private static void inserirDadosNoBanco(Usuario usuario) {
+        private static void inserirDadosNoBanco(Usuario usuario) throws InterruptedException {
+
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Monitorando dispositivo, que tal um café enquanto isso?...");
+            System.out.println("Deseja parar encerrar o programa? Digite 'exit'.");
+
+            if (scanner.nextLine().equalsIgnoreCase("exit")) {
+                return;
+            }
+
+
             while (true) {
                 try {
-                    Thread.sleep(10000); // Espera 10 segundo
-                    //Instâncias comuns
-                    Looca janelaGroup = new Looca();
-                    FucionalidadeConsole func = new FucionalidadeConsole();
-                    List<String> processosBloqueados = new ArrayList<>();
+                    //Geolocalização
                     Geolocalizacao geolocalizacao = new Geolocalizacao();
-
-                    //Metodos comuns
                     String publicIPAddress = geolocalizacao.ObterIP();
                     String jsonString = geolocalizacao.ObterGeoPorIP(publicIPAddress);
                     geolocalizacao.preencherDados(jsonString);
                     String dadosFormatados = geolocalizacao.formatarDados();
+                    Thread.sleep(5000);
+                    Thread.sleep(10000); // Espera 10 segundo
+
+                    //funcionalidade de Processos bloqueados
+//                  Looca janelaGroup = new Looca();
+//                  ucionalidadeConsole func = new FucionalidadeConsole();
+//                  List<String> processosBloqueados = new ArrayList<>();
 
                     //DAO - Instancias
                     NotebookDAO notebookDAO = new NotebookDAO();
@@ -107,7 +118,7 @@ public class Main {
                     RamDAO ramDAO = new RamDAO();
                     DiscoRigidoDAO discoRigidoDAO = new DiscoRigidoDAO();
                     TempoDeAtividadeDAO tempoDeAtividadeDAO = new TempoDeAtividadeDAO();
-                    GeolocalizacaoDAO geoDAO = new GeolocalizacaoDAO();
+//                  GeolocalizacaoDAO geoDAO = new GeolocalizacaoDAO();
 
 
                     //DAO - Metodos
@@ -132,7 +143,7 @@ public class Main {
                     logRamDAO.adicionarLogRam(new LogRam());
                     logDiscoDAO.adiconarNovoLogDisco();
                     logJanelasDAO.adicionarNovoLogJanelas();
-                    geoDAO.adicionaGeolocalizacao();
+//                    geoDAO.adicionaGeolocalizacao();
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -156,6 +167,7 @@ public class Main {
             System.out.println("4 - Monitorar RAM");
             System.out.println("5 - Capturar Geolocalização do dispositivo");
             System.out.println("6 - Ocultar ação do Notelog");
+            System.out.println("7 - Sair do programa");
 
             opcao = scanner.nextInt();
 
@@ -184,7 +196,8 @@ public class Main {
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
             }
-        } while (opcao != 6);
+        } while (opcao != 7);
+        System.out.println("Programa Finalizado.");
     }
 
     // Funções de monitoramento
@@ -356,8 +369,8 @@ public class Main {
                 Thread.sleep(1000); // Espera 1 segundo
                 System.out.println(dadosFormatados);
                 Thread.sleep(5000); // Espera 5 segundos
-                System.out.println("Dados capturados e enviados ao Banco...");
-                geoDAO.adicionaGeolocalizacao();
+                System.out.println("Dados capturados com sucesso.");
+//                geoDAO.adicionaGeolocalizacao();
                 return;
 
             } catch (InterruptedException e) {}
