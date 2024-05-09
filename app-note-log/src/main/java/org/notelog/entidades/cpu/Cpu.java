@@ -3,30 +3,21 @@ package org.notelog.entidades.cpu;
 import com.github.britooo.looca.api.core.Looca;
 
 public class Cpu {
-    Looca looca = new Looca();
-
-    private Integer id;
     private String nome;
-    private String numeroFisico;
-    private String numerologico;
+    private Integer numeroFisico;
+    private Integer numerologico;
     private String frequencia;
     private String idFisicoProcessador;
     private String fkNotebook;
 
     public Cpu() {
-        this.nome = nome;
-        this.numeroFisico = numeroFisico;
-        this.numerologico = numerologico;
-        this.frequencia = frequencia;
-        this.idFisicoProcessador = idFisicoProcessador;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+        Looca looca = new Looca();
+        this.nome = looca.getProcessador().getNome();
+        this.numeroFisico = looca.getProcessador().getNumeroCpusFisicas();
+        this.numerologico = looca.getProcessador().getNumeroCpusLogicas();
+        this.frequencia = looca.getProcessador().getFrequencia().toString();
+        this.idFisicoProcessador = looca.getProcessador().getId();
+        this.fkNotebook = fkNotebook;
     }
 
     public String getNome() {
@@ -37,19 +28,19 @@ public class Cpu {
         this.nome = nome;
     }
 
-    public String getNumeroFisico() {
+    public Integer getNumeroFisico() {
         return numeroFisico;
     }
 
-    public void setNumeroFisico(String numeroFisico) {
+    public void setNumeroFisico(Integer numeroFisico) {
         this.numeroFisico = numeroFisico;
     }
 
-    public String getNumerologico() {
+    public Integer getNumerologico() {
         return numerologico;
     }
 
-    public void setNumerologico(String numerologico) {
+    public void setNumerologico(Integer numerologico) {
         this.numerologico = numerologico;
     }
 
@@ -69,14 +60,6 @@ public class Cpu {
         this.idFisicoProcessador = idFisicoProcessador;
     }
 
-    public Looca getLooca() {
-        return looca;
-    }
-
-    public void setLooca(Looca looca) {
-        this.looca = looca;
-    }
-
     public String getFkNotebook() {
         return fkNotebook;
     }
@@ -87,13 +70,13 @@ public class Cpu {
 
     @Override
     public String toString() {
-        return "org.notelog.entidades.cpu.CPU{" +
-                "idCPU=" + id +
+        return "Cpu{" +
                 ", nome='" + nome + '\'' +
-                ", numeroFisico='" + numeroFisico + '\'' +
-                ", numerologico='" + numerologico + '\'' +
+                ", numeroFisico=" + numeroFisico +
+                ", numerologico=" + numerologico +
                 ", frequencia='" + frequencia + '\'' +
                 ", idFisicoProcessador='" + idFisicoProcessador + '\'' +
+                ", fkNotebook='" + fkNotebook + '\'' +
                 '}';
     }
 }

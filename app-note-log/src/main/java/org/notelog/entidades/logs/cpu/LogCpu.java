@@ -3,14 +3,14 @@ package org.notelog.entidades.logs.cpu;
 import com.github.britooo.looca.api.core.Looca;
 
 public class LogCpu {
-    Looca looca = new Looca();
-
     private Integer id;
-    private String porcentagemUso;
+    private Double porcentagemUso;
     private Integer fkCPU;
 
-    public LogCpu() {
-        this.porcentagemUso = porcentagemUso;
+    public LogCpu()
+    {
+        Looca looca = new Looca();
+        this.porcentagemUso = looca.getProcessador().getUso();
     }
 
     public Integer getId() {
@@ -21,11 +21,11 @@ public class LogCpu {
         this.id = id;
     }
 
-    public String getPorcentagemUso() {
+    public Double getPorcentagemUso() {
         return porcentagemUso;
     }
 
-    public void setPorcentagemUso(String porcentagemUso) {
+    public void setPorcentagemUso(Double porcentagemUso) {
         this.porcentagemUso = porcentagemUso;
     }
 

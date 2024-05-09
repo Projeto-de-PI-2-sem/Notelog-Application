@@ -13,7 +13,7 @@ public class TempoDeAtividadeDAO {
         int fkNotebook = con.queryForObject("SELECT id FROM Notebook ORDER BY id DESC LIMIT 1", Integer.class);
 
         String sql = "INSERT INTO TempoDeAtividade (fkNotebook, tempoDeAtividade, tempoInicializado) VALUES ('%d', '%s', '%s')"
-                .formatted(fkNotebook, looca.getSistema().getTempoDeAtividade(),looca.getSistema().getInicializado());
+                .formatted(fkNotebook, tempoDeAtividade.getTempoDeAtividade(), tempoDeAtividade.getTempoInicializado());
         con.update(sql);
     }
 }

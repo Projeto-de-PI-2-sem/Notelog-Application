@@ -14,7 +14,6 @@ LogDiscoDAO {
     public void adicionarLogDisco(LogDisco logDisco) {
         Conexao conexao = new Conexao();
         JdbcTemplate con = conexao.getConexaoDoBanco();
-        Looca looca = new Looca();
         int fkDiscoRigido = con.queryForObject("SELECT id from DiscoRigido ORDER BY id DESC LIMIT 1", Integer.class);
 
         String sql = "INSERT INTO LogDisco (fkDiscoRigido, leitura, bytesLeitura, escrita, bytesEscrita) VALUES (%d, '%s', '%s', '%s', '%s')"

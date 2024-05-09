@@ -14,7 +14,7 @@ public class LogCpuDAO {
         int fkCPU = con.queryForObject("SELECT id from `Cpu` ORDER BY id DESC LIMIT 1", Integer.class);
 
         String sql = "INSERT INTO LogCpu (porcentagemUso, fkCPU) VALUES ('%s', '%d')"
-                .formatted(looca.getProcessador().getUso(), fkCPU);
+                .formatted(logCpu.getPorcentagemUso(), fkCPU);
         con.update(sql);
     }
 }

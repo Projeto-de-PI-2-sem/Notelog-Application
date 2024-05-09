@@ -7,16 +7,15 @@ import java.sql.Time;
 import java.time.DateTimeException;
 
 public class TempoDeAtividade {
-    Looca looca = new Looca();
     private Integer id;
     private Integer fkNotebook;
-//    Verificar se tipo TIME e DateTimeException funciona na inserção do bd (se não usar String e alterar no bd para VARCHAR)
     private String tempoDeAtividade;
-    private DateTimeException tempoInicializado;
+    private String tempoInicializado;
 
     public TempoDeAtividade() {
-        this.tempoDeAtividade = tempoDeAtividade;
-        this.tempoInicializado = tempoInicializado;
+        Looca looca = new Looca();
+        this.tempoDeAtividade = looca.getSistema().getTempoDeAtividade().toString();
+        this.tempoInicializado = looca.getSistema().getInicializado().toString();
     }
 
     public Integer getId() {
@@ -43,11 +42,11 @@ public class TempoDeAtividade {
         this.tempoDeAtividade = tempoDeAtividade;
     }
 
-    public DateTimeException getTempoInicializado() {
+    public String getTempoInicializado() {
         return tempoInicializado;
     }
 
-    public void setTempoInicializado(DateTimeException tempoInicializado) {
+    public void setTempoInicializado(String tempoInicializado) {
         this.tempoInicializado = tempoInicializado;
     }
 

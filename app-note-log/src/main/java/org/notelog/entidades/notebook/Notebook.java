@@ -11,9 +11,10 @@ public class Notebook {
     private Integer fkFuncionario;
 
     public Notebook() {
-        this.sistemaOperacional = sistemaOperacional;
-        this.fabricante = fabricante;
-        this.arquitetura = arquitetura;
+        Looca looca = new Looca();
+        this.sistemaOperacional = looca.getSistema().getSistemaOperacional();
+        this.fabricante = looca.getSistema().getFabricante();
+        this.arquitetura = looca.getSistema().getArquitetura();
         this.fkFuncionario = fkFuncionario;
     }
 

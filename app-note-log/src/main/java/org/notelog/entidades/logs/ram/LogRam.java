@@ -3,16 +3,16 @@ package org.notelog.entidades.logs.ram;
 import com.github.britooo.looca.api.core.Looca;
 
 public class LogRam {
-    Looca looca = new Looca();
     private Integer id;
     private Integer fkRAM;
     private String usoMemoria;
     private String memoriaDisponivel;
 
     public LogRam() {
+        Looca looca = new Looca();
         this.fkRAM = fkRAM;
-        this.usoMemoria = usoMemoria;
-        this.memoriaDisponivel = memoriaDisponivel;
+        this.usoMemoria = looca.getMemoria().getEmUso().toString();
+        this.memoriaDisponivel = looca.getMemoria().getDisponivel().toString();
     }
 
     public Integer getId() {

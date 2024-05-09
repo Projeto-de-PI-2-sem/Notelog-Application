@@ -23,8 +23,6 @@ import org.notelog.entidades.usuario.Usuario;
 import org.notelog.entidades.usuario.UsuarioDAO;
 import org.notelog.geolocalizacao.Geolocalizacao;
 import org.notelog.geolocalizacao.GeolocalizacaoDAO;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -85,72 +83,62 @@ public class Main {
         }
     }
 
-        private static void inserirDadosNoBanco(Usuario usuario) throws InterruptedException {
+    private static void inserirDadosNoBanco(Usuario usuario) throws InterruptedException {
+        System.out.println("Monitorando dispositivo, que tal um café enquanto isso?...");
 
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Monitorando dispositivo, que tal um café enquanto isso?...");
-            System.out.println("Deseja parar encerrar o programa? Digite 'exit'.");
+        while (true) {
+            try {
+                //Geolocalização
+                Geolocalizacao geolocalizacao = new Geolocalizacao();
+                String publicIPAddress = geolocalizacao.ObterIP();
+                String jsonString = geolocalizacao.ObterGeoPorIP(publicIPAddress);
+                geolocalizacao.preencherDados(jsonString);
+                String dadosFormatados = geolocalizacao.formatarDados();
+                Thread.sleep(5000);
+                Thread.sleep(10000);
 
-            if (scanner.nextLine().equalsIgnoreCase("exit")) {
-                return;
-            }
-
-
-            while (true) {
-                try {
-                    //Geolocalização
-                    Geolocalizacao geolocalizacao = new Geolocalizacao();
-                    String publicIPAddress = geolocalizacao.ObterIP();
-                    String jsonString = geolocalizacao.ObterGeoPorIP(publicIPAddress);
-                    geolocalizacao.preencherDados(jsonString);
-                    String dadosFormatados = geolocalizacao.formatarDados();
-                    Thread.sleep(5000);
-                    Thread.sleep(10000); // Espera 10 segundo
-
-                    //funcionalidade de Processos bloqueados
+                //funcionalidade de Processos bloqueados
 //                  Looca janelaGroup = new Looca();
 //                  ucionalidadeConsole func = new FucionalidadeConsole();
 //                  List<String> processosBloqueados = new ArrayList<>();
 
-                    //DAO - Instancias
-                    NotebookDAO notebookDAO = new NotebookDAO();
-                    CpuDAO cpuDAO = new CpuDAO();
-                    RamDAO ramDAO = new RamDAO();
-                    DiscoRigidoDAO discoRigidoDAO = new DiscoRigidoDAO();
-                    TempoDeAtividadeDAO tempoDeAtividadeDAO = new TempoDeAtividadeDAO();
-//                  GeolocalizacaoDAO geoDAO = new GeolocalizacaoDAO();
+                //DAO - Instancias
+                NotebookDAO notebookDAO = new NotebookDAO();
+                CpuDAO cpuDAO = new CpuDAO();
+                RamDAO ramDAO = new RamDAO();
+                DiscoRigidoDAO discoRigidoDAO = new DiscoRigidoDAO();
+                TempoDeAtividadeDAO tempoDeAtividadeDAO = new TempoDeAtividadeDAO();
+//                GeolocalizacaoDAO geoDAO = new GeolocalizacaoDAO();
 
 
-                    //DAO - Metodos
-                    notebookDAO.adicionarNotebook(new Notebook());
-                    cpuDAO.adicionarCpu(new Cpu());
-                    ramDAO.adicionarRam(new Ram());
-                    discoRigidoDAO.adiconarNovoDisco();
-                    tempoDeAtividadeDAO.adicionarTempoDeAtividade(new TempoDeAtividade());
+                //DAO - Metodos
+                notebookDAO.adicionarNotebook(new Notebook());
+                cpuDAO.adicionarCpu(new Cpu());
+                ramDAO.adicionarRam(new Ram());
+                discoRigidoDAO.adiconarNovoDisco();
+                tempoDeAtividadeDAO.adicionarTempoDeAtividade(new TempoDeAtividade());
 
 
-                    //Logs
-
-                    //LogDAO - Instancias
-                    LogCpuDAO logCpuDAO = new LogCpuDAO();
-                    LogRamDAO logRamDAO = new LogRamDAO();
-                    LogDiscoDAO logDiscoDAO = new LogDiscoDAO();
-                    LogJanelasDAO logJanelasDAO = new LogJanelasDAO();
+                //LogDAO - Instancias
+                LogCpuDAO logCpuDAO = new LogCpuDAO();
+                LogRamDAO logRamDAO = new LogRamDAO();
+                LogDiscoDAO logDiscoDAO = new LogDiscoDAO();
+                LogJanelasDAO logJanelasDAO = new LogJanelasDAO();
 
 
-                    //LogDAO - Metodos
-                    logCpuDAO.adicionarLogCpu(new LogCpu());
-                    logRamDAO.adicionarLogRam(new LogRam());
-                    logDiscoDAO.adiconarNovoLogDisco();
-                    logJanelasDAO.adicionarNovoLogJanelas();
-//                    geoDAO.adicionaGeolocalizacao();
+                //LogDAO - Metodos
+                logCpuDAO.adicionarLogCpu(new LogCpu());
+                logRamDAO.adicionarLogRam(new LogRam());
+                logDiscoDAO.adiconarNovoLogDisco();
+                logJanelasDAO.adicionarNovoLogJanelas();
+//                geoDAO.adicionaGeolocalizacao();
 
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+
         }
+    }
 
 
 
@@ -376,6 +364,5 @@ public class Main {
             } catch (InterruptedException e) {}
         }
     }
-
 
 }

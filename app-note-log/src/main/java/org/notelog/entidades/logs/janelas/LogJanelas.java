@@ -1,9 +1,6 @@
 package org.notelog.entidades.logs.janelas;
 
-import com.github.britooo.looca.api.core.Looca;
-
 public class LogJanelas {
-    Looca looca = new Looca();
     private Integer id;
     private String idJanela;
     private Integer fkNotebook;
@@ -27,10 +24,6 @@ public class LogJanelas {
 
     public String getIdJanela() {
         return idJanela;
-    }
-
-    public void setIdJanela(String idJanela) {
-        this.idJanela = idJanela;
     }
 
     public Integer getFkNotebook() {
