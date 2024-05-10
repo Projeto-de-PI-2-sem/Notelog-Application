@@ -11,20 +11,20 @@
   <component name="ChangeListManager">
     <list default="true" id="c1736246-9749-4ca3-ae1e-198b920a3c3b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/notebook/Notebook.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/notebook/Notebook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/cpu/Cpu.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/cpu/Cpu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/cpu/CpuDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/cpu/CpuDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/disco/rigido/DiscoRigido.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/disco/rigido/DiscoRigido.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/disco/rigido/DiscoRigidoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/disco/rigido/DiscoRigidoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/logs/cpu/LogCpu.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/logs/cpu/LogCpu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/logs/cpu/LogCpuDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/logs/cpu/LogCpuDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/logs/ram/LogRam.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/logs/ram/LogRam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/logs/ram/LogRamDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/logs/ram/LogRamDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/notebook/NotebookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/notebook/NotebookDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/usuario/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/usuario/Funcionario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/usuario/UsuarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/usuario/FuncionarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/ram/Ram.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/ram/Ram.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/ram/RamDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/ram/RamDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/tempo/atividade/TempoDeAtividade.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/tempo/atividade/TempoDeAtividade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/tempo/atividade/TempoDeAtividadeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/tempo/atividade/TempoDeAtividadeDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/execute/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/execute/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app-note-log/target/app-note-log-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/target/app-note-log-1.0-SNAPSHOT-jar-with-dependencies.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app-note-log/target/app-note-log-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/target/app-note-log-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app-note-log/target/classes/org/notelog/entidades/notebook/Notebook.class" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/target/classes/org/notelog/entidades/notebook/Notebook.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app-note-log/target/classes/org/notelog/entidades/notebook/NotebookDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/target/classes/org/notelog/entidades/notebook/NotebookDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app-note-log/target/classes/org/notelog/entidades/usuario/Usuario.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app-note-log/target/classes/org/notelog/entidades/usuario/UsuarioDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app-note-log/target/classes/org/notelog/execute/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/target/classes/org/notelog/execute/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app-note-log/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app-note-log/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,5 +127,15 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.springframework.dao.EmptyResultDataAccessException" package="org.springframework.dao" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

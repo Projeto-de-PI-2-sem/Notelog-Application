@@ -7,10 +7,11 @@ public class LogCpu {
     private Double porcentagemUso;
     private Integer fkCPU;
 
-    public LogCpu()
+    public LogCpu(Integer fkCPU)
     {
         Looca looca = new Looca();
         this.porcentagemUso = looca.getProcessador().getUso();
+        this.fkCPU = fkCPU;
     }
 
     public Integer getId() {

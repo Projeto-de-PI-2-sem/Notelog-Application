@@ -3,17 +3,38 @@ package org.notelog.entidades.ram;
 import com.github.britooo.looca.api.core.Looca;
 import org.notelog.config.Conexao;
 import org.notelog.entidades.cpu.Cpu;
+import org.notelog.entidades.tempo.atividade.TempoDeAtividade;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class  RamDAO {
-    public void adicionarRam(Ram ram) {
+    public Integer adicionarRam(Ram ram) {
         Conexao conexao = new Conexao();
         JdbcTemplate con = conexao.getConexaoDoBanco();
-        Looca looca = new Looca();
-        int fkNotebook = con.queryForObject("SELECT id FROM Notebook ORDER BY id DESC LIMIT 1", Integer.class);
-
-        String sql = "INSERT INTO Ram (totalMemoria, fkNotebook) VALUES ('%s', '%d')"
-                .formatted(ram.getTotalMemoria(), fkNotebook);
+        String sql;
+        if (!ramExiste(ram)) {
+            sql = "INSERT INTO Ram (totalMemoria, fkNotebook) VALUES ('%s', '%d')"
+                    .formatted(ram.getTotalMemoria(), ram.getFkNotebook());
+        }else {
+            sql = "UPDATE Ram SET totalMemoria = '%s' WHERE fkNotebook = %d;"
+                    .formatted(ram.getTotalMemoria(), ram.getFkNotebook());
+        }
         con.update(sql);
+        ram.setId(con.queryForObject("SELECT id from `Cpu` WHERE fkNotebook = ? ORDER BY id DESC LIMIT 1", Integer.class, ram.getFkNotebook()));
+        return ram.getFkNotebook();
+
+
+    }
+
+    private boolean ramExiste(Ram ram) {
+        Conexao conexao = new Conexao();
+        JdbcTemplate con = conexao.getConexaoDoBanco();
+
+        Integer quantidade = con.queryForObject("SELECT count(*) FROM Ram WHERE fkNotebook = ? AND totalMemoria = ?", Integer.class, ram.getFkNotebook(), ram.getTotalMemoria());
+        if (quantidade != null) {
+            return quantidade > 0;
+        } else {
+            return false;
+        }
     }
 }
+

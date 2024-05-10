@@ -92,20 +92,28 @@ public class Main {
             System.out.println(funcionario);
         }
         NotebookDAO notebookDAO = new NotebookDAO();
-        if (notebookDAO.adicionarNotebook(new Notebook(scanner.nextInt(), usuario.getFkEmpresa()))){
+        Notebook notebook = new Notebook(scanner.nextInt(), usuario.getFkEmpresa());
+
+        if (notebookDAO.adicionarNotebook(notebook)){
             try {
-                escolherMonitoramento(usuario);
+                escolherMonitoramento(usuario, notebook);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         } else System.out.println("ERRO!!! Funcionário inexistente vinculado a empresa");;
     }
 
-    private static void inserirDadosNoBanco(Funcionario usuario) throws InterruptedException {
+    private static void inserirDadosNoBanco(Funcionario usuario, Notebook notebook) throws InterruptedException {
         System.out.println("Monitorando dispositivo, que tal um café enquanto isso?...");
 
         while (true) {
             try {
+                Cpu cpu = new Cpu(notebook.getId());
+                Ram ram = new Ram(notebook.getId());
+//              DiscoRigido
+                TempoDeAtividade tempoDeAtividade= new TempoDeAtividade(notebook.getId());
+
+
                 //Geolocalização
                 Geolocalizacao geolocalizacao = new Geolocalizacao();
                 String publicIPAddress = geolocalizacao.ObterIP();
@@ -113,7 +121,6 @@ public class Main {
                 geolocalizacao.preencherDados(jsonString);
                 String dadosFormatados = geolocalizacao.formatarDados();
                 Thread.sleep(5000);
-                Thread.sleep(10000);
 
                 //funcionalidade de Processos bloqueados
 //                  Looca janelaGroup = new Looca();
@@ -129,10 +136,8 @@ public class Main {
 
 
                 //DAO - Metodos
-                cpuDAO.adicionarCpu(new Cpu());
-                ramDAO.adicionarRam(new Ram());
-                discoRigidoDAO.adiconarNovoDisco();
-                tempoDeAtividadeDAO.adicionarTempoDeAtividade(new TempoDeAtividade());
+                discoRigidoDAO.adiconarNovoDisco(notebook.getId());
+                tempoDeAtividadeDAO.adicionarTempoDeAtividade(tempoDeAtividade);
 
 
                 //LogDAO - Instancias
@@ -143,8 +148,8 @@ public class Main {
 
 
                 //LogDAO - Metodos
-                logCpuDAO.adicionarLogCpu(new LogCpu());
-                logRamDAO.adicionarLogRam(new LogRam());
+                logCpuDAO.adicionarLogCpu(new LogCpu(cpuDAO.adicionarCpu(cpu)));
+                logRamDAO.adicionarLogRam(new LogRam(ramDAO.adicionarRam(ram)));
                 logDiscoDAO.adiconarNovoLogDisco();
                 logJanelasDAO.adicionarNovoLogJanelas();
 //                geoDAO.adicionaGeolocalizacao();
@@ -158,7 +163,7 @@ public class Main {
 
 
 
-    private static void escolherMonitoramento(Funcionario usuario) throws InterruptedException {
+    private static void escolherMonitoramento(Funcionario usuario, Notebook notebook) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
 
         int opcao;
@@ -177,23 +182,23 @@ public class Main {
 
             switch (opcao) {
                 case 1:
-                    monitorarCPU(usuario);
+                    monitorarCPU(usuario, notebook);
                     break;
                 case 2:
-                    monitorarDisco(usuario);
+                    monitorarDisco(usuario, notebook);
                     break;
                 case 3:
-                    monitorarJanelas(usuario);
+                    monitorarJanelas(usuario, notebook);
                     break;
                 case 4:
-                    monitorarRAM(usuario);
+                    monitorarRAM(usuario, notebook);
                     break;
                 case 5:
-                    monitorarGeolocalizacao(usuario);
+                    monitorarGeolocalizacao(usuario, notebook);
                     break;
                 case 6:
                     System.out.println("Os inserts continuaram sendo executados, porém de forma invisivel");
-                    inserirDadosNoBanco(usuario);
+                    inserirDadosNoBanco(usuario, notebook);
                     break;
                 case 7:
                     break;
@@ -205,7 +210,7 @@ public class Main {
     }
 
     // Funções de monitoramento
-    private static void monitorarCPU(Funcionario usuario) {
+    private static void monitorarCPU(Funcionario usuario, Notebook notebook) {
         Scanner scanner = new Scanner(System.in);
         Looca looca = new Looca();
         do {
@@ -236,13 +241,13 @@ public class Main {
         System.out.println("Saindo do monitoramento de CPU...");
 
         try {
-            escolherMonitoramento(usuario);
+            escolherMonitoramento(usuario, notebook);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    private static void monitorarDisco(Funcionario usuario) {
+    private static void monitorarDisco(Funcionario usuario, Notebook notebook) {
         Scanner scanner = new Scanner(System.in);
         Looca looca = new Looca();
         do {
@@ -273,14 +278,14 @@ public class Main {
         System.out.println("Saindo do monitoramento de Disco...");
 
         try {
-            escolherMonitoramento(usuario);
+            escolherMonitoramento(usuario, notebook);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
 
-    private static void monitorarJanelas(Funcionario usuario) {
+    private static void monitorarJanelas(Funcionario usuario, Notebook notebook) {
         Scanner scanner = new Scanner(System.in);
         Looca looca = new Looca();
         do {
@@ -311,14 +316,14 @@ public class Main {
         System.out.println("Saindo do monitoramento de Janelas...");
 
         try {
-            escolherMonitoramento(usuario);
+            escolherMonitoramento(usuario, notebook);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
 
-    private static void monitorarRAM(Funcionario usuario) {
+    private static void monitorarRAM(Funcionario usuario, Notebook notebook) {
         Scanner scanner = new Scanner(System.in);
         Looca looca = new Looca();
         do {
@@ -350,13 +355,13 @@ public class Main {
         System.out.println("Saindo do monitoramento de RAM...");
 
         try {
-            escolherMonitoramento(usuario);
+            escolherMonitoramento(usuario, notebook);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    private static void monitorarGeolocalizacao(Funcionario usuario) {
+    private static void monitorarGeolocalizacao(Funcionario usuario, Notebook notebook) {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {

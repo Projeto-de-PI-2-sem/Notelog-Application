@@ -8,7 +8,7 @@ public class LogRam {
     private String usoMemoria;
     private String memoriaDisponivel;
 
-    public LogRam() {
+    public LogRam(Integer fkRAM) {
         Looca looca = new Looca();
         this.fkRAM = fkRAM;
         this.usoMemoria = looca.getMemoria().getEmUso().toString();

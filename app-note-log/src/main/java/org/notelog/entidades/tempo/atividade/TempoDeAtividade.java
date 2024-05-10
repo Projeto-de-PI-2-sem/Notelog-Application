@@ -12,8 +12,9 @@ public class TempoDeAtividade {
     private String tempoDeAtividade;
     private String tempoInicializado;
 
-    public TempoDeAtividade() {
+    public TempoDeAtividade(Integer fkNotebook) {
         Looca looca = new Looca();
+        this.fkNotebook = fkNotebook;
         this.tempoDeAtividade = looca.getSistema().getTempoDeAtividade().toString();
         this.tempoInicializado = looca.getSistema().getInicializado().toString();
     }

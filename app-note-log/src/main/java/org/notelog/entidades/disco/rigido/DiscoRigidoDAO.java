@@ -4,6 +4,7 @@ import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.discos.DiscoGrupo;
 import org.notelog.config.Conexao;
 import com.github.britooo.looca.api.group.discos.Disco;
+import org.notelog.entidades.notebook.Notebook;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -16,9 +17,10 @@ public class DiscoRigidoDAO {
         Conexao conexao = new Conexao();
         JdbcTemplate con = conexao.getConexaoDoBanco();
 
-        String sql = "INSERT INTO DiscoRigido(modelo, serial, tamanho) VALUES ('%s', '%s', '%s')"
-                .formatted(discoRigido.getModelo(), discoRigido.getSerial(), discoRigido.getTamanho());
+        String sql = "INSERT INTO DiscoRigido(modelo, serial, tamanho, fkNotebook) VALUES ('%s', '%s', '%s', %d)"
+                .formatted(discoRigido.getModelo(), discoRigido.getSerial(), discoRigido.getTamanho(), discoRigido.getFkNotebook());
         con.update(sql);
+        discoRigido.setId(con.queryForObject("SELECT id FROM DiscoRigido WHERE fkNotebook = ? ORDER BY id DESC LIMIT 1;", Integer.class, discoRigido.getFkNotebook()));
     }
 
     private boolean discoExiste(DiscoRigido disco) {
@@ -58,7 +60,7 @@ public class DiscoRigidoDAO {
         }
     }
 
-    public void adiconarNovoDisco() {
+    public void adiconarNovoDisco(Integer fkNotebook) {
 
         Looca looca = new Looca();
         DiscoGrupo grupoDeDiscos = looca.getGrupoDeDiscos();
@@ -66,7 +68,7 @@ public class DiscoRigidoDAO {
         List<Disco> discos = grupoDeDiscos.getDiscos();
 
         for (Disco disco : discos) {
-            DiscoRigido novoDiscoRigido = new DiscoRigido(null, disco.getModelo(), disco.getSerial(), grupoDeDiscos.getTamanhoTotal().toString());
+            DiscoRigido novoDiscoRigido = new DiscoRigido(null, disco.getModelo(), disco.getSerial(), grupoDeDiscos.getTamanhoTotal().toString(), fkNotebook);
 
 
             if (!discoExiste(novoDiscoRigido)) {

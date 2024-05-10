@@ -8,11 +8,12 @@ public class DiscoRigido {
     private String tamanho;
     private Integer fkNotebook;
 
-    public DiscoRigido(Integer idDisco, String modelo, String serial, String tamanho) {
+    public DiscoRigido(Integer idDisco, String modelo, String serial, String tamanho, Integer fkNotebook) {
         this.id = idDisco;
         this.modelo = modelo;
         this.tamanho = tamanho;
         this.serial = serial;
+        this.fkNotebook = fkNotebook;
     }
 
     public DiscoRigido() {

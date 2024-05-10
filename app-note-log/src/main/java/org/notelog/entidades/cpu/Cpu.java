@@ -3,14 +3,15 @@ package org.notelog.entidades.cpu;
 import com.github.britooo.looca.api.core.Looca;
 
 public class Cpu {
+    private Integer id;
     private String nome;
     private Integer numeroFisico;
     private Integer numerologico;
     private String frequencia;
     private String idFisicoProcessador;
-    private String fkNotebook;
+    private Integer fkNotebook;
 
-    public Cpu() {
+    public Cpu(Integer fkNotebook) {
         Looca looca = new Looca();
         this.nome = looca.getProcessador().getNome();
         this.numeroFisico = looca.getProcessador().getNumeroCpusFisicas();
@@ -18,6 +19,14 @@ public class Cpu {
         this.frequencia = looca.getProcessador().getFrequencia().toString();
         this.idFisicoProcessador = looca.getProcessador().getId();
         this.fkNotebook = fkNotebook;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -60,11 +69,11 @@ public class Cpu {
         this.idFisicoProcessador = idFisicoProcessador;
     }
 
-    public String getFkNotebook() {
+    public Integer getFkNotebook() {
         return fkNotebook;
     }
 
-    public void setFkNotebook(String fkNotebook) {
+    public void setFkNotebook(Integer fkNotebook) {
         this.fkNotebook = fkNotebook;
     }
 

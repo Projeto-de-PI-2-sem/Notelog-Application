@@ -3,13 +3,23 @@ package org.notelog.entidades.ram;
 import com.github.britooo.looca.api.core.Looca;
 
 public class Ram {
+    private Integer id;
     private String totalMemoria;
     private Integer fkNotebook;
 
-    public Ram()
+    public Ram(Integer fkNotebook)
     {
         Looca looca = new Looca();
         this.totalMemoria = looca.getMemoria().getTotal().toString();
+        this.fkNotebook = fkNotebook;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTotalMemoria() {
