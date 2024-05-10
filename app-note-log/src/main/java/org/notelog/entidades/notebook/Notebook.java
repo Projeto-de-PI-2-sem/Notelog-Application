@@ -9,13 +9,15 @@ public class Notebook {
     private String fabricante;
     private Integer arquitetura;
     private Integer fkFuncionario;
+    private Integer fkEmpresa;
 
-    public Notebook() {
+    public Notebook(Integer fkFuncionario, Integer fkEmpresa) {
         Looca looca = new Looca();
         this.sistemaOperacional = looca.getSistema().getSistemaOperacional();
         this.fabricante = looca.getSistema().getFabricante();
         this.arquitetura = looca.getSistema().getArquitetura();
         this.fkFuncionario = fkFuncionario;
+        this.fkEmpresa = fkEmpresa;
     }
 
     public Integer getId() {
@@ -58,6 +60,14 @@ public class Notebook {
         this.fkFuncionario = fkFuncionario;
     }
 
+    public Integer getFkEmpresa() {
+        return fkEmpresa;
+    }
+
+    public void setFkEmpresa(Integer fkEmpresa) {
+        this.fkEmpresa = fkEmpresa;
+    }
+
     @Override
     public String toString() {
         return """
@@ -66,6 +76,7 @@ public class Notebook {
                 Fabricante: %s
                 Arquiteta: %s
                 fkFuncionario: %d
-                """.formatted(id, sistemaOperacional, fabricante, arquitetura, fkFuncionario);
+                fkEmpresa: %d
+                """.formatted(id, sistemaOperacional, fabricante, arquitetura, fkFuncionario, fkEmpresa);
     }
 }

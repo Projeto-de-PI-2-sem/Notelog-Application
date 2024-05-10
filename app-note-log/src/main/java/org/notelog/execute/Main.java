@@ -1,15 +1,12 @@
 package org.notelog.execute;
 
 import com.github.britooo.looca.api.core.Looca;
-import com.github.britooo.looca.api.group.janelas.Janela;
 import org.notelog.entidades.cpu.Cpu;
 import org.notelog.entidades.cpu.CpuDAO;
 import org.notelog.entidades.disco.rigido.DiscoRigidoDAO;
 import org.notelog.entidades.logs.cpu.LogCpu;
 import org.notelog.entidades.logs.cpu.LogCpuDAO;
 import org.notelog.entidades.logs.disco.LogDiscoDAO;
-import org.notelog.entidades.logs.janelas.FucionalidadeConsole;
-import org.notelog.entidades.logs.janelas.LogJanelas;
 import org.notelog.entidades.logs.janelas.LogJanelasDAO;
 import org.notelog.entidades.logs.ram.LogRam;
 import org.notelog.entidades.logs.ram.LogRamDAO;
@@ -19,8 +16,8 @@ import org.notelog.entidades.ram.Ram;
 import org.notelog.entidades.ram.RamDAO;
 import org.notelog.entidades.tempo.atividade.TempoDeAtividade;
 import org.notelog.entidades.tempo.atividade.TempoDeAtividadeDAO;
-import org.notelog.entidades.usuario.Usuario;
-import org.notelog.entidades.usuario.UsuarioDAO;
+import org.notelog.entidades.usuario.Funcionario;
+import org.notelog.entidades.usuario.FuncionarioDAO;
 import org.notelog.geolocalizacao.Geolocalizacao;
 import org.notelog.geolocalizacao.GeolocalizacaoDAO;
 import java.util.Scanner;
@@ -60,8 +57,8 @@ public class Main {
 
         // Loop de login
         boolean loginValido = false;
-        UsuarioDAO userDAO = new UsuarioDAO();
-        Usuario usuario = null;
+        FuncionarioDAO userDAO = new FuncionarioDAO();
+        Funcionario usuario = null;
 
         while (!loginValido) {
             System.out.println("Por favor, faça login para continuar...");
@@ -76,14 +73,35 @@ public class Main {
                 loginValido = true;
                 System.out.println("Login bem-sucedido! Bem-vindo, " + usuario.getNome() + "!");
                 Thread.sleep(3000);
-                escolherMonitoramento(usuario);
+                vincularFuncionario(usuario);
             } else {
                 System.out.println("Email ou senha incorretos. Tente novamente.");
             }
         }
     }
 
-    private static void inserirDadosNoBanco(Usuario usuario) throws InterruptedException {
+    private static void vincularFuncionario(Funcionario usuario) {
+        FuncionarioDAO userDAO = new FuncionarioDAO();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("""
+                =================================================================================================
+                | Para seguir para o monitoramento, digite o ID do funcionário no qual a maquina será designada |
+                =================================================================================================
+                """);
+        for (Funcionario funcionario : userDAO.buscarFuncionarios(usuario.getFkEmpresa())) {
+            System.out.println(funcionario);
+        }
+        NotebookDAO notebookDAO = new NotebookDAO();
+        if (notebookDAO.adicionarNotebook(new Notebook(scanner.nextInt(), usuario.getFkEmpresa()))){
+            try {
+                escolherMonitoramento(usuario);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        } else System.out.println("ERRO!!! Funcionário inexistente vinculado a empresa");;
+    }
+
+    private static void inserirDadosNoBanco(Funcionario usuario) throws InterruptedException {
         System.out.println("Monitorando dispositivo, que tal um café enquanto isso?...");
 
         while (true) {
@@ -103,7 +121,6 @@ public class Main {
 //                  List<String> processosBloqueados = new ArrayList<>();
 
                 //DAO - Instancias
-                NotebookDAO notebookDAO = new NotebookDAO();
                 CpuDAO cpuDAO = new CpuDAO();
                 RamDAO ramDAO = new RamDAO();
                 DiscoRigidoDAO discoRigidoDAO = new DiscoRigidoDAO();
@@ -112,7 +129,6 @@ public class Main {
 
 
                 //DAO - Metodos
-                notebookDAO.adicionarNotebook(new Notebook());
                 cpuDAO.adicionarCpu(new Cpu());
                 ramDAO.adicionarRam(new Ram());
                 discoRigidoDAO.adiconarNovoDisco();
@@ -142,7 +158,7 @@ public class Main {
 
 
 
-    private static void escolherMonitoramento(Usuario usuario) throws InterruptedException {
+    private static void escolherMonitoramento(Funcionario usuario) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
 
         int opcao;
@@ -189,7 +205,7 @@ public class Main {
     }
 
     // Funções de monitoramento
-    private static void monitorarCPU(Usuario usuario) {
+    private static void monitorarCPU(Funcionario usuario) {
         Scanner scanner = new Scanner(System.in);
         Looca looca = new Looca();
         do {
@@ -226,7 +242,7 @@ public class Main {
         }
     }
 
-    private static void monitorarDisco(Usuario usuario) {
+    private static void monitorarDisco(Funcionario usuario) {
         Scanner scanner = new Scanner(System.in);
         Looca looca = new Looca();
         do {
@@ -264,7 +280,7 @@ public class Main {
     }
 
 
-    private static void monitorarJanelas(Usuario usuario) {
+    private static void monitorarJanelas(Funcionario usuario) {
         Scanner scanner = new Scanner(System.in);
         Looca looca = new Looca();
         do {
@@ -302,7 +318,7 @@ public class Main {
     }
 
 
-    private static void monitorarRAM(Usuario usuario) {
+    private static void monitorarRAM(Funcionario usuario) {
         Scanner scanner = new Scanner(System.in);
         Looca looca = new Looca();
         do {
@@ -340,7 +356,7 @@ public class Main {
         }
     }
 
-    private static void monitorarGeolocalizacao(Usuario usuario) {
+    private static void monitorarGeolocalizacao(Funcionario usuario) {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
