@@ -12,7 +12,8 @@ public class TempoDeAtividadeDAO {
         JdbcTemplate con = conexao.getConexaoDoBanco();
 
         String sql;
-        if (tempoDeAtividadeExiste(tempoDeAtividade)) {
+
+        if (!tempoDeAtividadeExiste(tempoDeAtividade)) {
             sql = "INSERT INTO TempoDeAtividade (fkNotebook, tempoDeAtividade, tempoInicializado) VALUES ('%d', '%s', '%s')"
                     .formatted(tempoDeAtividade.getFkNotebook(), tempoDeAtividade.getTempoDeAtividade(), tempoDeAtividade.getTempoInicializado());
 
@@ -28,8 +29,8 @@ public class TempoDeAtividadeDAO {
         JdbcTemplate con = conexao.getConexaoDoBanco();
 
         Integer quantidade = con.queryForObject("SELECT count(*) FROM TempoDeAtividade WHERE fkNotebook = ? AND tempoInicializado = ?", Integer.class, tempoDeAtividade.getFkNotebook(), tempoDeAtividade.getTempoInicializado());
-        if (quantidade != null) {
-            return quantidade > 0;
+        if (quantidade != null && quantidade> 0) {
+            return true;
         } else {
             return false;
         }
