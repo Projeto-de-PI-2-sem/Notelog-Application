@@ -10,8 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1736246-9749-4ca3-ae1e-198b920a3c3b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/tempo/atividade/TempoDeAtividadeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/tempo/atividade/TempoDeAtividadeDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/notebook/Notebook.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/notebook/Notebook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/notebook/NotebookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/notebook/NotebookDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/usuario/FuncionarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/entidades/usuario/FuncionarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/execute/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/src/main/java/org/notelog/execute/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app-note-log/target/classes/org/notelog/entidades/notebook/Notebook.class" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/target/classes/org/notelog/entidades/notebook/Notebook.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app-note-log/target/classes/org/notelog/entidades/notebook/NotebookDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/target/classes/org/notelog/entidades/notebook/NotebookDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app-note-log/target/classes/org/notelog/entidades/usuario/FuncionarioDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/target/classes/org/notelog/entidades/usuario/FuncionarioDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app-note-log/target/classes/org/notelog/execute/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/app-note-log/target/classes/org/notelog/execute/Main.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +58,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Zak/Downloads/Notelog-Application - Copia",
+    "last_opened_file_path": "C:/Users/isaac.souza/Downloads/Notelog-Application",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -98,6 +106,13 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -109,6 +124,7 @@
       <workItem from="1714264320414" duration="10546000" />
       <workItem from="1714315386168" duration="15190000" />
       <workItem from="1714392451218" duration="3598000" />
+      <workItem from="1715802771723" duration="10014000" />
     </task>
     <servers />
   </component>

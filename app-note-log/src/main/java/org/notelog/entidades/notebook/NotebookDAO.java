@@ -1,8 +1,8 @@
 package org.notelog.entidades.notebook;
 
-import com.github.britooo.looca.api.core.Looca;
 import org.notelog.config.Conexao;
-import org.notelog.entidades.cpu.Cpu;
+import org.notelog.entidades.usuario.Funcionario;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class NotebookDAO {
@@ -21,4 +21,16 @@ public class NotebookDAO {
         } else return false;
 
     }
+
+    public Notebook consultaNotebook(Integer idUsuario){
+        Conexao conexao = new Conexao();
+        JdbcTemplate con = conexao.getConexaoDoBanco();
+
+        String sql = "select * from notebook where fkFuncionario = %d;".formatted(idUsuario);
+
+        // Utilizando queryForObject para retornar um único objeto Funcionario
+        return con.queryForObject(sql, new BeanPropertyRowMapper<>(Notebook.class));
+
+    };
+
 }

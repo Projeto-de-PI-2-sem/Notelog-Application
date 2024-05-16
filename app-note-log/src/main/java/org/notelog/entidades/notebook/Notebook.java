@@ -20,6 +20,9 @@ public class Notebook {
         this.fkEmpresa = fkEmpresa;
     }
 
+    public Notebook(){
+    }
+
     public Integer getId() {
         return id;
     }

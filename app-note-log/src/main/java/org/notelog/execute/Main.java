@@ -20,6 +20,8 @@ import org.notelog.entidades.usuario.Funcionario;
 import org.notelog.entidades.usuario.FuncionarioDAO;
 import org.notelog.geolocalizacao.Geolocalizacao;
 import org.notelog.geolocalizacao.GeolocalizacaoDAO;
+
+import java.io.Console;
 import java.util.Scanner;
 
 public class Main {
@@ -61,11 +63,22 @@ public class Main {
         Funcionario usuario = null;
 
         while (!loginValido) {
+            Console console = System.console();
+            String senha = "";
             System.out.println("Por favor, faça login para continuar...");
             System.out.print("Email: ");
             String email = scanner.nextLine();
-            System.out.print("Senha: ");
-            String senha = scanner.nextLine();
+            if (console == null){
+                System.out.print("Senha: ");
+                senha = scanner.nextLine();
+            }else{
+                char[] senhaArray = console.readPassword("Insira sua senha");
+
+                senha = new String(senhaArray);
+
+                java.util.Arrays.fill(senhaArray,' ');
+            }
+
 
             // Verifica se o usuário existe no banco de dados
             usuario = userDAO.verificaUsuario(email, senha);
@@ -82,25 +95,36 @@ public class Main {
 
     private static void vincularFuncionario(Funcionario usuario) {
         FuncionarioDAO userDAO = new FuncionarioDAO();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("""
+        NotebookDAO notebookDAO = new NotebookDAO();
+
+        if (userDAO.temVinculo(usuario.getId())){
+            Notebook notebookJaCadastrado = notebookDAO.consultaNotebook(usuario.getId());
+            try {
+                escolherMonitoramento(usuario, notebookJaCadastrado);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        } else{
+
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("""
                 =================================================================================================
                 | Para seguir para o monitoramento, digite o ID do funcionário no qual a maquina será designada |
                 =================================================================================================
                 """);
-        for (Funcionario funcionario : userDAO.buscarFuncionarios(usuario.getFkEmpresa())) {
-            System.out.println(funcionario);
-        }
-        NotebookDAO notebookDAO = new NotebookDAO();
-        Notebook notebook = new Notebook(scanner.nextInt(), usuario.getFkEmpresa());
-
-        if (notebookDAO.adicionarNotebook(notebook)){
-            try {
-                escolherMonitoramento(usuario, notebook);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+            for (Funcionario funcionario : userDAO.buscarFuncionarios(usuario.getFkEmpresa())) {
+                System.out.println(funcionario);
             }
-        } else System.out.println("ERRO!!! Funcionário inexistente vinculado a empresa");;
+            Notebook notebook = new Notebook(scanner.nextInt(), usuario.getFkEmpresa());
+
+            if (notebookDAO.adicionarNotebook(notebook)){
+                try {
+                    escolherMonitoramento(usuario, notebook);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            } else System.out.println("ERRO!!! Funcionário inexistente vinculado a empresa");
+        };
     }
 
     private static void inserirDadosNoBanco(Funcionario usuario, Notebook notebook) throws InterruptedException {
