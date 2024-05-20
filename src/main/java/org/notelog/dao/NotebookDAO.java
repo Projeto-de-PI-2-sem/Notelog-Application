@@ -26,7 +26,7 @@ public class NotebookDAO {
         Conexao conexao = new Conexao();
         JdbcTemplate con = conexao.getConexaoDoBanco();
 
-        String sql = "select * from notebook where fkFuncionario = %d;".formatted(idUsuario);
+        String sql = "select * from Notebook where fkFuncionario = %d;".formatted(idUsuario);
 
         // Utilizando queryForObject para retornar um único objeto Funcionario
         return con.queryForObject(sql, new BeanPropertyRowMapper<>(Notebook.class));

@@ -25,7 +25,7 @@ public class FuncionarioDAO {
     public Boolean temVinculo(Integer idUsuario){
         Conexao conexao = new Conexao();
         JdbcTemplate con = conexao.getConexaoDoBanco();
-        Integer funcionarioJaAtrelado = con.queryForObject("select count(*) from funcionario AS f JOIN Notebook AS N ON f.id = N.fkFuncionario WHERE N.fkFUncionario = ?", Integer.class, idUsuario);
+        Integer funcionarioJaAtrelado = con.queryForObject("select count(*) from Funcionario AS f JOIN Notebook AS N ON f.id = N.fkFuncionario WHERE N.fkFUncionario = ?", Integer.class, idUsuario);
         if (funcionarioJaAtrelado == null || funcionarioJaAtrelado == 0) {
             return false;
         } else{
