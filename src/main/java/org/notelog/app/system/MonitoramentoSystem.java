@@ -321,19 +321,19 @@ public class MonitoramentoSystem {
                     Cpu cpu = new Cpu(notebook.getId());
                     System.out.println("Dados CPU: \n" + cpu);
 
-                    Thread.sleep(4000);
+                    Thread.sleep(2000);
 
                     // Criando Objeto RAM pelo id do notebook
                     Ram ram = new Ram(notebook.getId());
                     System.out.println("Dados Memória Ram: \n" + ram);
 
-                    Thread.sleep(4000);
+                    Thread.sleep(2000);
 
                     // Criando Objeto tempo de atividade pelo id do notebook
                     TempoDeAtividade tempoDeAtividade = new TempoDeAtividade(notebook.getId());
                     System.out.println("Dados Tempo de atividade: \n" + tempoDeAtividade);
 
-                    Thread.sleep(4000);
+                    Thread.sleep(2000);
 
                     //Geolocalização
                     System.out.println("Dados Geolocalização: \n");
@@ -344,7 +344,7 @@ public class MonitoramentoSystem {
                     String dadosFormatados = geolocalizacao.formatarDados();
                     System.out.println(dadosFormatados);
 
-                    Thread.sleep(4000);
+                    Thread.sleep(2000);
 
                     //Objetos DAO de cada componente
                     CpuDAO cpuDAO = new CpuDAO();
@@ -373,7 +373,7 @@ public class MonitoramentoSystem {
                     logJanelasDAO.adicionarNovoLogJanelas();
 
                     System.out.println("Inserindo dados no Banco...");
-                    Thread.sleep(3000);
+                    Thread.sleep(2000);
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();

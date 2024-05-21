@@ -5,47 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="309ba401-17a1-4be9-9fc5-bc86265d8e3a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/FuncionarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/FuncionarioDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogCpuDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogCpuDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/NotebookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/NotebookDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-note-log-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-note-log-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/app/system/MonitoramentoSystem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/CpuDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/DiscoRigidoDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/FuncionarioDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/GeolocalizacaoDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/LogCpuDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/LogDiscoDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/LogJanelasDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/LogRamDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/NotebookDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/RamDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/TempoDeAtividadeDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/model/Cpu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/model/DiscoRigido.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/model/Funcionario.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/model/Geolocalizacao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/model/LogAbstract.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/model/LogCpu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/model/LogDisco.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/model/LogJanelas.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/model/LogRam.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/model/Notebook.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/model/Ram.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/model/TempoDeAtividade.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/service/ASCIIService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/service/LoginService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/util/database/Conexao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/app/system/MonitoramentoSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/app/system/MonitoramentoSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogDiscoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogDiscoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogJanelasDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogJanelasDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogRamDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogRamDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/model/LogJanelas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/model/LogJanelas.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,13 +89,6 @@
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

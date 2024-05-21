@@ -16,8 +16,8 @@ LogDiscoDAO {
         JdbcTemplate con = conexao.getConexaoDoBanco();
         int fkDiscoRigido = con.queryForObject("SELECT id from DiscoRigido ORDER BY id DESC LIMIT 1", Integer.class);
 
-        String sql = "INSERT INTO LogDisco (fkDiscoRigido, leitura, bytesLeitura, escrita, bytesEscrita) VALUES (%d, '%s', '%s', '%s', '%s')"
-                .formatted(fkDiscoRigido, logDisco.getLeituras(), logDisco.getBytesLeitura(), logDisco.getEscritas(), logDisco.getBytesEscritas());
+        String sql = "INSERT INTO LogDisco (fkDiscoRigido, usoDisco, dataLog) VALUES (%d, '%s', '%s')"
+                .formatted(fkDiscoRigido, (Long.parseLong(logDisco.getLeituras()) + Long.parseLong(logDisco.getBytesLeitura()) + Long.parseLong(logDisco.getEscritas()) + Long.parseLong(logDisco.getBytesEscritas())), logDisco.dataHoraAtual());
         con.update(sql);
     }
 
@@ -30,9 +30,8 @@ LogDiscoDAO {
 
         // Dar um jeito de identificar se o registro existe ou não
         Integer quantidade = con.queryForObject(("select count(*) from DiscoRigido join LogDisco on fkDiscoRigido = DiscoRigido.id " +
-                "where DiscoRigido.id = %d and leitura = '%s' and " +
-                "bytesLeitura = '%s' and  escrita = '%s' and " +
-                "bytesEscrita = '%s'").formatted(fkDiscoRigido, logDisco.getLeituras(), logDisco.getBytesLeitura(), logDisco.getEscritas(), logDisco.getBytesEscritas()), Integer.class);
+                "where DiscoRigido.id = %d and usoDisco = '%s'")
+                .formatted(fkDiscoRigido, (Long.parseLong(logDisco.getLeituras()) + Long.parseLong(logDisco.getBytesLeitura()) + Long.parseLong(logDisco.getEscritas()) + Long.parseLong(logDisco.getBytesEscritas()))), Integer.class);
 
         if (quantidade != null) {
             return quantidade > 0;

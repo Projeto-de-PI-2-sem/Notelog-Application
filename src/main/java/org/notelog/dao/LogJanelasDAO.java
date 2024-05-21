@@ -34,7 +34,7 @@ public class LogJanelasDAO {
 
         List<Janela> janelas = grupoDeJanelas.getJanelas();
         for (Janela janela : janelas) {
-            LogJanelas novaLogJanela = new LogJanelas(null, janela.getJanelaId().toString(), fkNotebook);
+            LogJanelas novaLogJanela = new LogJanelas(null, janela.getJanelaId().toString(), janela.getTitulo(), fkNotebook);
 
             if (!logJanelasExiste(novaLogJanela)) {
                 adicionarLogJanelas(novaLogJanela);
@@ -47,8 +47,8 @@ public class LogJanelasDAO {
         JdbcTemplate con = conexao.getConexaoDoBanco();
         int fkNotebook = con.queryForObject("SELECT id FROM Notebook ORDER BY id DESC LIMIT 1", Integer.class);
 
-            String sql = "INSERT INTO LogJanelas (idJanela, fkNotebook) VALUES ('%s', '%d')"
-                    .formatted(logJanelas.getIdJanela(), fkNotebook);
+            String sql = "INSERT INTO LogJanelas (idJanela, nomeJanela, fkNotebook) VALUES ('%s', '%s', %d)"
+                    .formatted(logJanelas.getIdJanela(), logJanelas.getNomeJanela(), fkNotebook);
             con.update(sql);
     }
 }
