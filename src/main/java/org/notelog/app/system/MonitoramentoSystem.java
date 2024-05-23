@@ -302,7 +302,7 @@ public class MonitoramentoSystem {
             //LogDAO - Metodos
             logCpuDAO.adicionarLogCpu(new LogCpu(cpuDAO.adicionarCpu(cpu)));
             logRamDAO.adicionarLogRam(new LogRam(ramDAO.adicionarRam(ram)));
-            logDiscoDAO.adiconarNovoLogDisco();
+            logDiscoDAO.adicionarNovoLogDisco();
             logJanelasDAO.adicionarNovoLogJanelas();
 
 
@@ -369,7 +369,7 @@ public class MonitoramentoSystem {
                     //LogDAO - Metodos
                     logCpuDAO.adicionarLogCpu(new LogCpu(cpuDAO.adicionarCpu(cpu)));
                     logRamDAO.adicionarLogRam(new LogRam(ramDAO.adicionarRam(ram)));
-                    logDiscoDAO.adiconarNovoLogDisco();
+                    logDiscoDAO.adicionarLogDisco();
                     logJanelasDAO.adicionarNovoLogJanelas();
 
                     System.out.println("Inserindo dados no Banco...");

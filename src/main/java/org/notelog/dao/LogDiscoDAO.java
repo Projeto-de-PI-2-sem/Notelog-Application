@@ -6,56 +6,59 @@ import com.github.britooo.looca.api.group.discos.DiscoGrupo;
 import org.notelog.model.LogDisco;
 import org.notelog.util.database.Conexao;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
 import java.util.List;
+import java.util.logging.Logger;
 
-public class
-LogDiscoDAO {
-    public void adicionarLogDisco(LogDisco logDisco) {
+public class LogDiscoDAO {
+    private final JdbcTemplate jdbcTemplate;
+    private static final Logger logger = Logger.getLogger(LogDiscoDAO.class.getName());
+
+    public LogDiscoDAO() {
         Conexao conexao = new Conexao();
-        JdbcTemplate con = conexao.getConexaoDoBanco();
-        int fkDiscoRigido = con.queryForObject("SELECT id from DiscoRigido ORDER BY id DESC LIMIT 1", Integer.class);
-
-        String sql = "INSERT INTO LogDisco (fkDiscoRigido, usoDisco, dataLog) VALUES (%d, '%s', '%s')"
-                .formatted(fkDiscoRigido, (Long.parseLong(logDisco.getLeituras()) + Long.parseLong(logDisco.getBytesLeitura()) + Long.parseLong(logDisco.getEscritas()) + Long.parseLong(logDisco.getBytesEscritas())), logDisco.dataHoraAtual());
-        con.update(sql);
+        this.jdbcTemplate = conexao.getConexaoDoBanco();
     }
 
-    private boolean logDiscoExiste (LogDisco logDisco){
-        Conexao conexao = new Conexao();
-        JdbcTemplate con = conexao.getConexaoDoBanco();
-
-        //Pega o ultimo Id inserido do DiscoRigido, porem é necessário uma melhor alternativa futuramente
-        int fkDiscoRigido = con.queryForObject("SELECT id from DiscoRigido ORDER BY id DESC LIMIT 1", Integer.class);
-
-        // Dar um jeito de identificar se o registro existe ou não
-        Integer quantidade = con.queryForObject(("select count(*) from DiscoRigido join LogDisco on fkDiscoRigido = DiscoRigido.id " +
-                "where DiscoRigido.id = %d and usoDisco = '%s'")
-                .formatted(fkDiscoRigido, (Long.parseLong(logDisco.getLeituras()) + Long.parseLong(logDisco.getBytesLeitura()) + Long.parseLong(logDisco.getEscritas()) + Long.parseLong(logDisco.getBytesEscritas()))), Integer.class);
-
-        if (quantidade != null) {
-            return quantidade > 0;
-        } else {
-            return false;
-        }
+    public void adicionarLogDisco(LogDisco logDisco, Integer fkDiscoRigido) {
+        String sql = "INSERT INTO LogDisco (fkDiscoRigido, leitura, bytesLeitura, escrita, bytesEscrita) " +
+                "VALUES (?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, fkDiscoRigido, logDisco.getLeituras(), logDisco.getBytesLeitura(),
+                logDisco.getEscritas(), logDisco.getBytesEscritas());
+        logger.info("LogDisco adicionado com sucesso: " + logDisco);
     }
 
-    public void adiconarNovoLogDisco() {
+    private Boolean logDiscoExiste(LogDisco logDisco, Integer fkDiscoRigido) {
+        String sql = "SELECT COUNT(*) FROM LogDisco WHERE fkDiscoRigido = ? AND leitura = ? AND bytesLeitura = ? " +
+                "AND escrita = ? AND bytesEscrita = ?";
+        Integer count = jdbcTemplate.queryForObject(sql, Integer.class, fkDiscoRigido,
+                logDisco.getLeituras(), logDisco.getBytesLeitura(),
+                logDisco.getEscritas(), logDisco.getBytesEscritas());
+        return count != null && count > 0;
+    }
 
+    public void adicionarNovoLogDisco() {
         Looca looca = new Looca();
         DiscoGrupo grupoDeDiscos = looca.getGrupoDeDiscos();
-
         List<Disco> discos = grupoDeDiscos.getDiscos();
 
+        Integer fkDiscoRigido = jdbcTemplate.queryForObject(
+                "SELECT id FROM DiscoRigido ORDER BY id DESC LIMIT 1", Integer.class);
+
         for (Disco disco : discos) {
-            LogDisco novoLogDiscoRigido = new LogDisco( null, disco.getLeituras().toString(), disco.getBytesDeLeitura().toString(), disco.getEscritas().toString(), disco.getBytesDeEscritas().toString());
+            LogDisco novoLogDiscoRigido = new LogDisco(null, disco.getLeituras().toString(),
+                    disco.getBytesDeLeitura().toString(),
+                    disco.getEscritas().toString(),
+                    disco.getBytesDeEscritas().toString());
 
-
-            if (!logDiscoExiste(novoLogDiscoRigido)) {
-                adicionarLogDisco(novoLogDiscoRigido);
+            if (!logDiscoExiste(novoLogDiscoRigido, fkDiscoRigido)) {
+                adicionarLogDisco(novoLogDiscoRigido, fkDiscoRigido);
+            } else {
+                logger.info("LogDisco já existe: " + novoLogDiscoRigido);
             }
         }
+    }
 
-
+    public void adicionarLogDisco() {
     }
 }
