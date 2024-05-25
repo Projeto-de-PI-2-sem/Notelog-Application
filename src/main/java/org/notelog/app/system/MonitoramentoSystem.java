@@ -288,7 +288,7 @@ public class MonitoramentoSystem {
 
             //Metodos - Objetos DAO
             discoRigidoDAO.adiconarNovoDisco(notebook.getId());
-            geoDAO.adicionaGeolocalizacao(notebook.getId());
+            //geoDAO.adicionaGeolocalizacao(notebook.getId());
             tempoDeAtividadeDAO.adicionarTempoDeAtividade(tempoDeAtividade);
 
 
@@ -302,7 +302,7 @@ public class MonitoramentoSystem {
             //LogDAO - Metodos
             logCpuDAO.adicionarLogCpu(new LogCpu(cpuDAO.adicionarCpu(cpu)));
             logRamDAO.adicionarLogRam(new LogRam(ramDAO.adicionarRam(ram)));
-            logDiscoDAO.adicionarNovoLogDisco();
+            logDiscoDAO.adicionarNovoLogDisco(notebook.getId());
             logJanelasDAO.adicionarNovoLogJanelas();
 
 
@@ -336,13 +336,13 @@ public class MonitoramentoSystem {
                     Thread.sleep(2000);
 
                     //Geolocalização
-                    System.out.println("Dados Geolocalização: \n");
-                    Geolocalizacao geolocalizacao = new Geolocalizacao();
-                    String publicIPAddress = geolocalizacao.ObterIP();
-                    String jsonString = geolocalizacao.ObterGeoPorIP(publicIPAddress);
-                    geolocalizacao.preencherDados(jsonString);
-                    String dadosFormatados = geolocalizacao.formatarDados();
-                    System.out.println(dadosFormatados);
+//                    System.out.println("Dados Geolocalização: \n");
+//                    Geolocalizacao geolocalizacao = new Geolocalizacao();
+//                    String publicIPAddress = geolocalizacao.ObterIP();
+//                    String jsonString = geolocalizacao.ObterGeoPorIP(publicIPAddress);
+//                    geolocalizacao.preencherDados(jsonString);
+//                    String dadosFormatados = geolocalizacao.formatarDados();
+//                    System.out.println(dadosFormatados);
 
                     Thread.sleep(2000);
 
@@ -351,11 +351,11 @@ public class MonitoramentoSystem {
                     RamDAO ramDAO = new RamDAO();
                     DiscoRigidoDAO discoRigidoDAO = new DiscoRigidoDAO();
                     TempoDeAtividadeDAO tempoDeAtividadeDAO = new TempoDeAtividadeDAO();
-                    GeolocalizacaoDAO geoDAO = new GeolocalizacaoDAO();
+                    //GeolocalizacaoDAO geoDAO = new GeolocalizacaoDAO();
 
                     //Metodos - Objetos DAO
                     discoRigidoDAO.adiconarNovoDisco(notebook.getId());
-                    geoDAO.adicionaGeolocalizacao(notebook.getId());
+                    //geoDAO.adicionaGeolocalizacao(notebook.getId());
                     tempoDeAtividadeDAO.adicionarTempoDeAtividade(tempoDeAtividade);
 
 
@@ -369,7 +369,7 @@ public class MonitoramentoSystem {
                     //LogDAO - Metodos
                     logCpuDAO.adicionarLogCpu(new LogCpu(cpuDAO.adicionarCpu(cpu)));
                     logRamDAO.adicionarLogRam(new LogRam(ramDAO.adicionarRam(ram)));
-                    logDiscoDAO.adicionarLogDisco();
+                    logDiscoDAO.adicionarNovoLogDisco(notebook.getId());
                     logJanelasDAO.adicionarNovoLogJanelas();
 
                     System.out.println("Inserindo dados no Banco...");

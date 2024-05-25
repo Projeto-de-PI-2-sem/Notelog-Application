@@ -11,6 +11,7 @@ public class LogDisco extends LogAbstract{
     private String bytesEscritas;
 
     public LogDisco(Integer fkDiscoRigido, String leituras, String bytesLeitura, String escritas, String bytesEscritas) {
+
         this.fkDiscoRigido = fkDiscoRigido;
         this.leituras = leituras;
         this.bytesLeitura = bytesLeitura;

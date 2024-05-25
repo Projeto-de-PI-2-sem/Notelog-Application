@@ -28,6 +28,7 @@ public class LogDiscoDAO {
         logger.info("LogDisco adicionado com sucesso: " + logDisco);
     }
 
+    //Método feito pelo professor william
     private Boolean logDiscoExiste(LogDisco logDisco, Integer fkDiscoRigido) {
         String sql = "SELECT COUNT(*) FROM LogDisco WHERE fkDiscoRigido = ? AND leitura = ? AND bytesLeitura = ? " +
                 "AND escrita = ? AND bytesEscrita = ?";
@@ -37,13 +38,14 @@ public class LogDiscoDAO {
         return count != null && count > 0;
     }
 
-    public void adicionarNovoLogDisco() {
+    public void adicionarNovoLogDisco(Integer idNotebook) {
         Looca looca = new Looca();
         DiscoGrupo grupoDeDiscos = looca.getGrupoDeDiscos();
         List<Disco> discos = grupoDeDiscos.getDiscos();
 
         Integer fkDiscoRigido = jdbcTemplate.queryForObject(
-                "SELECT id FROM DiscoRigido ORDER BY id DESC LIMIT 1", Integer.class);
+                "SELECT DiscoRigido.id FROM DiscoRigido JOIN Notebook ON Notebook.id = DiscoRigido.fkNotebook WHERE " +
+                        "Notebook.id = ?;", Integer.class,idNotebook);
 
         for (Disco disco : discos) {
             LogDisco novoLogDiscoRigido = new LogDisco(null, disco.getLeituras().toString(),
@@ -57,8 +59,5 @@ public class LogDiscoDAO {
                 logger.info("LogDisco já existe: " + novoLogDiscoRigido);
             }
         }
-    }
-
-    public void adicionarLogDisco() {
     }
 }
