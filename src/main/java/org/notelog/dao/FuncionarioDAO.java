@@ -9,6 +9,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.notelog.model.Notebook.pegarNumeroSerial;
+
 public class FuncionarioDAO {
     public Funcionario verificaUsuario(String email, String senha) {
         Conexao conexao = new Conexao();
@@ -22,16 +24,41 @@ public class FuncionarioDAO {
         }
     }
 
-    public Boolean temVinculo(Integer idUsuario){
+    public Boolean temVinculo(String numeroSerial){
         Conexao conexao = new Conexao();
         JdbcTemplate con = conexao.getConexaoDoBanco();
-        Integer funcionarioJaAtrelado = con.queryForObject("select count(*) from Funcionario AS f JOIN Notebook AS N ON f.id = N.fkFuncionario WHERE N.fkFUncionario = ?", Integer.class, idUsuario);
+        Integer funcionarioJaAtrelado = con.queryForObject("select count(*) from Funcionario AS f JOIN Notebook AS N ON f.id = N.fkFuncionario WHERE N.numeroSerial = ?", Integer.class, numeroSerial);
         if (funcionarioJaAtrelado == null || funcionarioJaAtrelado == 0) {
             return false;
         } else{
             return true;
         }
     };
+
+    public Funcionario pegaFuncionarioPeloNumeroSerial(){
+        Conexao conexao = new Conexao();
+        JdbcTemplate con = conexao.getConexaoDoBanco();
+        String numeroSerial = pegarNumeroSerial(); // Número de série fixo para o exemplo
+
+        String sql = "SELECT Funcionario.* FROM Funcionario " +
+                "JOIN Notebook ON Funcionario.id = Notebook.fkFuncionario " +
+                "WHERE Notebook.numeroSerial = ?";
+
+        try {
+            return con.queryForObject(sql, new BeanPropertyRowMapper<>(Funcionario.class), numeroSerial);
+        } catch (EmptyResultDataAccessException e) {
+            // Retorna null se nenhum funcionário for encontrado
+            return null;
+        } catch (Exception e) {
+            // Imprime a pilha de erros e retorna null para outras exceções
+            e.printStackTrace();
+            return null;
+        }
+
+
+
+
+    }
 
     public List<Funcionario> buscarFuncionarios(Integer fkEmpresa) {
         Conexao conexao = new Conexao();

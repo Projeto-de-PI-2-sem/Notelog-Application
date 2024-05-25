@@ -13,8 +13,8 @@ public class NotebookDAO {
         int funcionarioJaAtrelado = con.queryForObject("select count(*) from Notebook join Funcionario on Funcionario.id = fkFuncionario where fkFuncionario = ?;", Integer.class, notebook.getFkFuncionario());
 
         if (funcionarioExistente == 1 && funcionarioJaAtrelado == 0) {
-            String sql = "INSERT INTO Notebook (sistemaOperacional, fabricante, arquitetura, fkFuncionario, fkEmpresa) VALUES ('%s', '%s', '%s', %d, %d)"
-                    .formatted(notebook.getSistemaOperacional(), notebook.getFabricante(), notebook.getArquitetura(), notebook.getFkFuncionario(), notebook.getFkEmpresa());
+            String sql = "INSERT INTO Notebook (sistemaOperacional, fabricante, arquitetura, numeroSerial, fkFuncionario, fkEmpresa) VALUES ('%s', '%s', '%s', '%s', %d, %d)"
+                    .formatted(notebook.getSistemaOperacional(), notebook.getFabricante(), notebook.getArquitetura(), notebook.getNumeroSerial(), notebook.getFkFuncionario(), notebook.getFkEmpresa());
             con.update(sql);
             notebook.setId(con.queryForObject("SELECT id FROM Notebook ORDER BY id DESC LIMIT 1", Integer.class));
             return true;

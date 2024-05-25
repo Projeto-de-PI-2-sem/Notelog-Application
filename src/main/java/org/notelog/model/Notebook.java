@@ -2,12 +2,17 @@ package org.notelog.model;
 
 import com.github.britooo.looca.api.core.Looca;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class Notebook {
 
     private Integer id;
     private String sistemaOperacional;
     private String fabricante;
     private Integer arquitetura;
+    private String numeroSerial;
     private Integer fkFuncionario;
     private Integer fkEmpresa;
 
@@ -16,11 +21,62 @@ public class Notebook {
         this.sistemaOperacional = looca.getSistema().getSistemaOperacional();
         this.fabricante = looca.getSistema().getFabricante();
         this.arquitetura = looca.getSistema().getArquitetura();
+        this.numeroSerial = pegarNumeroSerial();
         this.fkFuncionario = fkFuncionario;
         this.fkEmpresa = fkEmpresa;
     }
 
     public Notebook(){
+    }
+
+    public static String pegarNumeroSerial() {
+        String osName = System.getProperty("os.name").toLowerCase();
+        StringBuilder numeroSerial = new StringBuilder();
+
+        try {
+            if (osName.contains("windows")) {
+                // Comando para Windows
+                String command = "wmic bios get serialnumber";
+                Process process = Runtime.getRuntime().exec(command);
+                process.waitFor();
+
+                // Ler a saída do comando
+                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    numeroSerial.append(line.trim()); // Adiciona a linha ao número de série
+                }
+                reader.close();
+            } else if (osName.contains("linux")) {
+                // Comando para Linux
+                String command = "sudo dmidecode -s system-serial-number";
+                Process process = Runtime.getRuntime().exec(new String[]{"bash", "-c", command});
+                process.waitFor();
+
+                // Ler a saída do comando
+                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    numeroSerial.append(line.trim()); // Adiciona a linha ao número de série
+                }
+                reader.close();
+            } else {
+                System.out.println("Sistema operacional não suportado.");
+            }
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return numeroSerial.toString();
+    }
+
+
+    public String getNumeroSerial() {
+        return numeroSerial;
+    }
+
+    public void setNumeroSerial(String numeroSerial) {
+        this.numeroSerial = numeroSerial;
     }
 
     public Integer getId() {
