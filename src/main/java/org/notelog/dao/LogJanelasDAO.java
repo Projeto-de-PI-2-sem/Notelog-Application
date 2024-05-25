@@ -25,12 +25,11 @@ public class LogJanelasDAO {
         }
     }
 
-    public void adicionarNovoLogJanelas() {
+    public void adicionarNovoLogJanelas(Integer fkNotebook) {
         Conexao conexao = new Conexao();
         JdbcTemplate con = conexao.getConexaoDoBanco();
         Looca looca = new Looca();
         JanelaGrupo grupoDeJanelas = looca.getGrupoDeJanelas();
-        int fkNotebook = con.queryForObject("SELECT id FROM Notebook ORDER BY id DESC LIMIT 1", Integer.class);
 
         List<Janela> janelas = grupoDeJanelas.getJanelas();
         for (Janela janela : janelas) {
@@ -45,11 +44,19 @@ public class LogJanelasDAO {
     public void adicionarLogJanelas(LogJanelas logJanelas) {
         Conexao conexao = new Conexao();
         JdbcTemplate con = conexao.getConexaoDoBanco();
-        int fkNotebook = con.queryForObject("SELECT id FROM Notebook ORDER BY id DESC LIMIT 1", Integer.class);
+        int fkNotebook = logJanelas.getFkNotebook();
 
-            String sql = "INSERT INTO LogJanelas (idJanela, nomeJanela, fkNotebook) VALUES ('%s', '%s', %d)"
-                    .formatted(logJanelas.getIdJanela(), logJanelas.getNomeJanela(), fkNotebook);
-            con.update(sql);
+        String sql = String.format(
+                """
+                   INSERT INTO LogJanelas (idJanela, nomeJanela, bloqueado, fkNotebook) VALUES ('%s', "%s", %b, %d);
+                """,
+                logJanelas.getIdJanela(),
+                logJanelas.getNomeJanela(),
+                logJanelas.getBloqueado(),
+                logJanelas.getFkNotebook()
+        );
+        con.update(sql);
+
     }
 }
 

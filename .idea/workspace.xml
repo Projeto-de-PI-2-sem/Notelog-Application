@@ -5,18 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="309ba401-17a1-4be9-9fc5-bc86265d8e3a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/FuncionarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/FuncionarioDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/NotebookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/NotebookDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/model/Notebook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/model/Notebook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/service/LoginService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/FuncionarioDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/FuncionarioDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/NotebookDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/NotebookDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/model/Notebook.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/model/Notebook.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/service/LoginService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/service/LoginService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/util/database/Conexao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/util/database/Conexao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/app/system/MonitoramentoSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/app/system/MonitoramentoSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogDiscoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogDiscoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogJanelasDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogJanelasDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/model/LogAbstract.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/model/LogAbstract.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/model/LogJanelas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/model/LogJanelas.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,24 +51,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Maven.app-note-log [clean].executor": "Run",
-    "Maven.app-note-log [install].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/isaac.souza/Downloads/Notelog-Application",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.app-note-log [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.app-note-log [install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/isaac.souza/Downloads/Notelog-Application&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Zak\Downloads\app-notelog" />
@@ -127,6 +121,7 @@
       <workItem from="1716129308150" duration="10162000" />
       <workItem from="1716141420690" duration="2300000" />
       <workItem from="1716495047209" duration="29894000" />
+      <workItem from="1716656382757" duration="2984000" />
     </task>
     <servers />
   </component>

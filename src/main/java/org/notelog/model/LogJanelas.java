@@ -3,16 +3,22 @@ package org.notelog.model;
 public class LogJanelas extends LogAbstract {
     private String idJanela;
     private String nomeJanela;
+    private Boolean bloqueado = false;
     private Integer fkNotebook;
 
     public LogJanelas(Integer id, String idJanela, String nomeJanela, Integer fkNotebook) {
         super.setId(id);
         this.idJanela = idJanela;
         this.nomeJanela = nomeJanela;
+        this.bloqueado = bloqueado;
         this.fkNotebook = fkNotebook;
     }
 
     public LogJanelas() {
+    }
+
+    public Boolean getBloqueado() {
+        return bloqueado;
     }
 
     public String getIdJanela() {

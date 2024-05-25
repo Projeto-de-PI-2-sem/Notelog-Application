@@ -11,6 +11,8 @@ import org.springframework.jdbc.core.RowMapper;
 import java.util.List;
 import java.util.logging.Logger;
 
+import static org.notelog.model.LogAbstract.dataHoraAtual;
+
 public class LogDiscoDAO {
     private final JdbcTemplate jdbcTemplate;
     private static final Logger logger = Logger.getLogger(LogDiscoDAO.class.getName());
@@ -21,11 +23,10 @@ public class LogDiscoDAO {
     }
 
     public void adicionarLogDisco(LogDisco logDisco, Integer fkDiscoRigido) {
-        String sql = "INSERT INTO LogDisco (fkDiscoRigido, leitura, bytesLeitura, escrita, bytesEscrita) " +
-                "VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO LogDisco (fkDiscoRigido, leitura, bytesLeitura, escrita, bytesEscrita, dataLog) " +
+                "VALUES (?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, fkDiscoRigido, logDisco.getLeituras(), logDisco.getBytesLeitura(),
-                logDisco.getEscritas(), logDisco.getBytesEscritas());
-        logger.info("LogDisco adicionado com sucesso: " + logDisco);
+                logDisco.getEscritas(), logDisco.getBytesEscritas(), dataHoraAtual());
     }
 
     //Método feito pelo professor william
