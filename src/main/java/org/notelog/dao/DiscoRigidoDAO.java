@@ -36,7 +36,7 @@ public class DiscoRigidoDAO {
         }
     }
 
-    private List<DiscoRigido> buscarTodosOsDiscos() {
+    public static List<DiscoRigido> buscarTodosOsDiscos() {
         Conexao conexao = new Conexao();
         JdbcTemplate con = conexao.getConexaoDoBanco();
 
@@ -44,6 +44,8 @@ public class DiscoRigidoDAO {
 
         return new ArrayList<>(discos);
     }
+
+
 
     private DiscoRigido buscarDiscoPeloSerial(String serial) {
         Conexao conexao = new Conexao();

@@ -14,6 +14,7 @@ public class LogRam extends LogAbstract {
         this.memoriaDisponivel = looca.getMemoria().getDisponivel().toString();
     }
 
+
     public Integer getFkRAM() {
         return fkRAM;
     }

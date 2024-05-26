@@ -29,6 +29,7 @@ public class LogCpu extends LogAbstract {
         this.fkCPU = fkCPU;
     }
 
+
     @Override
     public String toString() {
         return "org.notelog.entidades.log.cpu.LogCPU{" +

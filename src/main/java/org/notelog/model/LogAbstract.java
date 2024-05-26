@@ -23,6 +23,7 @@ public abstract class LogAbstract {
         this.dataLog = dataLog;
     }
 
+
     public static String dataHoraAtual(){
         LocalDateTime dataHoraAtual = LocalDateTime.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

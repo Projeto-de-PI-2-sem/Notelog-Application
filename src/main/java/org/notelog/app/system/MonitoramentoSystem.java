@@ -4,7 +4,14 @@ import com.github.britooo.looca.api.core.Looca;
 import org.notelog.dao.*;
 import org.notelog.model.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import static org.notelog.service.SlackService.sendMensagemSlackCPU;
+import static org.notelog.service.SlackService.sendMensagemSlackRAM;
 
 
 public class MonitoramentoSystem {
@@ -262,8 +269,19 @@ public class MonitoramentoSystem {
     }
 
     public static void inserirDadosNoBanco(Funcionario usuario, Notebook notebook, Boolean acaoParcial) throws InterruptedException {
+        // Variáveis CPU
+        Integer contador = 0;
+        List<Double> porcentagemUsoCPU = new ArrayList<>();
+        Double mediaPorcentagemUsoCPU = 0.0;
+
+        // Variáveis RAM
+        Long ramEmUso = 0L; // em bytes
+        Long ramDisponivel = 0L; // em bytes
+        List<Double> porcentagemUsoRAM = new ArrayList<>();
+        Double mediaPorcentagemUsoRAM = 0.0;
 
         if (acaoParcial) {
+
             // Criando Objeto CPU pelo id do notebook
             Cpu cpu = new Cpu(notebook.getId());
 
@@ -292,13 +310,13 @@ public class MonitoramentoSystem {
             LogDiscoDAO logDiscoDAO = new LogDiscoDAO();
             LogJanelasDAO logJanelasDAO = new LogJanelasDAO();
 
+            LogCpu logcpu = new LogCpu(cpuDAO.adicionarCpu(cpu));
 
             //LogDAO - Metodos
-            logCpuDAO.adicionarLogCpu(new LogCpu(cpuDAO.adicionarCpu(cpu)));
+            logCpuDAO.adicionarLogCpu(logcpu);
             logRamDAO.adicionarLogRam(new LogRam(ramDAO.adicionarRam(ram)));
             logDiscoDAO.adicionarNovoLogDisco(notebook.getId());
             logJanelasDAO.adicionarNovoLogJanelas(notebook.getId());
-
 
         } else {
             while (true) {
@@ -360,11 +378,90 @@ public class MonitoramentoSystem {
                     LogJanelasDAO logJanelasDAO = new LogJanelasDAO();
 
 
+
+
+                    // Logs - Instâncias
+                    LogCpu logcpu = new LogCpu(cpuDAO.adicionarCpu(cpu));
+                    LogRam logram = new LogRam(ramDAO.adicionarRam(ram));
+
                     //LogDAO - Metodos
-                    logCpuDAO.adicionarLogCpu(new LogCpu(cpuDAO.adicionarCpu(cpu)));
-                    logRamDAO.adicionarLogRam(new LogRam(ramDAO.adicionarRam(ram)));
+                    logCpuDAO.adicionarLogCpu(logcpu);
+                    logRamDAO.adicionarLogRam(logram);
                     logDiscoDAO.adicionarNovoLogDisco(notebook.getId());
                     logJanelasDAO.adicionarNovoLogJanelas(notebook.getId());
+
+                    porcentagemUsoCPU.add(logcpu.getPorcentagemUso());
+                    if (contador % 2 == 0 && contador > 0){
+                        mediaPorcentagemUsoCPU = (porcentagemUsoCPU.get(porcentagemUsoCPU.size() - 1) + porcentagemUsoCPU.get(porcentagemUsoCPU.size() - 2)) / 2;
+                        if (mediaPorcentagemUsoCPU > 5.5){
+
+                            String usuarioNome = usuario.getNome();
+                            String notebookModelo = notebook.getSistemaOperacional();
+                            String notebookNumeroSerial = notebook.getNumeroSerial();
+                            String dataHoraAtual = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+                            // Mensagem detalhada
+                            String mensagemDetalhada = String.format(
+                                    "\n" +
+                                    "🚨 *ALERTA DE ALTO USO DE CPU* 🚨\n\n" +
+                                            "🔍 *Detalhes do Alerta:*\n" +
+                                            "🔸 *Data e Hora:* %s\n" +
+                                            "🔸 *Porcentagem de Uso da CPU:* %.2f%%\n\n" +
+                                            "👤 *Informações do Usuário:*\n" +
+                                            "🔹 *Nome:* %s\n" +
+                                            "💻 *Informações do Notebook:*\n" +
+                                            "🔸 *Sistema Operacional:* %s\n" +
+                                            "🔸 *Número de Série:* %s\n" +
+                                            "*Atenção:* O uso da CPU está acima do limite recomendado. Por favor, verifique e tome as ações necessárias. \n" +
+                                    "Acesse o link para dashboard Notelog & efetue o login para obter detalhes - https://youtu.be/dQw4w9WgXcQ",
+                                    dataHoraAtual, porcentagemUsoCPU.get(porcentagemUsoCPU.size() - 1), usuarioNome, notebookModelo, notebookNumeroSerial
+                            );
+                            sendMensagemSlackCPU(mensagemDetalhada, logcpu.getFkCPU(), usuario, notebook);
+                            System.out.println("Alto Uso de CPU detectado!");
+                            Thread.sleep(1000);
+                            System.out.println("Notificando monitores...");
+                            Thread.sleep(8000);
+                        }
+                    }
+
+                    ramEmUso = Long.parseLong(logram.getUsoMemoria());
+                    ramDisponivel = Long.parseLong(logram.getMemoriaDisponivel());
+
+                    porcentagemUsoRAM.add(((double) ramEmUso / ramDisponivel) / 100);
+
+                    if (contador % 2 == 0 && contador > 0){
+                        mediaPorcentagemUsoRAM = (porcentagemUsoRAM.get(porcentagemUsoRAM.size() - 1) + porcentagemUsoRAM.get(porcentagemUsoRAM.size() - 2)) / 2;
+                        if (mediaPorcentagemUsoCPU > 10.5){
+                            String usuarioNome = usuario.getNome();
+                            String notebookModelo = notebook.getSistemaOperacional();
+                            String notebookNumeroSerial = notebook.getNumeroSerial();
+                            String dataHoraAtual = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+                            // Mensagem detalhada
+                            String mensagemDetalhada = String.format(
+                                    "\n" +
+                                    "🚨 *ALERTA DE ALTO USO DE RAM* 🚨\n\n" +
+                                            "🔍 *Detalhes do Alerta:*\n" +
+                                            "🔸 *Data e Hora:* %s\n" +
+                                            "🔸 *Porcentagem de Uso da RAM:* %.2f%%\n\n" +
+                                            "👤 *Informações do Usuário:*\n" +
+                                            "🔹 *Nome:* %s\n" +
+                                            "💻 *Informações do Notebook:*\n" +
+                                            "🔸 *Sistema Operacional:* %s\n" +
+                                            "🔸 *Número de Série:* %s\n" +
+                                            "*Atenção:* O uso da CPU está acima do limite recomendado. Por favor, verifique e tome as ações necessárias.\n" +
+                                            "Acesse o link para dashboard Notelog & efetue o login para obter detalhes - https://youtu.be/dQw4w9WgXcQ",
+                                    dataHoraAtual, porcentagemUsoRAM.get(porcentagemUsoRAM.size() - 1), usuarioNome, notebookModelo, notebookNumeroSerial
+                            );
+                            sendMensagemSlackRAM(mensagemDetalhada, logram.getFkRAM(), usuario, notebook);
+                            System.out.println("Alto Uso de RAM detectado!");
+                            Thread.sleep(1000);
+                            System.out.println("Notificando monitores...");
+                            Thread.sleep(8000);
+                        }
+                    }
+
+                    contador++;
 
                     System.out.println("Inserindo dados no Banco...");
                     Thread.sleep(2000);

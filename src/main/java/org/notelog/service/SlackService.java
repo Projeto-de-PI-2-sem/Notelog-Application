@@ -5,6 +5,8 @@ import com.github.seratch.jslack.api.webhook.Payload;
 import com.github.seratch.jslack.api.webhook.WebhookResponse;
 import org.notelog.dao.EmpresaDAO;
 import org.notelog.model.Empresa;
+import org.notelog.model.Funcionario;
+import org.notelog.model.Notebook;
 
 import java.util.Scanner;
 
@@ -25,18 +27,10 @@ public class SlackService {
         SlackService.slackChannel = slackChannel;
     }
 
-    public static void main(String[] args) {
-
-        System.out.println("Digite a mensagem que deseja enviar para o slack: ");
-        Scanner sc = new Scanner(System.in);
-        String mensagem = sc.nextLine();
-        Integer id = 1;
-        sendMensagemSlack(mensagem, 2);
-    }
-
-    public static void sendMensagemSlack(String mensagem, Integer fkEmpresa) {
+    public static void sendMensagemSlackCPU(String mensagem, Integer fkCPU, Funcionario usuario, Notebook notebook) {
         EmpresaDAO empresaDAO = new EmpresaDAO();
-        Empresa empresa = empresaDAO.consultaEmpresa(fkEmpresa);
+
+        Empresa empresa = empresaDAO.consultaEmpresaCPU(fkCPU);
 
         setWebHookUrl(empresa.getWebHookUrl());
         setoAuthToken(empresa.getoAuthToken());
@@ -52,4 +46,27 @@ public class SlackService {
             System.out.println("Erro ao enviar mensagem para o slack: " + e.getMessage());
         }
     }
+
+    public static void sendMensagemSlackRAM(String mensagem, Integer fkRAM, Funcionario usuario, Notebook notebook) {
+        EmpresaDAO empresaDAO = new EmpresaDAO();
+
+        Empresa empresa = empresaDAO.consultaEmpresaRAM(fkRAM);
+
+        setWebHookUrl(empresa.getWebHookUrl());
+        setoAuthToken(empresa.getoAuthToken());
+        setSlackChannel(empresa.getSlackChannel());
+        try {
+            StringBuilder msgbuilder = new StringBuilder();
+            msgbuilder.append(mensagem);
+
+            Payload payload = Payload.builder().channel(slackChannel).text(msgbuilder.toString()).build();
+
+            WebhookResponse wbResp = Slack.getInstance().send(webHookUrl, payload);
+        } catch (Exception e){
+            System.out.println("Erro ao enviar mensagem para o slack: " + e.getMessage());
+        }
+    }
+
+
+
 }
