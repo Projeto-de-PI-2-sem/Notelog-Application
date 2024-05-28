@@ -406,17 +406,19 @@ public class MonitoramentoSystem {
                             // Mensagem detalhada
                             String mensagemDetalhada = String.format(
                                     "\n" +
-                                    "🚨 *ALERTA DE ALTO USO DE CPU* 🚨\n\n" +
-                                            "🔍 *Detalhes do Alerta:*\n" +
-                                            "🔸 *Data e Hora:* %s\n" +
-                                            "🔸 *Porcentagem de Uso da CPU:* %.2f%%\n\n" +
-                                            "👤 *Informações do Usuário:*\n" +
-                                            "🔹 *Nome:* %s\n" +
-                                            "💻 *Informações do Notebook:*\n" +
-                                            "🔸 *Sistema Operacional:* %s\n" +
-                                            "🔸 *Número de Série:* %s\n" +
-                                            "*Atenção:* O uso da CPU está acima do limite recomendado. Por favor, verifique e tome as ações necessárias. \n" +
-                                    "Acesse o link para dashboard Notelog & efetue o login para obter detalhes - https://youtu.be/dQw4w9WgXcQ",
+                                            "🚨 *ALERTA DE ALTO USO DE CPU*\n\n" +
+                                            "🔹Detalhes do Alerta:\n" +
+                                            "  • Data e Hora: %s\n" +
+                                            "  • Porcentagem de Uso da CPU: %.2f%%\n" +
+                                            "___________________________________________________\n" +
+                                            "🔹Informações do Usuário:\n" +
+                                            "  • Nome: %s\n" +
+                                            "___________________________________________________\n" +
+                                            "🔹Informações do Notebook:\n" +
+                                            "  • Sistema Operacional: %s\n" +
+                                            "  • Número de Série: %s\n\n" +
+                                            "*Atenção:* O uso da CPU está acima do limite recomendado. Por favor, verifique e tome as ações necessárias.\n" +
+                                            "*Acesse o link:* http://54.158.158.60:80 - para obter detalhes da dashboard Notelog",
                                     dataHoraAtual, porcentagemUsoCPU.get(porcentagemUsoCPU.size() - 1), usuarioNome, notebookModelo, notebookNumeroSerial
                             );
                             sendMensagemSlackCPU(mensagemDetalhada, logcpu.getFkCPU(), usuario, notebook);
@@ -443,17 +445,19 @@ public class MonitoramentoSystem {
                             // Mensagem detalhada
                             String mensagemDetalhada = String.format(
                                     "\n" +
-                                    "🚨 *ALERTA DE ALTO USO DE RAM* 🚨\n\n" +
-                                            "🔍 *Detalhes do Alerta:*\n" +
-                                            "🔸 *Data e Hora:* %s\n" +
-                                            "🔸 *Porcentagem de Uso da RAM:* %.2f%%\n\n" +
-                                            "👤 *Informações do Usuário:*\n" +
-                                            "🔹 *Nome:* %s\n" +
-                                            "💻 *Informações do Notebook:*\n" +
-                                            "🔸 *Sistema Operacional:* %s\n" +
-                                            "🔸 *Número de Série:* %s\n" +
-                                            "*Atenção:* O uso da CPU está acima do limite recomendado. Por favor, verifique e tome as ações necessárias.\n" +
-                                            "Acesse o link para dashboard Notelog & efetue o login para obter detalhes - https://youtu.be/dQw4w9WgXcQ",
+                                            "🚨 *ALERTA DE ALTO USO DE RAM*\n\n" +
+                                            "🔹 Detalhes do Alerta:\n" +
+                                            "  • Data e Hora: %s\n" +
+                                            "  • Porcentagem de Uso da RAM: %.2f%%\n" +
+                                            "___________________________________________________\n" +
+                                            "🔹 Informações do Usuário:\n" +
+                                            "  • Nome: %s\n" +
+                                            "___________________________________________________\n" +
+                                            "🔹 Informações do Notebook:\n" +
+                                            "  • Sistema Operacional: %s\n" +
+                                            "  • Número de Série: %s\n\n" +
+                                            "*Atenção:* O uso da RAM está acima do limite recomendado. Por favor, verifique e tome as ações necessárias.\n" +
+                                            "*Acesse o link:* http://54.158.158.60:80 - para obter detalhes da dashboard Notelog",
                                     dataHoraAtual, porcentagemUsoRAM.get(porcentagemUsoRAM.size() - 1), usuarioNome, notebookModelo, notebookNumeroSerial
                             );
                             sendMensagemSlackRAM(mensagemDetalhada, logram.getFkRAM(), usuario, notebook);
