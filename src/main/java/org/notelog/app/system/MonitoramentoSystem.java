@@ -1,9 +1,11 @@
 package org.notelog.app.system;
 
 import com.github.britooo.looca.api.core.Looca;
+import org.notelog.SimpleLogger;
 import org.notelog.dao.*;
 import org.notelog.model.*;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -59,6 +61,7 @@ public class MonitoramentoSystem {
                     System.out.println("Opção inválida. Tente novamente.");
             }
         } while (opcao != 7);
+
         System.out.println("Programa Finalizado.");
     }
 

@@ -1,8 +1,22 @@
 package org.notelog.service;
 
+import org.notelog.SimpleLogger;
+
+import java.io.IOException;
+
 public class ASCIIService {
+    SimpleLogger logger;
+
+    {
+        try {
+            logger = new SimpleLogger("application.log");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public void NotelogASCII(){
+        logger.info("Sistema Iniciado");
         System.out.println("""
                             _____                   _______           _____                    _____                    _____     _______                   _____         \s
                            /\\    \\                 /::\\    \\         /\\    \\                  /\\    \\                  /\\    \\   /::\\    \\                 /\\    \\        \s
