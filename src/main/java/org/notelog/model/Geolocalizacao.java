@@ -100,55 +100,6 @@ public class Geolocalizacao {
         return isProxy;
     }
 
-    // Métodos setters
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
-
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
-    }
-
-    public void setCountryName(String countryName) {
-        this.countryName = countryName;
-    }
-
-    public void setRegionName(String regionName) {
-        this.regionName = regionName;
-    }
-
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public void setTimeZone(String timeZone) {
-        this.timeZone = timeZone;
-    }
-
-    public void setAsn(String asn) {
-        this.asn = asn;
-    }
-
-    public void setAs(String as) {
-        this.as = as;
-    }
-
-    public void setProxy(boolean isProxy) {
-        this.isProxy = isProxy;
-    }
-
     public String ObterGeoPorIP(String IP) {
         try {
             URL url = new URL("https://api.ip2location.io/?key=" + API_KEY + "&ip=" + IP);

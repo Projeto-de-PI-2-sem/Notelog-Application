@@ -5,11 +5,10 @@ import org.notelog.util.database.Conexao;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class GeolocalizacaoDAO {
-    public void adicionaGeolocalizacao(Integer fkNotebook){
+    public void adicionaGeolocalizacao(Integer fkNotebook, Geolocalizacao geolocalizacao) {
         Conexao conexao = new Conexao();
         JdbcTemplate con = conexao.getConexaoDoBanco();
 
-        Geolocalizacao geolocalizacao = new Geolocalizacao();
         String publicIPAddress = geolocalizacao.ObterIP();
         String jsonString = geolocalizacao.ObterGeoPorIP(publicIPAddress);
         geolocalizacao.preencherDados(jsonString);

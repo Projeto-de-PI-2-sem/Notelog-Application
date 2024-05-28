@@ -17,7 +17,7 @@ public class EmpresaDAO {
                 Select * from Empresa
                 join Notebook on Empresa.id = Notebook.fkEmpresa
                 Join `Cpu` on `Cpu`.fkNotebook = Notebook.id
-                Join LogCPU on LogCpu.fkCpu = `Cpu`.id WHERE LogCPU.fkCpu = %d LIMIT 1;
+                Join LogCpu on LogCpu.fkCpu = `Cpu`.id WHERE LogCpu.fkCpu = %d LIMIT 1;
                 """.formatted(fkCPU);
 
         // Utilizando queryForObject para retornar um único objeto Empresa
@@ -49,7 +49,7 @@ public class EmpresaDAO {
                 Select * from Empresa
                 join Notebook on Empresa.id = Notebook.fkEmpresa
                 Join `Cpu` on `Cpu`.fkNotebook = Notebook.id
-                Join LogCPU on LogCpu.fkCpu = `Cpu`.id WHERE LogCPU.fkCpu = %d LIMIT 1;
+                Join LogCpu on LogCpu.fkCpu = `Cpu`.id WHERE LogCpu.fkCpu = %d LIMIT 1;
                 """.formatted(fkDisco);
 
         // Utilizando queryForObject para retornar um único objeto Empresa

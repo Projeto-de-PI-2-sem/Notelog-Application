@@ -5,8 +5,8 @@ import com.github.britooo.looca.api.group.discos.Disco;
 import com.github.britooo.looca.api.group.discos.DiscoGrupo;
 import org.notelog.model.LogDisco;
 import org.notelog.util.database.Conexao;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -23,19 +23,16 @@ public class LogDiscoDAO {
     }
 
     public void adicionarLogDisco(LogDisco logDisco, Integer fkDiscoRigido) {
-        String sql = "INSERT INTO LogDisco (fkDiscoRigido, leitura, bytesLeitura, escrita, bytesEscrita, dataLog) " +
-                "VALUES (?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, fkDiscoRigido, logDisco.getLeituras(), logDisco.getBytesLeitura(),
-                logDisco.getEscritas(), logDisco.getBytesEscritas(), dataHoraAtual());
+        String sql = "INSERT INTO LogDisco (fkDiscoRigido, usoDisco, dataLog) " +
+                "VALUES (?, ?, ?)";
+        jdbcTemplate.update(sql, fkDiscoRigido, (Long.parseLong(logDisco.getLeituras()) + Long.parseLong(logDisco.getBytesLeitura()) +
+                Long.parseLong(logDisco.getEscritas()) + Long.parseLong(logDisco.getBytesEscritas())), dataHoraAtual());
     }
 
-    //Método feito pelo professor william
     private Boolean logDiscoExiste(LogDisco logDisco, Integer fkDiscoRigido) {
-        String sql = "SELECT COUNT(*) FROM LogDisco WHERE fkDiscoRigido = ? AND leitura = ? AND bytesLeitura = ? " +
-                "AND escrita = ? AND bytesEscrita = ?";
+        String sql = "SELECT COUNT(*) FROM LogDisco WHERE fkDiscoRigido = ? AND datalog = ?";
         Integer count = jdbcTemplate.queryForObject(sql, Integer.class, fkDiscoRigido,
-                logDisco.getLeituras(), logDisco.getBytesLeitura(),
-                logDisco.getEscritas(), logDisco.getBytesEscritas());
+                logDisco.getDataLog());
         return count != null && count > 0;
     }
 
@@ -44,11 +41,21 @@ public class LogDiscoDAO {
         DiscoGrupo grupoDeDiscos = looca.getGrupoDeDiscos();
         List<Disco> discos = grupoDeDiscos.getDiscos();
 
-        Integer fkDiscoRigido = jdbcTemplate.queryForObject(
-                "SELECT DiscoRigido.id FROM DiscoRigido JOIN Notebook ON Notebook.id = DiscoRigido.fkNotebook WHERE " +
-                        "Notebook.id = ?;", Integer.class,idNotebook);
-
         for (Disco disco : discos) {
+            Integer fkDiscoRigido = null;
+            Integer fkNotebook = null;
+            try {
+                fkDiscoRigido = jdbcTemplate.queryForObject("SELECT DiscoRigido.id FROM DiscoRigido WHERE DiscoRigido.serial = ?;", Integer.class, disco.getSerial());
+                fkNotebook = jdbcTemplate.queryForObject("SELECT DiscoRigido.fkNotebook FROM DiscoRigido WHERE DiscoRigido.serial = ?;", Integer.class, disco.getSerial());
+            } catch (EmptyResultDataAccessException e) {
+                logger.warning("Nenhum disco rígido encontrado para o serial " + disco.getSerial());
+                continue;  // Pular para o próximo disco se não encontrar nenhum resultado
+            }
+
+            if (!idNotebook.equals(fkNotebook)) {
+                jdbcTemplate.update("UPDATE DiscoRigido SET fkNotebook = ? WHERE serial = ?;", idNotebook, disco.getSerial());
+            }
+
             LogDisco novoLogDiscoRigido = new LogDisco(null, disco.getLeituras().toString(),
                     disco.getBytesDeLeitura().toString(),
                     disco.getEscritas().toString(),

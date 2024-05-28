@@ -299,11 +299,11 @@ public class MonitoramentoSystem {
             RamDAO ramDAO = new RamDAO();
             DiscoRigidoDAO discoRigidoDAO = new DiscoRigidoDAO();
             TempoDeAtividadeDAO tempoDeAtividadeDAO = new TempoDeAtividadeDAO();
-            GeolocalizacaoDAO geoDAO = new GeolocalizacaoDAO();
+//            GeolocalizacaoDAO geoDAO = new GeolocalizacaoDAO();
 
             //Metodos - Objetos DAO
             discoRigidoDAO.adiconarNovoDisco(notebook.getId());
-            geoDAO.adicionaGeolocalizacao(notebook.getId());
+//            geoDAO.adicionaGeolocalizacao(notebook.getId());
             tempoDeAtividadeDAO.adicionarTempoDeAtividade(tempoDeAtividade);
 
 
@@ -370,7 +370,7 @@ public class MonitoramentoSystem {
 
                     //Metodos - Objetos DAO
                     discoRigidoDAO.adiconarNovoDisco(notebook.getId());
-                    geoDAO.adicionaGeolocalizacao(notebook.getId());
+                    geoDAO.adicionaGeolocalizacao(notebook.getId(), geolocalizacao);
                     tempoDeAtividadeDAO.adicionarTempoDeAtividade(tempoDeAtividade);
 
 
