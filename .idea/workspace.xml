@@ -8,17 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/application.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/app/system/MonitoramentoSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/app/system/MonitoramentoSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/EmpresaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/EmpresaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/GeolocalizacaoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/GeolocalizacaoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogDiscoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogDiscoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/model/Geolocalizacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/model/Geolocalizacao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/app/system/MonitoramentoSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/app/system/MonitoramentoSystem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/DiscoRigidoDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/DiscoRigidoDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/EmpresaDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/EmpresaDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/GeolocalizacaoDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/GeolocalizacaoDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/LogDiscoDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/LogDiscoDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/service/ASCIIService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/service/ASCIIService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,6 +121,13 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -144,6 +140,7 @@
       <workItem from="1716141420690" duration="2300000" />
       <workItem from="1716495047209" duration="29894000" />
       <workItem from="1716656382757" duration="30334000" />
+      <workItem from="1716936338577" duration="1677000" />
     </task>
     <servers />
   </component>

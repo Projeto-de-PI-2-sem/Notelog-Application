@@ -351,37 +351,34 @@ public class MonitoramentoSystem {
                     Thread.sleep(2000);
 
                     //Geolocalização
-                    System.out.println("Dados Geolocalização: \n");
-                    Geolocalizacao geolocalizacao = new Geolocalizacao();
-                    String publicIPAddress = geolocalizacao.ObterIP();
-                    String jsonString = geolocalizacao.ObterGeoPorIP(publicIPAddress);
-                    geolocalizacao.preencherDados(jsonString);
-                    String dadosFormatados = geolocalizacao.formatarDados();
-                    System.out.println(dadosFormatados);
-
-                    Thread.sleep(2000);
+                    if (contador % 5 == 0 && contador > 0 ){
+                        System.out.println("Dados Geolocalização: \n");
+                        Geolocalizacao geolocalizacao = new Geolocalizacao();
+                        String publicIPAddress = geolocalizacao.ObterIP();
+                        String jsonString = geolocalizacao.ObterGeoPorIP(publicIPAddress);
+                        geolocalizacao.preencherDados(jsonString);
+                        String dadosFormatados = geolocalizacao.formatarDados();
+                        System.out.println(dadosFormatados);
+                        GeolocalizacaoDAO geoDAO = new GeolocalizacaoDAO();
+                        geoDAO.adicionaGeolocalizacao(notebook.getId(), geolocalizacao);
+                        Thread.sleep(2000);
+                    }
 
                     //Objetos DAO de cada componente
                     CpuDAO cpuDAO = new CpuDAO();
                     RamDAO ramDAO = new RamDAO();
                     DiscoRigidoDAO discoRigidoDAO = new DiscoRigidoDAO();
                     TempoDeAtividadeDAO tempoDeAtividadeDAO = new TempoDeAtividadeDAO();
-                    GeolocalizacaoDAO geoDAO = new GeolocalizacaoDAO();
 
                     //Metodos - Objetos DAO
                     discoRigidoDAO.adiconarNovoDisco(notebook.getId());
-                    geoDAO.adicionaGeolocalizacao(notebook.getId(), geolocalizacao);
                     tempoDeAtividadeDAO.adicionarTempoDeAtividade(tempoDeAtividade);
-
 
                     //LogDAO - Instancias
                     LogCpuDAO logCpuDAO = new LogCpuDAO();
                     LogRamDAO logRamDAO = new LogRamDAO();
                     LogDiscoDAO logDiscoDAO = new LogDiscoDAO();
                     LogJanelasDAO logJanelasDAO = new LogJanelasDAO();
-
-
-
 
                     // Logs - Instâncias
                     LogCpu logcpu = new LogCpu(cpuDAO.adicionarCpu(cpu));
@@ -432,7 +429,7 @@ public class MonitoramentoSystem {
                     ramEmUso = Long.parseLong(logram.getUsoMemoria());
                     ramDisponivel = Long.parseLong(logram.getMemoriaDisponivel());
 
-                    porcentagemUsoRAM.add(((double) ramEmUso / ramDisponivel) / 100);
+                    porcentagemUsoRAM.add(((double) ramEmUso / (ramEmUso + ramDisponivel) * 100));
 
                     if (contador % 2 == 0 && contador > 0){
                         mediaPorcentagemUsoRAM = (porcentagemUsoRAM.get(porcentagemUsoRAM.size() - 1) + porcentagemUsoRAM.get(porcentagemUsoRAM.size() - 2)) / 2;
