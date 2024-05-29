@@ -335,6 +335,8 @@ public class MonitoramentoSystem {
                     // Criando Objeto CPU pelo id do notebook
                     Cpu cpu = new Cpu(notebook.getId());
                     System.out.println("Dados CPU: \n" + cpu);
+                    System.out.println(cpu.getIdFisicoProcessador());
+                    Thread.sleep(4000);
 
                     Thread.sleep(2000);
 

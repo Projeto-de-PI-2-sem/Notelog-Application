@@ -58,5 +58,19 @@ public class LogJanelasDAO {
         con.update(sql);
 
     }
+
+//    public List<LogJanelas> selecionarJanelas(Integer idNotebook){
+//        Conexao conexao = new Conexao();
+//        JdbcTemplate con = conexao.getConexaoDoBanco();
+//
+//        String sql = String.format(
+//                """
+//                        SELECT * FROM LogJanelas WHERE fkNotebook = %d;
+//
+//                """, idNotebook
+//        );
+//
+//        return
+//    }
 }
 

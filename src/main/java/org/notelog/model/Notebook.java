@@ -30,44 +30,9 @@ public class Notebook {
     }
 
     public static String pegarNumeroSerial() {
-        String osName = System.getProperty("os.name").toLowerCase();
-        StringBuilder numeroSerial = new StringBuilder();
+        String idSerialCPU  = new Looca().getProcessador().getId();
+        return "SerialNumber" + idSerialCPU;
 
-        try {
-            if (osName.contains("windows")) {
-                // Comando para Windows
-                String command = "wmic bios get serialnumber";
-                Process process = Runtime.getRuntime().exec(command);
-                process.waitFor();
-
-                // Ler a saída do comando
-                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    numeroSerial.append(line.trim()); // Adiciona a linha ao número de série
-                }
-                reader.close();
-            } else if (osName.contains("linux")) {
-                // Comando para Linux
-                String command = "sudo dmidecode -s system-serial-number";
-                Process process = Runtime.getRuntime().exec(new String[]{"bash", "-c", command});
-                process.waitFor();
-
-                // Ler a saída do comando
-                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    numeroSerial.append(line.trim()); // Adiciona a linha ao número de série
-                }
-                reader.close();
-            } else {
-                System.out.println("Sistema operacional não suportado.");
-            }
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        return numeroSerial.toString();
     }
 
 
