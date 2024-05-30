@@ -435,7 +435,7 @@ public class MonitoramentoSystem {
                                             "🔹Informações do Notebook:\n" +
                                             "  • Sistema Operacional: %s\n" +
                                             "  • Número de Série: %s\n\n" +
-                                            "*Atenção:* O uso da CPU está acima do limite recomendado. Por favor, verifique e tome as ações necessárias.\n" +
+                                            "*Atenção:* O uso da CPU ultrapassou o limite recomendado de 90%%. Por favor, verifique e tome as ações necessárias.\n" +
                                             "*Acesse o link:* http://54.158.158.60:80 - para obter detalhes da dashboard Notelog",
                                     dataHoraAtual, porcentagemUsoCPU.get(porcentagemUsoCPU.size() - 1), usuarioNome, notebookModelo, notebookNumeroSerial
                             );
@@ -474,7 +474,7 @@ public class MonitoramentoSystem {
                                             "🔹 Informações do Notebook:\n" +
                                             "  • Sistema Operacional: %s\n" +
                                             "  • Número de Série: %s\n\n" +
-                                            "*Atenção:* O uso da RAM está acima do limite recomendado. Por favor, verifique e tome as ações necessárias.\n" +
+                                            "*Atenção:* O uso da RAM ultrapassou o limite recomendado de 90%%. Por favor, verifique e tome as ações necessárias.\n" +
                                             "*Acesse o link:* http://54.158.158.60:80 - para obter detalhes da dashboard Notelog",
                                     dataHoraAtual, porcentagemUsoRAM.get(porcentagemUsoRAM.size() - 1), usuarioNome, notebookModelo, notebookNumeroSerial
                             );
