@@ -4,10 +4,14 @@ import com.github.britooo.looca.api.core.Looca;
 
 import com.github.britooo.looca.api.group.janelas.Janela;
 import com.github.britooo.looca.api.group.janelas.JanelaGrupo;
+import org.notelog.model.DiscoRigido;
+import org.notelog.model.Empresa;
 import org.notelog.model.LogJanelas;
 import org.notelog.util.database.Conexao;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LogJanelasDAO {
@@ -31,9 +35,9 @@ public class LogJanelasDAO {
         Looca looca = new Looca();
         JanelaGrupo grupoDeJanelas = looca.getGrupoDeJanelas();
 
-        List<Janela> janelas = grupoDeJanelas.getJanelas();
+        List<Janela> janelas = grupoDeJanelas.getJanelasVisiveis();
         for (Janela janela : janelas) {
-            LogJanelas novaLogJanela = new LogJanelas(null, janela.getJanelaId().toString(), janela.getTitulo(), fkNotebook);
+            LogJanelas novaLogJanela = new LogJanelas(null, janela.getPid().toString(), janela.getTitulo(), 0, fkNotebook);
 
             if (!logJanelasExiste(novaLogJanela)) {
                 adicionarLogJanelas(novaLogJanela);
@@ -52,25 +56,21 @@ public class LogJanelasDAO {
                 """,
                 logJanelas.getIdJanela(),
                 logJanelas.getNomeJanela(),
-                logJanelas.getBloqueado(),
+                false,
                 logJanelas.getFkNotebook()
         );
         con.update(sql);
 
     }
 
-//    public List<LogJanelas> selecionarJanelas(Integer idNotebook){
-//        Conexao conexao = new Conexao();
-//        JdbcTemplate con = conexao.getConexaoDoBanco();
-//
-//        String sql = String.format(
-//                """
-//                        SELECT * FROM LogJanelas WHERE fkNotebook = %d;
-//
-//                """, idNotebook
-//        );
-//
-//        return
-//    }
+    public List<LogJanelas> selecionarJanelas(Integer idNotebook){
+        Conexao conexao = new Conexao();
+        JdbcTemplate con = conexao.getConexaoDoBanco();
+
+        String sql = "SELECT * FROM LogJanelas WHERE fkNotebook = ?";
+        List<LogJanelas> listaLogJanelas = con.query(sql, new BeanPropertyRowMapper<>(LogJanelas.class), idNotebook);
+
+        return listaLogJanelas;
+    }
 }
 
