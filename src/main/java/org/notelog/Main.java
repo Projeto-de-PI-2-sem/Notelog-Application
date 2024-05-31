@@ -48,12 +48,14 @@ public class Main {
                 usuario = userDAO.verificaUsuario(email, senha);
                 if (usuario != null) {
                     loginValido = true;
+                    System.out.println();
                     System.out.println("Login bem-sucedido! Bem-vindo, " + usuario.getNome() + "!");
                     logger.info("Login bem-sucedido para o usuário:"+ usuario.getNome());
                     Thread.sleep(3000);
                     vincularFuncionario(usuario);
                 } else {
                     logger.warning("Login mal-sucedido!");
+                    System.out.println();
                     System.out.println("Email ou senha incorretos. Tente novamente.");
 
                 }
