@@ -1,6 +1,8 @@
 package org.notelog.model;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class LogJanelas extends LogAbstract {
     private String idJanela;
@@ -35,6 +37,55 @@ public class LogJanelas extends LogAbstract {
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public static boolean verificaProcessoEmExecucao(Integer pid) {
+        String os = System.getProperty("os.name").toLowerCase();
+        String command = "";
+
+        if (os.contains("win")) {
+            command = "tasklist /FI \"PID eq " + pid + "\"";
+        } else if (os.contains("nix") || os.contains("nux")) {
+            command = "ps -p " + pid;
+        } else {
+            throw new UnsupportedOperationException("Sistema operacional não suportado");
+        }
+
+        try {
+            ProcessBuilder builder = new ProcessBuilder();
+            if (os.contains("win")) {
+                builder.command("cmd.exe", "/c", command);
+            } else {
+                builder.command("sh", "-c", command);
+            }
+
+            Process process = builder.start();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+            boolean pidFound = false;
+
+            if (os.contains("win")) {
+                while ((line = reader.readLine()) != null) {
+                    if (line.contains(String.valueOf(pid))) {
+                        pidFound = true;
+                        break;
+                    }
+                }
+            } else {
+                reader.readLine(); // Skip the header line
+                if ((line = reader.readLine()) != null && line.trim().startsWith(String.valueOf(pid))) {
+                    pidFound = true;
+                }
+            }
+
+            reader.close();
+            return pidFound;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 
     // Getters e Setters

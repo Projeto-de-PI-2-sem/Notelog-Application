@@ -1,13 +1,13 @@
 package org.notelog.dao;
 
-import org.notelog.util.database.Conexao;
+import org.notelog.util.database.ConexaoMySQL;
 import org.notelog.model.Ram;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class  RamDAO {
     public Integer adicionarRam(Ram ram) {
-        Conexao conexao = new Conexao();
-        JdbcTemplate con = conexao.getConexaoDoBanco();
+        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
+        JdbcTemplate con = conexaoMySQL.getConexaoDoBanco();
         String sql;
         if (!ramExiste(ram)) {
             sql = "INSERT INTO Ram (totalMemoria, fkNotebook) VALUES ('%s', '%d')"
@@ -24,8 +24,8 @@ public class  RamDAO {
     }
 
     private boolean ramExiste(Ram ram) {
-        Conexao conexao = new Conexao();
-        JdbcTemplate con = conexao.getConexaoDoBanco();
+        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
+        JdbcTemplate con = conexaoMySQL.getConexaoDoBanco();
 
         Integer quantidade = con.queryForObject("SELECT count(*) FROM Ram WHERE fkNotebook = ? AND totalMemoria = ?", Integer.class, ram.getFkNotebook(), ram.getTotalMemoria());
         if (quantidade != null) {

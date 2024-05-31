@@ -3,7 +3,7 @@ package org.notelog.dao;
 import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.discos.DiscoGrupo;
 import org.notelog.SimpleLogger;
-import org.notelog.util.database.Conexao;
+import org.notelog.util.database.ConexaoMySQL;
 import com.github.britooo.looca.api.group.discos.Disco;
 import org.notelog.model.DiscoRigido;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -26,8 +26,8 @@ public class DiscoRigidoDAO {
     }
 
     private void adicionarDisco(DiscoRigido discoRigido) {
-        Conexao conexao = new Conexao();
-        JdbcTemplate con = conexao.getConexaoDoBanco();
+        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
+        JdbcTemplate con = conexaoMySQL.getConexaoDoBanco();
 
         String sql = "INSERT INTO DiscoRigido(modelo, serial, tamanho, fkNotebook) VALUES ('%s', '%s', '%s', %d)"
                 .formatted(discoRigido.getModelo(), discoRigido.getSerial(), discoRigido.getTamanho(), discoRigido.getFkNotebook());
@@ -37,8 +37,8 @@ public class DiscoRigidoDAO {
     }
 
     private boolean discoExiste(DiscoRigido disco) {
-        Conexao conexao = new Conexao();
-        JdbcTemplate con = conexao.getConexaoDoBanco();
+        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
+        JdbcTemplate con = conexaoMySQL.getConexaoDoBanco();
 
         Integer quantidade = con.queryForObject("select count(*) from DiscoRigido where modelo = '%s' and serial = '%s'".formatted(disco.getModelo(), disco.getSerial()), Integer.class);
 
@@ -50,8 +50,8 @@ public class DiscoRigidoDAO {
     }
 
     public static List<DiscoRigido> buscarTodosOsDiscos() {
-        Conexao conexao = new Conexao();
-        JdbcTemplate con = conexao.getConexaoDoBanco();
+        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
+        JdbcTemplate con = conexaoMySQL.getConexaoDoBanco();
 
         List<DiscoRigido> discos = con.query("select * from DiscoRigido;", new BeanPropertyRowMapper<>(DiscoRigido.class));
 
@@ -61,8 +61,8 @@ public class DiscoRigidoDAO {
 
 
     private DiscoRigido buscarDiscoPeloSerial(String serial) {
-        Conexao conexao = new Conexao();
-        JdbcTemplate con = conexao.getConexaoDoBanco();
+        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
+        JdbcTemplate con = conexaoMySQL.getConexaoDoBanco();
 
         DiscoRigido discos = con.queryForObject("select * from DiscoRigido where serial = '%s'".formatted(serial), new BeanPropertyRowMapper<>(DiscoRigido.class));
 

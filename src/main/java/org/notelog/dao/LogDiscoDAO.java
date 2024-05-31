@@ -4,7 +4,7 @@ import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.discos.Disco;
 import com.github.britooo.looca.api.group.discos.DiscoGrupo;
 import org.notelog.model.LogDisco;
-import org.notelog.util.database.Conexao;
+import org.notelog.util.database.ConexaoMySQL;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -18,8 +18,8 @@ public class LogDiscoDAO {
     private static final Logger logger = Logger.getLogger(LogDiscoDAO.class.getName());
 
     public LogDiscoDAO() {
-        Conexao conexao = new Conexao();
-        this.jdbcTemplate = conexao.getConexaoDoBanco();
+        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
+        this.jdbcTemplate = conexaoMySQL.getConexaoDoBanco();
     }
 
     public void adicionarLogDisco(LogDisco logDisco, Integer fkDiscoRigido) {

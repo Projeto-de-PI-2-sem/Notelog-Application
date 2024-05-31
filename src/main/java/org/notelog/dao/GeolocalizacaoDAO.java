@@ -1,13 +1,13 @@
 package org.notelog.dao;
 
 import org.notelog.model.Geolocalizacao;
-import org.notelog.util.database.Conexao;
+import org.notelog.util.database.ConexaoMySQL;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class GeolocalizacaoDAO {
     public void adicionaGeolocalizacao(Integer fkNotebook, Geolocalizacao geolocalizacao) {
-        Conexao conexao = new Conexao();
-        JdbcTemplate con = conexao.getConexaoDoBanco();
+        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
+        JdbcTemplate con = conexaoMySQL.getConexaoDoBanco();
 
         String publicIPAddress = geolocalizacao.ObterIP();
         String jsonString = geolocalizacao.ObterGeoPorIP(publicIPAddress);

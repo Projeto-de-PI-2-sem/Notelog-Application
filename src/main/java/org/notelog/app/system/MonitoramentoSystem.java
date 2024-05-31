@@ -6,6 +6,7 @@ import org.notelog.SimpleLogger;
 import org.notelog.dao.*;
 import org.notelog.model.*;
 
+import javax.management.Notification;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static org.notelog.model.LogJanelas.verificaProcessoEmExecucao;
 import static org.notelog.service.SlackService.sendMensagemSlackCPU;
 import static org.notelog.service.SlackService.sendMensagemSlackRAM;
 
@@ -34,6 +36,7 @@ public class MonitoramentoSystem {
             System.out.println("6 - Ocultar ação do Notelog...");
             System.out.println("7 - Sair do programa.");
 
+            System.out.print("Opção: ");
             opcao = scanner.nextInt();
 
             switch (opcao) {
@@ -53,17 +56,21 @@ public class MonitoramentoSystem {
                     monitorarGeolocalizacao(usuario, notebook);
                     break;
                 case 6:
+                    System.out.println();
                     System.out.println("Iniciando execução em segundo plano...");
+                    System.out.println("Monitoramento em andamento...");
                     inserirDadosNoBanco(usuario, notebook, false);
                     break;
                 case 7:
+                    System.out.println();
+                    System.out.println("Programa encerrado.");
+                    System.exit(0);
                     break;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
             }
         } while (opcao != 7);
 
-        System.out.println("Programa encerrado.");
     }
 
     // Funções de monitoramento
@@ -71,6 +78,7 @@ public class MonitoramentoSystem {
         Scanner scanner = new Scanner(System.in);
         Looca looca = new Looca();
         do {
+            System.out.println();
             System.out.println("Buscando informações sobre CPU...");
             try {
                 Thread.sleep(1000);
@@ -79,13 +87,13 @@ public class MonitoramentoSystem {
             }
 
             System.out.println("Dados encontrados:");
+            System.out.println();
             try {
                 System.out.println(looca.getProcessador().toString());
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
             System.out.println("Enviando dados para o servidor...");
             try {
                 inserirDadosNoBanco(usuario, notebook, true);
@@ -98,7 +106,7 @@ public class MonitoramentoSystem {
             System.out.println("Concluído. Digite '/exit' para sair.");
         } while (!scanner.nextLine().equalsIgnoreCase("/exit"));
         System.out.println("Saindo...");
-
+        System.out.println();
         try {
             escolherMonitoramento(usuario, notebook);
         } catch (InterruptedException e) {
@@ -110,6 +118,7 @@ public class MonitoramentoSystem {
         Scanner scanner = new Scanner(System.in);
         Looca looca = new Looca();
         do {
+            System.out.println();
             System.out.println("Buscando informações sobre Disco(s)...");
             try {
                 Thread.sleep(1000); // Espera 1 segundo
@@ -118,13 +127,14 @@ public class MonitoramentoSystem {
             }
 
             System.out.println("Dados encontrados:");
+            System.out.println();
             try {
                 Thread.sleep(5000);
                 System.out.println(looca.getGrupoDeDiscos().getDiscos().toString());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
+            System.out.println();
             System.out.println("Enviando dados para o servidor...");
             try {
                 inserirDadosNoBanco(usuario, notebook, true);
@@ -137,7 +147,7 @@ public class MonitoramentoSystem {
             System.out.println("Concluído. Digite '/exit' para sair.");
         } while (!scanner.nextLine().equalsIgnoreCase("/exit"));
         System.out.println("Saindo...");
-
+        System.out.println();
         try {
             escolherMonitoramento(usuario, notebook);
         } catch (InterruptedException e) {
@@ -150,6 +160,7 @@ public class MonitoramentoSystem {
         Scanner scanner = new Scanner(System.in);
         Looca looca = new Looca();
         do {
+            System.out.println();
             System.out.println("Buscando informações sobre Janela(s)...");
             try {
                 Thread.sleep(1000); // Espera 1 segundo
@@ -158,13 +169,14 @@ public class MonitoramentoSystem {
             }
 
             System.out.println("Dados encontrados:");
+            System.out.println();
             try {
                 Thread.sleep(5000); // Espera 5 segundos
                 System.out.println(looca.getGrupoDeJanelas().getJanelas().toString());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
+            System.out.println();
             System.out.println("Enviando dados para o servidor...");
             try {
                 inserirDadosNoBanco(usuario, notebook, true);
@@ -177,6 +189,7 @@ public class MonitoramentoSystem {
             System.out.println("Concluído. Digite '/exit' para sair.");
         } while (!scanner.nextLine().equalsIgnoreCase("/exit"));
         System.out.println("Saindo...");
+        System.out.println();
 
         try {
             escolherMonitoramento(usuario, notebook);
@@ -190,7 +203,7 @@ public class MonitoramentoSystem {
         Scanner scanner = new Scanner(System.in);
         Looca looca = new Looca();
         do {
-
+            System.out.println();
             System.out.println("Buscando informações sobre memória RAM...");
             try {
                 Thread.sleep(1000); // Espera 1 segundo
@@ -199,13 +212,13 @@ public class MonitoramentoSystem {
             }
 
             System.out.println("Dados encontrados:");
+            System.out.println();
             try {
                 Thread.sleep(5000); // Espera 5 segundos
                 System.out.println(looca.getMemoria().toString());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
             System.out.println("Enviando dados para o servidor...");
             try {
                 inserirDadosNoBanco(usuario, notebook, true);
@@ -218,7 +231,7 @@ public class MonitoramentoSystem {
             System.out.println("Concluído. Digite '/exit' para sair.");
         } while (!scanner.nextLine().equalsIgnoreCase("/exit"));
         System.out.println("Saindo...");
-
+        System.out.println();
         try {
             escolherMonitoramento(usuario, notebook);
         } catch (InterruptedException e) {
@@ -230,7 +243,7 @@ public class MonitoramentoSystem {
         Scanner scanner = new Scanner(System.in);
 
         do {
-
+            System.out.println();
             System.out.println("Buscando informações sobre geolocalização do dispositivo...");
             try {
                 Thread.sleep(2000); // Espera 2 segundo
@@ -247,10 +260,12 @@ public class MonitoramentoSystem {
             geolocalizacao.preencherDados(jsonString);
             String dadosFormatados = geolocalizacao.formatarDados();
             System.out.println("Dados encontrados:");
+            System.out.println();
             Thread.sleep(1000); // Espera 1 segundo
             System.out.println(dadosFormatados);
             Thread.sleep(5000); // Espera 5 segundos
 
+            System.out.println();
             System.out.println("Enviando dados para o servidor...");
             try {
                 inserirDadosNoBanco(usuario, notebook, true);
@@ -263,6 +278,7 @@ public class MonitoramentoSystem {
             System.out.println("Concluído. Digite '/exit' para sair.");
         } while (!scanner.nextLine().equalsIgnoreCase("/exit"));
         System.out.println("Saindo...");
+        System.out.println();
 
         try {
             escolherMonitoramento(usuario, notebook);
@@ -326,38 +342,27 @@ public class MonitoramentoSystem {
         } else {
             while (true) {
                 try {
-                    System.out.println("\nMonitoramento em andamento...");
                     Thread.sleep(3500);
 
                     // Criando Objeto CPU pelo id do notebook
                     Cpu cpu = new Cpu(notebook.getId());
-                    System.out.println("Dados - CPU: \n" + cpu);
-                    System.out.println(cpu.getIdFisicoProcessador());
-                    Thread.sleep(4000);
 
+                    Thread.sleep(4000);
                     Thread.sleep(2000);
 
                     // Criando Objeto RAM pelo id do notebook
                     Ram ram = new Ram(notebook.getId());
-                    System.out.println("Dados - Memória Ram: \n" + ram);
-
                     Thread.sleep(2000);
 
                     // Criando Objeto tempo de atividade pelo id do notebook
                     TempoDeAtividade tempoDeAtividade = new TempoDeAtividade(notebook.getId());
-                    System.out.println("Dados - Tempo de atividade: \n" + tempoDeAtividade);
-
                     Thread.sleep(2000);
 
                     //Geolocalização
-                    if (contador % 5 == 0 && contador > 0 ){
-                        System.out.println("Dados - Geolocalização do dispositivo: \n");
+                    if (contador % 10 == 0 && contador > 0 ){
                         Geolocalizacao geolocalizacao = new Geolocalizacao();
                         String publicIPAddress = geolocalizacao.ObterIP();
                         String jsonString = geolocalizacao.ObterGeoPorIP(publicIPAddress);
-                        geolocalizacao.preencherDados(jsonString);
-                        String dadosFormatados = geolocalizacao.formatarDados();
-                        System.out.println(dadosFormatados);
                         GeolocalizacaoDAO geoDAO = new GeolocalizacaoDAO();
                         geoDAO.adicionaGeolocalizacao(notebook.getId(), geolocalizacao);
                         Thread.sleep(2000);
@@ -389,31 +394,33 @@ public class MonitoramentoSystem {
                     logDiscoDAO.adicionarNovoLogDisco(notebook.getId());
                     logJanelasDAO.adicionarNovoLogJanelas(notebook.getId());
 
-                    System.out.println("Verificando Janelas indevidas... ");
                     Thread.sleep(2000);
                     List<LogJanelas> listaJanelas = logJanelasDAO.selecionarJanelas(notebook.getId());
 
                     for (LogJanelas process : listaJanelas) {
-                        if (process.getBloqueado() > 0) {
-                            try {
-                                int idJanela = Integer.parseInt(process.getIdJanela());
-                                process.encerraProcesso(idJanela);
-                                System.out.println("Janela " + process.getNomeJanela() + " foi encerrada por ação de um técnico especializado, por violar as políticas da empresa.");
-                                Thread.sleep(1500); // Pausa de 1,5 segundos
-                            } catch (NumberFormatException e) {
-                                System.out.println("ID da janela inválido: " + process.getIdJanela());
-                            } catch (InterruptedException e) {
-                                Thread.currentThread().interrupt();
-                                System.out.println("Thread interrompida.");
+                        if (verificaProcessoEmExecucao(Integer.parseInt(process.getIdJanela()))) {
+                            if (process.getBloqueado() > 0) {
+                                try {
+                                    int idJanela = Integer.parseInt(process.getIdJanela());
+                                    process.encerraProcesso(idJanela);
+                                    System.out.println("Janela " + process.getNomeJanela() + " foi encerrada por ação de um técnico especializado, por violar as políticas da empresa.");
+                                    Thread.sleep(1500); // Pausa de 1,5 segundos
+                                } catch (NumberFormatException e) {
+                                    System.out.println("ID da janela inválido: " + process.getIdJanela());
+                                } catch (InterruptedException e) {
+                                    Thread.currentThread().interrupt();
+                                    System.out.println("Thread interrompida.");
+                                }
                             }
                         }
+
                     }
 
                     Thread.sleep(3500);
 
                     porcentagemUsoCPU.add(logcpu.getPorcentagemUso());
-                    if (contador % 2 == 0 && contador > 0){
-                        mediaPorcentagemUsoCPU = (porcentagemUsoCPU.get(porcentagemUsoCPU.size() - 1) + porcentagemUsoCPU.get(porcentagemUsoCPU.size() - 2)) / 2;
+                    if (contador % 5 == 0 && contador > 0){
+                        mediaPorcentagemUsoCPU = (porcentagemUsoCPU.get(porcentagemUsoCPU.size() - 1) + porcentagemUsoCPU.get(porcentagemUsoCPU.size() - 2) + porcentagemUsoCPU.get(porcentagemUsoCPU.size() - 3) + porcentagemUsoCPU.get(porcentagemUsoCPU.size() - 4) + porcentagemUsoCPU.get(porcentagemUsoCPU.size() - 5)) / 5;
                         if (mediaPorcentagemUsoCPU > 5.5){
 
                             String usuarioNome = usuario.getNome();
@@ -440,9 +447,7 @@ public class MonitoramentoSystem {
                                     dataHoraAtual, porcentagemUsoCPU.get(porcentagemUsoCPU.size() - 1), usuarioNome, notebookModelo, notebookNumeroSerial
                             );
                             sendMensagemSlackCPU(mensagemDetalhada, logcpu.getFkCPU(), usuario, notebook);
-                            System.out.println("Alerta - Alto Uso de CPU detectado!");
-                            Thread.sleep(1000);
-                            System.out.println("Notificando técnicos especializados...");
+                            Thread.sleep(2000);
                             Thread.sleep(8000);
                         }
                     }
@@ -452,8 +457,8 @@ public class MonitoramentoSystem {
 
                     porcentagemUsoRAM.add(((double) ramEmUso / (ramEmUso + ramDisponivel) * 100));
 
-                    if (contador % 2 == 0 && contador > 0){
-                        mediaPorcentagemUsoRAM = (porcentagemUsoRAM.get(porcentagemUsoRAM.size() - 1) + porcentagemUsoRAM.get(porcentagemUsoRAM.size() - 2)) / 2;
+                    if (contador % 5 == 0 && contador > 0){
+                        mediaPorcentagemUsoRAM = (porcentagemUsoRAM.get(porcentagemUsoRAM.size() - 1) + porcentagemUsoRAM.get(porcentagemUsoRAM.size() - 2) + porcentagemUsoRAM.get(porcentagemUsoRAM.size() - 3) + porcentagemUsoRAM.get(porcentagemUsoRAM.size() - 4) + porcentagemUsoRAM.get(porcentagemUsoRAM.size() - 5)) / 5;
                         if (mediaPorcentagemUsoCPU > 10.5){
                             String usuarioNome = usuario.getNome();
                             String notebookModelo = notebook.getSistemaOperacional();
@@ -479,16 +484,12 @@ public class MonitoramentoSystem {
                                     dataHoraAtual, porcentagemUsoRAM.get(porcentagemUsoRAM.size() - 1), usuarioNome, notebookModelo, notebookNumeroSerial
                             );
                             sendMensagemSlackRAM(mensagemDetalhada, logram.getFkRAM(), usuario, notebook);
-                            System.out.println("Alerta - Alto Uso de RAM detectado!");
-                            Thread.sleep(1000);
-                            System.out.println("Notificando técnicos especializados...");
+                            Thread.sleep(2000);
                             Thread.sleep(8000);
                         }
                     }
 
                     contador++;
-
-                    System.out.println("Enviando dados para o servidor...");
                     Thread.sleep(2000);
 
                 } catch (InterruptedException e) {

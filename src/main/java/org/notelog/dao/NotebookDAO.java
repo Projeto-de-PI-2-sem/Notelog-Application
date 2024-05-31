@@ -1,14 +1,14 @@
 package org.notelog.dao;
 
-import org.notelog.util.database.Conexao;
+import org.notelog.util.database.ConexaoMySQL;
 import org.notelog.model.Notebook;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class NotebookDAO {
     public Boolean adicionarNotebook(Notebook notebook) {
-        Conexao conexao = new Conexao();
-        JdbcTemplate con = conexao.getConexaoDoBanco();
+        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
+        JdbcTemplate con = conexaoMySQL.getConexaoDoBanco();
         int funcionarioExistente = con.queryForObject("select count(*) from Funcionario where fkEmpresa = ? and id = ?", Integer.class, notebook.getFkEmpresa(), notebook.getFkFuncionario());
         int funcionarioJaAtrelado = con.queryForObject("select count(*) from Notebook join Funcionario on Funcionario.id = fkFuncionario where fkFuncionario = ?;", Integer.class, notebook.getFkFuncionario());
 
@@ -23,8 +23,8 @@ public class NotebookDAO {
     }
 
     public Notebook consultaNotebook(Integer idUsuario){
-        Conexao conexao = new Conexao();
-        JdbcTemplate con = conexao.getConexaoDoBanco();
+        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
+        JdbcTemplate con = conexaoMySQL.getConexaoDoBanco();
 
         String sql = "select * from Notebook where fkFuncionario = %d;".formatted(idUsuario);
 
