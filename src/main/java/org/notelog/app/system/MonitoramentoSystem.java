@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static org.notelog.model.LogJanelas.verificaProcessoEmExecucao;
 import static org.notelog.service.SlackService.sendMensagemSlackCPU;
 import static org.notelog.service.SlackService.sendMensagemSlackRAM;
 
@@ -394,19 +395,22 @@ public class MonitoramentoSystem {
                     List<LogJanelas> listaJanelas = logJanelasDAO.selecionarJanelas(notebook.getId());
 
                     for (LogJanelas process : listaJanelas) {
-                        if (process.getBloqueado() > 0) {
-                            try {
-                                int idJanela = Integer.parseInt(process.getIdJanela());
-                                process.encerraProcesso(idJanela);
-                                System.out.println("Janela " + process.getNomeJanela() + " foi encerrada por ação de um técnico especializado, por violar as políticas da empresa.");
-                                Thread.sleep(1500); // Pausa de 1,5 segundos
-                            } catch (NumberFormatException e) {
-                                System.out.println("ID da janela inválido: " + process.getIdJanela());
-                            } catch (InterruptedException e) {
-                                Thread.currentThread().interrupt();
-                                System.out.println("Thread interrompida.");
+                        if (verificaProcessoEmExecucao(Integer.parseInt(process.getIdJanela()))) {
+                            if (process.getBloqueado() > 0) {
+                                try {
+                                    int idJanela = Integer.parseInt(process.getIdJanela());
+                                    process.encerraProcesso(idJanela);
+                                    System.out.println("Janela " + process.getNomeJanela() + " foi encerrada por ação de um técnico especializado, por violar as políticas da empresa.");
+                                    Thread.sleep(1500); // Pausa de 1,5 segundos
+                                } catch (NumberFormatException e) {
+                                    System.out.println("ID da janela inválido: " + process.getIdJanela());
+                                } catch (InterruptedException e) {
+                                    Thread.currentThread().interrupt();
+                                    System.out.println("Thread interrompida.");
+                                }
                             }
                         }
+
                     }
 
                     Thread.sleep(3500);

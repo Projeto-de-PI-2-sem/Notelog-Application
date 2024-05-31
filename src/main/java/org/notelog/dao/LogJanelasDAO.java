@@ -11,6 +11,9 @@ import org.notelog.util.database.Conexao;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,5 +75,7 @@ public class LogJanelasDAO {
 
         return listaLogJanelas;
     }
+
+
 }
 
