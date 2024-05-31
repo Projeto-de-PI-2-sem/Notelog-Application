@@ -426,16 +426,16 @@ public class MonitoramentoSystem {
                                     "\n" +
                                             "🚨 *ALERTA DE ALTO USO DE CPU*\n\n" +
                                             "🔹Detalhes do Alerta:\n" +
-                                            "  • Data e Hora: %s\n" +
-                                            "  • Porcentagem de Uso da CPU: %.2f%%\n" +
+                                            "  • Data e Hora: *%s*\n" +
+                                            "  • Porcentagem de Uso da CPU: *%.2f%%*\n" +
                                             "___________________________________________________\n" +
                                             "🔹Informações do Usuário:\n" +
-                                            "  • Nome: %s\n" +
+                                            "  • Nome: *%s*\n" +
                                             "___________________________________________________\n" +
                                             "🔹Informações do Notebook:\n" +
-                                            "  • Sistema Operacional: %s\n" +
-                                            "  • Número de Série: %s\n\n" +
-                                            "*Atenção:* O uso da CPU ultrapassou o limite recomendado de 90%%. Por favor, verifique e tome as ações necessárias.\n" +
+                                            "  • Sistema Operacional: *%s*\n" +
+                                            "  • Número de Série: *%s*\n\n" +
+                                            "*Atenção:* O uso da CPU ultrapassou a *média recomendada de 5,5%%*. Por favor, verifique e tome as ações necessárias.\n" +
                                             "*Acesse o link:* http://54.158.158.60:80 - para obter detalhes da dashboard Notelog",
                                     dataHoraAtual, porcentagemUsoCPU.get(porcentagemUsoCPU.size() - 1), usuarioNome, notebookModelo, notebookNumeroSerial
                             );
@@ -465,16 +465,16 @@ public class MonitoramentoSystem {
                                     "\n" +
                                             "🚨 *ALERTA DE ALTO USO DE RAM*\n\n" +
                                             "🔹 Detalhes do Alerta:\n" +
-                                            "  • Data e Hora: %s\n" +
-                                            "  • Porcentagem de Uso da RAM: %.2f%%\n" +
+                                            "  • Data e Hora: *%s*\n" +
+                                            "  • Porcentagem de Uso da RAM: *%.2f%%*\n" +
                                             "___________________________________________________\n" +
                                             "🔹 Informações do Usuário:\n" +
-                                            "  • Nome: %s\n" +
+                                            "  • Nome: *%s*\n" +
                                             "___________________________________________________\n" +
                                             "🔹 Informações do Notebook:\n" +
-                                            "  • Sistema Operacional: %s\n" +
-                                            "  • Número de Série: %s\n\n" +
-                                            "*Atenção:* O uso da RAM ultrapassou o limite recomendado de 90%%. Por favor, verifique e tome as ações necessárias.\n" +
+                                            "  • Sistema Operacional: *%s*\n" +
+                                            "  • Número de Série: *%s*\n\n" +
+                                            "*Atenção:* O uso da RAM ultrapassou a *média recomendada de 10,5%%*. Por favor, verifique e tome as ações necessárias.\n" +
                                             "*Acesse o link:* http://54.158.158.60:80 - para obter detalhes da dashboard Notelog",
                                     dataHoraAtual, porcentagemUsoRAM.get(porcentagemUsoRAM.size() - 1), usuarioNome, notebookModelo, notebookNumeroSerial
                             );
