@@ -351,7 +351,7 @@ public class MonitoramentoSystem {
                     Thread.sleep(2000);
 
                     //Geolocalização
-                    if (contador % 5 == 0 && contador > 0 ){
+                    if (contador % 10 == 0 && contador > 0 ){
                         System.out.println("Dados - Geolocalização do dispositivo: \n");
                         Geolocalizacao geolocalizacao = new Geolocalizacao();
                         String publicIPAddress = geolocalizacao.ObterIP();
@@ -416,8 +416,8 @@ public class MonitoramentoSystem {
                     Thread.sleep(3500);
 
                     porcentagemUsoCPU.add(logcpu.getPorcentagemUso());
-                    if (contador % 2 == 0 && contador > 0){
-                        mediaPorcentagemUsoCPU = (porcentagemUsoCPU.get(porcentagemUsoCPU.size() - 1) + porcentagemUsoCPU.get(porcentagemUsoCPU.size() - 2)) / 2;
+                    if (contador % 5 == 0 && contador > 0){
+                        mediaPorcentagemUsoCPU = (porcentagemUsoCPU.get(porcentagemUsoCPU.size() - 1) + porcentagemUsoCPU.get(porcentagemUsoCPU.size() - 2) + porcentagemUsoCPU.get(porcentagemUsoCPU.size() - 3) + porcentagemUsoCPU.get(porcentagemUsoCPU.size() - 4) + porcentagemUsoCPU.get(porcentagemUsoCPU.size() - 5)) / 5;
                         if (mediaPorcentagemUsoCPU > 5.5){
 
                             String usuarioNome = usuario.getNome();
@@ -456,8 +456,8 @@ public class MonitoramentoSystem {
 
                     porcentagemUsoRAM.add(((double) ramEmUso / (ramEmUso + ramDisponivel) * 100));
 
-                    if (contador % 2 == 0 && contador > 0){
-                        mediaPorcentagemUsoRAM = (porcentagemUsoRAM.get(porcentagemUsoRAM.size() - 1) + porcentagemUsoRAM.get(porcentagemUsoRAM.size() - 2)) / 2;
+                    if (contador % 5 == 0 && contador > 0){
+                        mediaPorcentagemUsoRAM = (porcentagemUsoRAM.get(porcentagemUsoRAM.size() - 1) + porcentagemUsoRAM.get(porcentagemUsoRAM.size() - 2) + porcentagemUsoRAM.get(porcentagemUsoRAM.size() - 3) + porcentagemUsoRAM.get(porcentagemUsoRAM.size() - 4) + porcentagemUsoRAM.get(porcentagemUsoRAM.size() - 5)) / 5;
                         if (mediaPorcentagemUsoCPU > 10.5){
                             String usuarioNome = usuario.getNome();
                             String notebookModelo = notebook.getSistemaOperacional();
