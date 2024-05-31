@@ -1,17 +1,15 @@
 package org.notelog.dao;
 
 import org.notelog.model.Empresa;
-import org.notelog.model.Notebook;
-import org.notelog.model.Ram;
-import org.notelog.util.database.Conexao;
+import org.notelog.util.database.ConexaoMySQL;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class EmpresaDAO {
 
     public Empresa consultaEmpresaCPU(Integer fkCPU){
-        Conexao conexao = new Conexao();
-        JdbcTemplate con = conexao.getConexaoDoBanco();
+        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
+        JdbcTemplate con = conexaoMySQL.getConexaoDoBanco();
 
         String sql = """
                 Select * from Empresa
@@ -26,8 +24,8 @@ public class EmpresaDAO {
     };
 
     public Empresa consultaEmpresaRAM(Integer fkRAM){
-        Conexao conexao = new Conexao();
-        JdbcTemplate con = conexao.getConexaoDoBanco();
+        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
+        JdbcTemplate con = conexaoMySQL.getConexaoDoBanco();
 
         String sql = """
                 Select * from Empresa
@@ -42,8 +40,8 @@ public class EmpresaDAO {
     };
 
     public Empresa consultaEmpresaDisco(Integer fkDisco){
-        Conexao conexao = new Conexao();
-        JdbcTemplate con = conexao.getConexaoDoBanco();
+        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
+        JdbcTemplate con = conexaoMySQL.getConexaoDoBanco();
 
         String sql = """
                 Select * from Empresa

@@ -1,13 +1,13 @@
 package org.notelog.dao;
 
-import org.notelog.util.database.Conexao;
+import org.notelog.util.database.ConexaoMySQL;
 import org.notelog.model.TempoDeAtividade;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class TempoDeAtividadeDAO {
     public void adicionarTempoDeAtividade(TempoDeAtividade tempoDeAtividade) {
-        Conexao conexao = new Conexao();
-        JdbcTemplate con = conexao.getConexaoDoBanco();
+        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
+        JdbcTemplate con = conexaoMySQL.getConexaoDoBanco();
 
         String sql;
 
@@ -23,8 +23,8 @@ public class TempoDeAtividadeDAO {
     }
 
     private boolean tempoDeAtividadeExiste(TempoDeAtividade tempoDeAtividade) {
-        Conexao conexao = new Conexao();
-        JdbcTemplate con = conexao.getConexaoDoBanco();
+        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
+        JdbcTemplate con = conexaoMySQL.getConexaoDoBanco();
 
         Integer quantidade = con.queryForObject("SELECT count(*) FROM TempoDeAtividade WHERE fkNotebook = ? AND tempoInicializado = ?", Integer.class, tempoDeAtividade.getFkNotebook(), tempoDeAtividade.getTempoInicializado());
         if (quantidade != null && quantidade> 0) {
