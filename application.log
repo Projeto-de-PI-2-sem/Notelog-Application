@@ -66,7 +66,20 @@
 30-05-2024 01:10:59[INFO]Inserindo informações de Disco no Banco de dados
 30-05-2024 01:12:22[INFO]Sistema Iniciado
 30-05-2024 01:12:40[INFO]Login bem-sucedido para o usuário:Jozias Duarte
+<<<<<<< HEAD
 31-05-2024 15:35:55[INFO]Sistema Iniciado
 31-05-2024 15:37:41[INFO]Login bem-sucedido para o usuário:Jozias Duarte
 31-05-2024 16:09:48[INFO]Sistema Iniciado
 31-05-2024 16:10:14[INFO]Login bem-sucedido para o usuário:Jozias Duarte
+=======
+30-05-2024 20:08:06[INFO]Sistema Iniciado
+30-05-2024 20:08:24[INFO]Login bem-sucedido para o usuário:Jozias Duarte
+30-05-2024 20:13:07[INFO]Sistema Iniciado
+30-05-2024 20:13:30[WARNING]Login mal-sucedido!
+30-05-2024 20:13:51[WARNING]Login mal-sucedido!
+30-05-2024 20:14:41[INFO]Sistema Iniciado
+30-05-2024 20:14:51[INFO]Login bem-sucedido para o usuário:Jozias Duarte
+30-05-2024 20:15:15[INFO]Inserindo informações de Disco no Banco de dados
+30-05-2024 20:16:24[INFO]Sistema Iniciado
+30-05-2024 20:16:39[INFO]Login bem-sucedido para o usuário:Camila da Silva
+>>>>>>> e9db3b17ce2b9044b5af5c472f3a3eb6b2b6caa6

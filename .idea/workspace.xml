@@ -8,8 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/application.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/app/system/MonitoramentoSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/app/system/MonitoramentoSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogJanelasDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogJanelasDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/model/LogJanelas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/model/LogJanelas.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,17 +25,17 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
+    &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
     &quot;assignee&quot;: &quot;gabriellesimoes&quot;
-  }
-}</component>
+    }
+    }</component>
   <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Projeto-de-PI-2-sem/Notelog-Application.git&quot;,
     &quot;accountId&quot;: &quot;be81bffb-ca82-45b0-a6ea-d53dd5daa503&quot;
-  }
-}</component>
+    }
+    }</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -45,9 +43,9 @@
     <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 1
-}</component>
+    &quot;customColor&quot;: &quot;&quot;,
+    &quot;associatedIndex&quot;: 1
+    }</component>
   <component name="ProjectId" id="2ggpvS4nRXPreW1lRFTV6J6a8fQ" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -56,25 +54,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.SlackService.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.app-note-log [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.app-note-log [install].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/isaac.souza/Downloads/jar-individual-notelog&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Application.SlackService.executor": "Run",
+    "Maven.app-note-log [clean].executor": "Run",
+    "Maven.app-note-log [install].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/isaac.souza/Downloads/jar-individual-notelog",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Zak\Downloads\app-notelog" />
@@ -144,8 +143,7 @@
       <workItem from="1716656382757" duration="30334000" />
       <workItem from="1716936338577" duration="5442000" />
       <workItem from="1717010613214" duration="20087000" />
-      <workItem from="1717040886431" duration="2031000" />
-      <workItem from="1717180464917" duration="4153000" />
+      <workItem from="1717040886431" duration="1075000" />
     </task>
     <servers />
   </component>
@@ -157,13 +155,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/notelog/dao/LogJanelasDAO.java</url>
-          <line>73</line>
+          <line>70</line>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/notelog/app/system/MonitoramentoSystem.java</url>
-          <line>400</line>
-          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
