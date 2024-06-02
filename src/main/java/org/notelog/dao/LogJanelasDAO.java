@@ -20,9 +20,9 @@ public class LogJanelasDAO {
     private boolean logJanelasExiste(LogJanelas janela) {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
         JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
-
-        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
-        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
+//
+//        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
+//        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
         Integer quantidade = null;
 
@@ -30,7 +30,7 @@ public class LogJanelasDAO {
 
                 quantidade = conmysql.queryForObject("SELECT COUNT(*) FROM LogJanelas WHERE idJanela = ? AND fkNotebook = ?", Integer.class, janela.getIdJanela(), janela.getFkNotebook());
 
-                quantidade = consqlserver.queryForObject("SELECT COUNT(*) FROM LogJanelas WHERE idJanela = ? AND fkNotebook = ?", Integer.class, janela.getIdJanela(), janela.getFkNotebook());
+//                quantidade = consqlserver.queryForObject("SELECT COUNT(*) FROM LogJanelas WHERE idJanela = ? AND fkNotebook = ?", Integer.class, janela.getIdJanela(), janela.getFkNotebook());
 
 
         } catch (EmptyResultDataAccessException e) {
@@ -44,9 +44,9 @@ public class LogJanelasDAO {
     public void adicionarNovoLogJanelas(Integer fkNotebook) {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
         JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
-
-        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
-        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
+//
+//        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
+//        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
         Looca looca = new Looca();
         JanelaGrupo grupoDeJanelas = looca.getGrupoDeJanelas();
@@ -70,8 +70,8 @@ public class LogJanelasDAO {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
         JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
 
-        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
-        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
+//        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
+//        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
 
         int fkNotebook = logJanelas.getFkNotebook();
@@ -88,7 +88,7 @@ public class LogJanelasDAO {
 
 
 
-            consqlserver.update(sql);
+//            consqlserver.update(sql);
 
 
             conmysql.update(sql);
@@ -100,8 +100,8 @@ public class LogJanelasDAO {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
         JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
 
-        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
-        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
+//        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
+//        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
         String sql = "SELECT * FROM LogJanelas WHERE fkNotebook = ?";
 
@@ -109,7 +109,7 @@ public class LogJanelasDAO {
 
             listaLogJanelas = conmysql.query(sql, new BeanPropertyRowMapper<>(LogJanelas.class), idNotebook);
 
-            listaLogJanelas = consqlserver.query(sql, new BeanPropertyRowMapper<>(LogJanelas.class), idNotebook);
+//            listaLogJanelas = consqlserver.query(sql, new BeanPropertyRowMapper<>(LogJanelas.class), idNotebook);
 
 
         return listaLogJanelas;

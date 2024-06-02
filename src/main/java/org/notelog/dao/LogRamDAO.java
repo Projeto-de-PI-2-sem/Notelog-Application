@@ -8,16 +8,16 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class LogRamDAO {
     public void adicionarLogRam(LogRam logRam) {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
-        ConexaoSQLServer conexaoSQLServer = new ConexaoSQLServer();
-
         JdbcTemplate conmysqL = conexaoMySQL.getConexaoDoBanco();
-        JdbcTemplate consqlserver = conexaoSQLServer.getConexaoDoBanco();
+
+//        ConexaoSQLServer conexaoSQLServer = new ConexaoSQLServer();
+//        JdbcTemplate consqlserver = conexaoSQLServer.getConexaoDoBanco();
 
         String sql = "INSERT INTO LogRam (fkRAM, usoMemoria, memoriaDisponivel, dataLog) VALUES (?, ?, ?, ?)";
 
         try {
 
-                consqlserver.update(sql, logRam.getFkRAM(), logRam.getUsoMemoria(), logRam.getMemoriaDisponivel(), logRam.dataHoraAtual());
+//                consqlserver.update(sql, logRam.getFkRAM(), logRam.getUsoMemoria(), logRam.getMemoriaDisponivel(), logRam.dataHoraAtual());
 
                 conmysqL.update(sql, logRam.getFkRAM(), logRam.getUsoMemoria(), logRam.getMemoriaDisponivel(), logRam.dataHoraAtual());
 
