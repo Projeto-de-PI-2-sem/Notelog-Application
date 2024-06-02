@@ -13,29 +13,55 @@ public class CpuDAO {
         ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
         JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
+
         if (!cpuExiste(cpu)) {
-            String sql = "INSERT INTO `Cpu` (nome, numeroFisico, numeroLogico, frequencia, idFisicoProcessador, fkNotebook) VALUES ('%s', '%s', '%s', '%s','%s', '%d')"
-                    .formatted(cpu.getNome(), cpu.getNumeroFisico(), cpu.getNumerologico(), cpu.getFrequencia(), cpu.getIdFisicoProcessador(), cpu.getFkNotebook());
+            String sql = "INSERT INTO Cpu (nome, numeroFisico, numeroLogico, frequencia, idFisicoProcessador, fkNotebook) VALUES (?, ?, ?, ?, ?, ?)";
 
-            conmysql.update(sql);
-            consqlserver.update(sql);
+
+                // Inserir no SQL Server
+                consqlserver.update(sql, cpu.getNome(), cpu.getNumeroFisico(), cpu.getNumerologico(), cpu.getFrequencia(), cpu.getIdFisicoProcessador(), cpu.getFkNotebook());
+
+
+
+                // Inserir no MySQL
+                conmysql.update(sql, cpu.getNome(), cpu.getNumeroFisico(), cpu.getNumerologico(), cpu.getFrequencia(), cpu.getIdFisicoProcessador(), cpu.getFkNotebook());
+
         }
-        cpu.setId(conmysql.queryForObject("SELECT id from `Cpu` WHERE fkNotebook = ? ORDER BY id DESC LIMIT 1", Integer.class, cpu.getFkNotebook()));
-        cpu.setId(conmysql.queryForObject("SELECT id from `Cpu` WHERE fkNotebook = ? ORDER BY id DESC LIMIT 1", Integer.class, cpu.getFkNotebook()));
 
-        return cpu.getId();
+        Integer id = null;
+
+
+            // Obter ID do SQL Server
+            id = consqlserver.queryForObject("SELECT id FROM Cpu WHERE fkNotebook = ? ORDER BY id DESC LIMIT 1", Integer.class, cpu.getFkNotebook());
+
+
+
+            // Obter ID do MySQL
+            id = consqlserver.queryForObject("SELECT TOP 1 id FROM Cpu WHERE fkNotebook = ? ORDER BY id DESC", Integer.class, cpu.getFkNotebook());
+
+
+        cpu.setId(id);
+        return id;
     }
 
     private boolean cpuExiste(Cpu cpu) {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
-        JdbcTemplate con = conexaoMySQL.getConexaoDoBanco();
+        JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
 
-        Integer quantidade = con.queryForObject("SELECT count(*) FROM `Cpu` WHERE fkNotebook = ? AND idFisicoProcessador = ?;", Integer.class, cpu.getFkNotebook(), cpu.getIdFisicoProcessador());
-        if (quantidade != null) {
-            return quantidade > 0;
-        } else {
-            return false;
-        }
+        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
+        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
+
+
+        String sql = "SELECT count(*) FROM Cpu WHERE fkNotebook = ? AND idFisicoProcessador = ?";
+        Integer quantidade = 0;
+
+            quantidade = conmysql.queryForObject(sql, Integer.class, cpu.getFkNotebook(), cpu.getIdFisicoProcessador());
+
+            quantidade = consqlserver.queryForObject(sql, Integer.class, cpu.getFkNotebook(), cpu.getIdFisicoProcessador());
+
+
+        return quantidade != null && quantidade > 0;
     }
+
 }
 

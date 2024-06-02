@@ -2,58 +2,148 @@ package org.notelog.dao;
 
 import org.notelog.model.Empresa;
 import org.notelog.util.database.ConexaoMySQL;
+import org.notelog.util.database.ConexaoSQLServer;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.Collections;
+
 public class EmpresaDAO {
 
-    public Empresa consultaEmpresaCPU(Integer fkCPU){
+    public Empresa consultaEmpresaCPU(Integer fkCPU) {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
-        JdbcTemplate con = conexaoMySQL.getConexaoDoBanco();
+        JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
 
-        String sql = """
-                Select * from Empresa
-                join Notebook on Empresa.id = Notebook.fkEmpresa
-                Join `Cpu` on `Cpu`.fkNotebook = Notebook.id
-                Join LogCpu on LogCpu.fkCpu = `Cpu`.id WHERE LogCpu.fkCpu = %d LIMIT 1;
-                """.formatted(fkCPU);
+        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
+        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
-        // Utilizando queryForObject para retornar um único objeto Empresa
-        return con.queryForObject(sql, new BeanPropertyRowMapper<>(Empresa.class));
+        String mysql = """
+            SELECT * FROM Empresa
+            JOIN Notebook ON Empresa.id = Notebook.fkEmpresa
+            JOIN `Cpu` ON `Cpu`.fkNotebook = Notebook.id
+            JOIN LogCpu ON LogCpu.fkCpu = `Cpu`.id
+            WHERE LogCpu.fkCpu = ?
+            LIMIT 1
+            """;
 
-    };
+        String sqlserver = """
+        SELECT TOP 1 * FROM Empresa
+        JOIN Notebook ON Empresa.id = Notebook.fkEmpresa
+        JOIN `Cpu` ON `Cpu`.fkNotebook = Notebook.id
+        JOIN LogCpu ON LogCpu.fkCpu = `Cpu`.id
+        WHERE LogCpu.fkCpu = ?
+        """;
 
-    public Empresa consultaEmpresaRAM(Integer fkRAM){
+        Object[] params = {fkCPU};
+        Empresa empresa = null;
+
+
+            try {
+                empresa = conmysql.queryForObject(mysql, params, new BeanPropertyRowMapper<>(Empresa.class));
+            } catch (EmptyResultDataAccessException e) {
+                // Nenhuma empresa encontrada no MySQL, continuar a busca no SQL Server se estiver ativo
+            }
+
+
+            try {
+                empresa = consqlserver.queryForObject(sqlserver, params, new BeanPropertyRowMapper<>(Empresa.class));
+            } catch (EmptyResultDataAccessException e) {
+                // Nenhuma empresa encontrada no SQL Server
+            }
+
+
+        return empresa;
+    }
+
+
+    public Empresa consultaEmpresaRAM(Integer fkRAM) {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
-        JdbcTemplate con = conexaoMySQL.getConexaoDoBanco();
+        JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
 
-        String sql = """
-                Select * from Empresa
-                join Notebook on Empresa.id = Notebook.fkEmpresa
-                Join Ram on Ram .fkNotebook = Notebook.id
-                Join LogRam on LogRam.fkRam = Ram.id WHERE LogRam.fkRam = 1 LIMIT 1;
-                """.formatted(fkRAM);
+        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
+        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
-        // Utilizando queryForObject para retornar um único objeto Empresa
-        return con.queryForObject(sql, new BeanPropertyRowMapper<>(Empresa.class));
+        String mysql = """
+        SELECT * FROM Empresa
+        JOIN Notebook ON Empresa.id = Notebook.fkEmpresa
+        JOIN Ram ON Ram.fkNotebook = Notebook.id
+        JOIN LogRam ON LogRam.fkRam = Ram.id
+        WHERE LogRam.fkRam = ?
+        LIMIT 1
+        """;
 
-    };
+        String sqlserver = """
+        SELECT TOP 1 * FROM Empresa
+        JOIN Notebook ON Empresa.id = Notebook.fkEmpresa
+        JOIN Ram ON Ram.fkNotebook = Notebook.id
+        JOIN LogRam ON LogRam.fkRam = Ram.id
+        WHERE LogRam.fkRam = ?
+        """;
 
-    public Empresa consultaEmpresaDisco(Integer fkDisco){
+        Object[] params = {fkRAM};
+        Empresa empresa = null;
+
+            try {
+                empresa = conmysql.queryForObject(mysql, params, new BeanPropertyRowMapper<>(Empresa.class));
+            } catch (EmptyResultDataAccessException e) {
+                // Nenhuma empresa encontrada no MySQL, continuar a busca no SQL Server se estiver ativo
+            }
+
+            try {
+                empresa = consqlserver.queryForObject(sqlserver, params, new BeanPropertyRowMapper<>(Empresa.class));
+            } catch (EmptyResultDataAccessException e) {
+                // Nenhuma empresa encontrada no SQL Server
+            }
+
+
+        return empresa;
+    }
+
+
+    public Empresa consultaEmpresaDisco(Integer fkDisco) {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
-        JdbcTemplate con = conexaoMySQL.getConexaoDoBanco();
+        JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
 
-        String sql = """
-                Select * from Empresa
-                join Notebook on Empresa.id = Notebook.fkEmpresa
-                Join `Cpu` on `Cpu`.fkNotebook = Notebook.id
-                Join LogCpu on LogCpu.fkCpu = `Cpu`.id WHERE LogCpu.fkCpu = %d LIMIT 1;
-                """.formatted(fkDisco);
+        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
+        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
-        // Utilizando queryForObject para retornar um único objeto Empresa
-        return con.queryForObject(sql, new BeanPropertyRowMapper<>(Empresa.class));
+        String mysql = """
+        SELECT * FROM Empresa
+        JOIN Notebook ON Empresa.id = Notebook.fkEmpresa
+        JOIN Cpu ON Cpu.fkNotebook = Notebook.id
+        JOIN LogCpu ON LogCpu.fkCpu = Cpu.id
+        WHERE LogCpu.fkCpu = ?
+        LIMIT 1
+        """;
 
-    };
+        String sqlserver = """
+        SELECT TOP 1 * FROM Empresa
+        JOIN Notebook ON Empresa.id = Notebook.fkEmpresa
+        JOIN Cpu ON Cpu.fkNotebook = Notebook.id
+        JOIN LogCpu ON LogCpu.fkCpu = Cpu.id
+        WHERE LogCpu.fkCpu = ?
+        """;
+
+        Object[] params = {fkDisco};
+        Empresa empresa = null;
+
+            try {
+                empresa = conmysql.queryForObject(mysql, params, new BeanPropertyRowMapper<>(Empresa.class));
+            } catch (EmptyResultDataAccessException e) {
+                // Nenhuma empresa encontrada no MySQL, continuar a busca no SQL Server se estiver ativo
+            }
+
+            try {
+                empresa = consqlserver.queryForObject(sqlserver, params, new BeanPropertyRowMapper<>(Empresa.class));
+            } catch (EmptyResultDataAccessException e) {
+                // Nenhuma empresa encontrada no SQL Server
+            }
+
+
+        return empresa;
+    }
+
 
 
 }

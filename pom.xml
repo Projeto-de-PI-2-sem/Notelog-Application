@@ -86,6 +86,14 @@
             <version>4.5.13</version>
         </dependency>
 
+        <!-- Conexão Hikari -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>4.0.3</version>
+        </dependency>
+
+
         <!-- .jar executável -->
     </dependencies>
     <build>
