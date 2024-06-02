@@ -66,12 +66,10 @@
 30-05-2024 01:10:59[INFO]Inserindo informações de Disco no Banco de dados
 30-05-2024 01:12:22[INFO]Sistema Iniciado
 30-05-2024 01:12:40[INFO]Login bem-sucedido para o usuário:Jozias Duarte
-<<<<<<< HEAD
 31-05-2024 15:35:55[INFO]Sistema Iniciado
 31-05-2024 15:37:41[INFO]Login bem-sucedido para o usuário:Jozias Duarte
 31-05-2024 16:09:48[INFO]Sistema Iniciado
 31-05-2024 16:10:14[INFO]Login bem-sucedido para o usuário:Jozias Duarte
-=======
 30-05-2024 20:08:06[INFO]Sistema Iniciado
 30-05-2024 20:08:24[INFO]Login bem-sucedido para o usuário:Jozias Duarte
 30-05-2024 20:13:07[INFO]Sistema Iniciado
@@ -82,7 +80,16 @@
 30-05-2024 20:15:15[INFO]Inserindo informações de Disco no Banco de dados
 30-05-2024 20:16:24[INFO]Sistema Iniciado
 30-05-2024 20:16:39[INFO]Login bem-sucedido para o usuário:Camila da Silva
->>>>>>> e9db3b17ce2b9044b5af5c472f3a3eb6b2b6caa6
+31-05-2024 20:09:55[INFO]Sistema Iniciado
+31-05-2024 20:10:17[INFO]Login bem-sucedido para o usuário:Camila da Silva
+31-05-2024 20:17:10[INFO]Sistema Iniciado
+31-05-2024 20:17:48[WARNING]Login mal-sucedido!
+31-05-2024 20:18:02[WARNING]Login mal-sucedido!
+31-05-2024 20:18:15[INFO]Login bem-sucedido para o usuário:Camila da Silva
+31-05-2024 20:30:01[INFO]Sistema Iniciado
+31-05-2024 20:30:20[INFO]Login bem-sucedido para o usuário:Camila da Silva
+31-05-2024 20:41:28[INFO]Sistema Iniciado
+31-05-2024 20:41:46[INFO]Login bem-sucedido para o usuário:Camila da Silva
 31-05-2024 17:15:34[INFO]Sistema Iniciado
 31-05-2024 17:16:05[INFO]Login bem-sucedido para o usuário:Jozias Duarte
 31-05-2024 17:21:33[INFO]Sistema Iniciado
@@ -128,6 +135,7 @@
 31-05-2024 18:31:22[INFO]Login bem-sucedido para o usuário:Jozias Duarte
 31-05-2024 18:37:56[INFO]Sistema Iniciado
 31-05-2024 18:38:14[INFO]Login bem-sucedido para o usuário:Jozias Duarte
+<<<<<<< HEAD
 01-06-2024 16:30:50[INFO]Sistema Iniciado
 01-06-2024 16:31:05[INFO]Login bem-sucedido para o usuário:Jozias Duarte
 01-06-2024 16:32:48[INFO]Sistema Iniciado
@@ -141,3 +149,6 @@
 01-06-2024 20:30:12[INFO]Sistema Iniciado
 01-06-2024 20:41:51[INFO]Sistema Iniciado
 01-06-2024 21:05:59[INFO]Sistema Iniciado
+=======
+
+>>>>>>> 5c53a0374c27da0e1440ba026c1c145fff7f0e6a
