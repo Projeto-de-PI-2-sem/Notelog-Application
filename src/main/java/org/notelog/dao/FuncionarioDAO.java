@@ -17,8 +17,8 @@ public class FuncionarioDAO {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
         JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
 
-//        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
-//        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
+        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
+        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
         String sql = """
         SELECT F.id, F.nome, F.email, F.fkEmpresa FROM Funcionario AS F WHERE F.email = ? AND F.senha = ?
@@ -34,11 +34,11 @@ public class FuncionarioDAO {
             }
 
 
-//            try {
-//                usuario = consqlserver.queryForObject(sql, params, new BeanPropertyRowMapper<>(Funcionario.class));
-//            } catch (EmptyResultDataAccessException e) {
-//                // Usuário não encontrado no SQL Server
-//            }
+            try {
+                usuario = consqlserver.queryForObject(sql, params, new BeanPropertyRowMapper<>(Funcionario.class));
+            } catch (EmptyResultDataAccessException e) {
+                // Usuário não encontrado no SQL Server
+            }
 
 
         return usuario;
@@ -49,8 +49,8 @@ public class FuncionarioDAO {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
         JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
 
-//        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
-//        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
+        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
+        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
         String sql = """
         SELECT COUNT(*) FROM Funcionario AS F
@@ -63,7 +63,7 @@ public class FuncionarioDAO {
 
             funcionarioJaAtrelado = conmysql.queryForObject(sql, params, Integer.class);
 
-//            funcionarioJaAtrelado = consqlserver.queryForObject(sql, params, Integer.class);
+            funcionarioJaAtrelado = consqlserver.queryForObject(sql, params, Integer.class);
 
 
         return funcionarioJaAtrelado != null && funcionarioJaAtrelado > 0;
@@ -74,9 +74,9 @@ public class FuncionarioDAO {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
         JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
 
-//        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
-//        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
-//
+        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
+        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
+
 
 
         String numeroSerial = pegarNumeroSerial(); // Implemente a função pegarNumeroSerial() conforme necessário
@@ -102,14 +102,14 @@ public class FuncionarioDAO {
 
 
 
-//            try {
-//                funcionario = consqlserver.queryForObject(sql, params, new BeanPropertyRowMapper<>(Funcionario.class));
-//            } catch (EmptyResultDataAccessException e) {
-//                // Nenhum funcionário encontrado no SQL Server
-//            } catch (Exception e) {
-//                // Lidar com outras exceções, se necessário
-//                e.printStackTrace();
-//            }
+            try {
+                funcionario = consqlserver.queryForObject(sql, params, new BeanPropertyRowMapper<>(Funcionario.class));
+            } catch (EmptyResultDataAccessException e) {
+                // Nenhum funcionário encontrado no SQL Server
+            } catch (Exception e) {
+                // Lidar com outras exceções, se necessário
+                e.printStackTrace();
+            }
 
 
         return funcionario;
@@ -120,8 +120,8 @@ public class FuncionarioDAO {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
         JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
 
-//        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
-//        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
+        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
+        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
         String sql = """
         SELECT F.id, F.nome FROM Funcionario AS F
@@ -135,7 +135,7 @@ public class FuncionarioDAO {
 
             funcionarios = conmysql.query(sql, params, new BeanPropertyRowMapper<>(Funcionario.class));
 
-//            funcionarios = consqlserver.query(sql, params, new BeanPropertyRowMapper<>(Funcionario.class));
+            funcionarios = consqlserver.query(sql, params, new BeanPropertyRowMapper<>(Funcionario.class));
 
 
         return funcionarios != null ? new ArrayList<>(funcionarios) : new ArrayList<>();

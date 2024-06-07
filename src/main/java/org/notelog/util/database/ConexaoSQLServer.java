@@ -18,7 +18,7 @@ public class ConexaoSQLServer {
             BasicDataSource dataSource = new BasicDataSource();
             dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             dataSource.setUrl("jdbc:sqlserver://54.158.158.60:1433;database=notelog;encrypt=true;trustServerCertificate=true");
-            dataSource.setUsername("notelogUser");
+            dataSource.setUsername("sa");
             dataSource.setPassword("notelikeag0d*");
 
             // Configuração adicional para confiar em todos os certificados (não recomendado em produção)

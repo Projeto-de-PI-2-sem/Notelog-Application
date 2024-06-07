@@ -10,14 +10,14 @@ public class LogRamDAO {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
         JdbcTemplate conmysqL = conexaoMySQL.getConexaoDoBanco();
 
-//        ConexaoSQLServer conexaoSQLServer = new ConexaoSQLServer();
-//        JdbcTemplate consqlserver = conexaoSQLServer.getConexaoDoBanco();
+        ConexaoSQLServer conexaoSQLServer = new ConexaoSQLServer();
+        JdbcTemplate consqlserver = conexaoSQLServer.getConexaoDoBanco();
 
         String sql = "INSERT INTO LogRam (fkRAM, usoMemoria, memoriaDisponivel, dataLog) VALUES (?, ?, ?, ?)";
 
         try {
 
-//                consqlserver.update(sql, logRam.getFkRAM(), logRam.getUsoMemoria(), logRam.getMemoriaDisponivel(), logRam.dataHoraAtual());
+                consqlserver.update(sql, logRam.getFkRAM(), logRam.getUsoMemoria(), logRam.getMemoriaDisponivel(), logRam.dataHoraAtual());
 
                 conmysqL.update(sql, logRam.getFkRAM(), logRam.getUsoMemoria(), logRam.getMemoriaDisponivel(), logRam.dataHoraAtual());
 

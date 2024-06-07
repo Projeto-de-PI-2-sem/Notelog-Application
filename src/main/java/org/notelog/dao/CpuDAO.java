@@ -10,8 +10,8 @@ public class CpuDAO {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
         JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
 
-//        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
-//        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
+        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
+        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
 
         if (!cpuExiste(cpu)) {
@@ -19,7 +19,7 @@ public class CpuDAO {
 
 
                 // Inserir no SQL Server
-//                consqlserver.update(sql, cpu.getNome(), cpu.getNumeroFisico(), cpu.getNumerologico(), cpu.getFrequencia(), cpu.getIdFisicoProcessador(), cpu.getFkNotebook());
+                consqlserver.update(sql, cpu.getNome(), cpu.getNumeroFisico(), cpu.getNumerologico(), cpu.getFrequencia(), cpu.getIdFisicoProcessador(), cpu.getFkNotebook());
 
 
 
@@ -37,7 +37,7 @@ public class CpuDAO {
 
 
             // Obter ID do MySQL
-//            id = consqlserver.queryForObject("SELECT TOP 1 id FROM Cpu WHERE fkNotebook = ? ORDER BY id DESC", Integer.class, cpu.getFkNotebook());
+            id = consqlserver.queryForObject("SELECT TOP 1 id FROM Cpu WHERE fkNotebook = ? ORDER BY id DESC", Integer.class, cpu.getFkNotebook());
 
 
         cpu.setId(id);
@@ -48,8 +48,8 @@ public class CpuDAO {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
         JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
 
-//        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
-//        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
+        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
+        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
 
         String sql = "SELECT count(*) FROM Cpu WHERE fkNotebook = ? AND idFisicoProcessador = ?";
@@ -57,7 +57,7 @@ public class CpuDAO {
 
             quantidade = conmysql.queryForObject(sql, Integer.class, cpu.getFkNotebook(), cpu.getIdFisicoProcessador());
 
-//            quantidade = consqlserver.queryForObject(sql, Integer.class, cpu.getFkNotebook(), cpu.getIdFisicoProcessador());
+            quantidade = consqlserver.queryForObject(sql, Integer.class, cpu.getFkNotebook(), cpu.getIdFisicoProcessador());
 
 
         return quantidade != null && quantidade > 0;

@@ -15,8 +15,8 @@ public class EmpresaDAO {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
         JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
 //
-//        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
-//        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
+        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
+        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
         String mysql = """
             SELECT * FROM Empresa
@@ -46,11 +46,11 @@ public class EmpresaDAO {
             }
 
 
-//            try {
-//                empresa = consqlserver.queryForObject(sqlserver, params, new BeanPropertyRowMapper<>(Empresa.class));
-//            } catch (EmptyResultDataAccessException e) {
-//                // Nenhuma empresa encontrada no SQL Server
-//            }
+            try {
+                empresa = consqlserver.queryForObject(sqlserver, params, new BeanPropertyRowMapper<>(Empresa.class));
+            } catch (EmptyResultDataAccessException e) {
+                // Nenhuma empresa encontrada no SQL Server
+            }
 
 
         return empresa;
@@ -61,8 +61,8 @@ public class EmpresaDAO {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
         JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
 
-//        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
-//        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
+        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
+        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
         String mysql = """
         SELECT * FROM Empresa
@@ -90,11 +90,11 @@ public class EmpresaDAO {
                 // Nenhuma empresa encontrada no MySQL, continuar a busca no SQL Server se estiver ativo
             }
 //
-//            try {
-//                empresa = consqlserver.queryForObject(sqlserver, params, new BeanPropertyRowMapper<>(Empresa.class));
-//            } catch (EmptyResultDataAccessException e) {
-//                // Nenhuma empresa encontrada no SQL Server
-//            }
+            try {
+                empresa = consqlserver.queryForObject(sqlserver, params, new BeanPropertyRowMapper<>(Empresa.class));
+            } catch (EmptyResultDataAccessException e) {
+                // Nenhuma empresa encontrada no SQL Server
+            }
 
 
         return empresa;
@@ -105,8 +105,8 @@ public class EmpresaDAO {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
         JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
 
-//        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
-//        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
+        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
+        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
         String mysql = """
         SELECT * FROM Empresa
@@ -134,11 +134,11 @@ public class EmpresaDAO {
                 // Nenhuma empresa encontrada no MySQL, continuar a busca no SQL Server se estiver ativo
             }
 
-//            try {
-//                empresa = consqlserver.queryForObject(sqlserver, params, new BeanPropertyRowMapper<>(Empresa.class));
-//            } catch (EmptyResultDataAccessException e) {
-//                // Nenhuma empresa encontrada no SQL Server
-//            }
+            try {
+                empresa = consqlserver.queryForObject(sqlserver, params, new BeanPropertyRowMapper<>(Empresa.class));
+            } catch (EmptyResultDataAccessException e) {
+                // Nenhuma empresa encontrada no SQL Server
+            }
 
 
         return empresa;

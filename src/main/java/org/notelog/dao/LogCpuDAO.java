@@ -10,8 +10,8 @@ public class LogCpuDAO {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
         JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
 
-//        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
-//        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
+        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
+        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
         String sql = """
         INSERT INTO LogCpu (porcentagemUso, dataLog, fkCPU)
@@ -23,7 +23,7 @@ public class LogCpuDAO {
 
             conmysql.update(sql, params);
 
-//            consqlserver.update(sql, params);
+            consqlserver.update(sql, params);
 
     }
 

@@ -27,8 +27,8 @@ public class LogDiscoDAO {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
         JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
 
-//        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
-//        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
+        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
+        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
         String sql = """
         INSERT INTO LogDisco (fkDiscoRigido, usoDisco, dataLog)
@@ -44,7 +44,7 @@ public class LogDiscoDAO {
 
             conmysql.update(sql, params);
 
-//            consqlserver.update(sql, params);
+            consqlserver.update(sql, params);
 
     }
 
@@ -53,8 +53,8 @@ public class LogDiscoDAO {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
         JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
 
-//        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
-//        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
+        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
+        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
         String sql = "SELECT COUNT(*) FROM LogDisco WHERE fkDiscoRigido = ? AND datalog = ?";
         Object[] params = {fkDiscoRigido, logDisco.getDataLog()};
@@ -63,7 +63,7 @@ public class LogDiscoDAO {
 
             count = conmysql.queryForObject(sql, params, Integer.class);
 
-//            count = consqlserver.queryForObject(sql, params, Integer.class);
+            count = consqlserver.queryForObject(sql, params, Integer.class);
 
 
         return count != null && count > 0;
@@ -82,16 +82,16 @@ public class LogDiscoDAO {
             ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
             JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
 //
-//            ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
-//            JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
+            ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
+            JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
             try {
 
                     fkDiscoRigido = conmysql.queryForObject("SELECT DiscoRigido.id FROM DiscoRigido WHERE DiscoRigido.serial = ?;", Integer.class, disco.getSerial());
                     fkNotebook = conmysql.queryForObject("SELECT DiscoRigido.fkNotebook FROM DiscoRigido WHERE DiscoRigido.serial = ?;", Integer.class, disco.getSerial());
 
-//                    fkDiscoRigido = consqlserver.queryForObject("SELECT DiscoRigido.id FROM DiscoRigido WHERE DiscoRigido.serial = ?;", Integer.class, disco.getSerial());
-//                    fkNotebook = consqlserver.queryForObject("SELECT DiscoRigido.fkNotebook FROM DiscoRigido WHERE DiscoRigido.serial = ?;", Integer.class, disco.getSerial());
+                    fkDiscoRigido = consqlserver.queryForObject("SELECT DiscoRigido.id FROM DiscoRigido WHERE DiscoRigido.serial = ?;", Integer.class, disco.getSerial());
+                    fkNotebook = consqlserver.queryForObject("SELECT DiscoRigido.fkNotebook FROM DiscoRigido WHERE DiscoRigido.serial = ?;", Integer.class, disco.getSerial());
 
 
             } catch (EmptyResultDataAccessException e) {
@@ -101,7 +101,7 @@ public class LogDiscoDAO {
 
             if (!idNotebook.equals(fkNotebook)) {
 
-//                    consqlserver.update("UPDATE DiscoRigido SET fkNotebook = ? WHERE serial = ?;", idNotebook, disco.getSerial());
+                    consqlserver.update("UPDATE DiscoRigido SET fkNotebook = ? WHERE serial = ?;", idNotebook, disco.getSerial());
 
                     conmysql.update("UPDATE DiscoRigido SET fkNotebook = ? WHERE serial = ?;", idNotebook, disco.getSerial());
 

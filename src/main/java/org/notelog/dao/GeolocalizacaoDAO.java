@@ -10,8 +10,8 @@ public class GeolocalizacaoDAO {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
         JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
 //
-//        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
-//        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
+        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
+        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
         String publicIPAddress = geolocalizacao.ObterIP();
         String jsonString = geolocalizacao.ObterGeoPorIP(publicIPAddress);
@@ -31,7 +31,7 @@ public class GeolocalizacaoDAO {
 
             conmysql.update(sql, params);
 
-//            consqlserver.update(sql, params);
+            consqlserver.update(sql, params);
 
     }
 

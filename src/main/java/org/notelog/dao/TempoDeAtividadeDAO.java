@@ -10,8 +10,8 @@ public class TempoDeAtividadeDAO {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
         JdbcTemplate conMySQL = conexaoMySQL.getConexaoDoBanco();
 
-//        ConexaoSQLServer conexaoSQLServer = new ConexaoSQLServer();
-//        JdbcTemplate conSQLServer = conexaoSQLServer.getConexaoDoBanco();
+        ConexaoSQLServer conexaoSQLServer = new ConexaoSQLServer();
+        JdbcTemplate conSQLServer = conexaoSQLServer.getConexaoDoBanco();
 
         String sqlInsert = "INSERT INTO TempoDeAtividade (fkNotebook, tempoDeAtividade, tempoInicializado) VALUES (?, ?, ?)";
         String sqlUpdate = "UPDATE TempoDeAtividade SET tempoDeAtividade = ? WHERE tempoInicializado = ? AND fkNotebook = ?";
@@ -19,11 +19,11 @@ public class TempoDeAtividadeDAO {
         try {
 
 
-//                if (!tempoDeAtividadeExiste(tempoDeAtividade)) {
-//                    conSQLServer.update(sqlInsert, tempoDeAtividade.getFkNotebook(), tempoDeAtividade.getTempoDeAtividade(), tempoDeAtividade.getTempoInicializado());
-//                } else {
-//                    conSQLServer.update(sqlUpdate, tempoDeAtividade.getTempoDeAtividade(), tempoDeAtividade.getTempoInicializado(), tempoDeAtividade.getFkNotebook());
-//                }
+                if (!tempoDeAtividadeExiste(tempoDeAtividade)) {
+                    conSQLServer.update(sqlInsert, tempoDeAtividade.getFkNotebook(), tempoDeAtividade.getTempoDeAtividade(), tempoDeAtividade.getTempoInicializado());
+                } else {
+                    conSQLServer.update(sqlUpdate, tempoDeAtividade.getTempoDeAtividade(), tempoDeAtividade.getTempoInicializado(), tempoDeAtividade.getFkNotebook());
+                }
 
 
 
@@ -43,8 +43,8 @@ public class TempoDeAtividadeDAO {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
         JdbcTemplate conMySQL = conexaoMySQL.getConexaoDoBanco();
 
-//        ConexaoSQLServer conexaoSQLServer = new ConexaoSQLServer();
-//        JdbcTemplate conSQLServer = conexaoSQLServer.getConexaoDoBanco();
+        ConexaoSQLServer conexaoSQLServer = new ConexaoSQLServer();
+        JdbcTemplate conSQLServer = conexaoSQLServer.getConexaoDoBanco();
 
         String sql = "SELECT count(*) FROM TempoDeAtividade WHERE fkNotebook = ? AND tempoInicializado = ?";
         Integer quantidade = 0;
@@ -53,7 +53,7 @@ public class TempoDeAtividadeDAO {
 
                 quantidade = conMySQL.queryForObject(sql, Integer.class, tempoDeAtividade.getFkNotebook(), tempoDeAtividade.getTempoInicializado());
 
-//                quantidade = conSQLServer.queryForObject(sql, Integer.class, tempoDeAtividade.getFkNotebook(), tempoDeAtividade.getTempoInicializado());
+                quantidade = conSQLServer.queryForObject(sql, Integer.class, tempoDeAtividade.getFkNotebook(), tempoDeAtividade.getTempoInicializado());
 
         } catch (Exception e) {
             e.printStackTrace();
