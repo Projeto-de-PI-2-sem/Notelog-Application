@@ -18,21 +18,33 @@ public class TempoDeAtividadeDAO {
 
         try {
 
+                if (tempoDeAtividadeExiste(tempoDeAtividade) == false) {
 
-                if (!tempoDeAtividadeExiste(tempoDeAtividade)) {
+                    // SQL SERVER
+
+                    // insert
                     conSQLServer.update(sqlInsert, tempoDeAtividade.getFkNotebook(), tempoDeAtividade.getTempoDeAtividade(), tempoDeAtividade.getTempoInicializado());
+
+                    String selectSQLServer = "SELECT TOP 1 id FROM TempoDeAtividade WHERE fkNotebook = ? ORDER BY id DESC";
+
+                    Integer id = null;
+
+                    id = conSQLServer.queryForObject(selectSQLServer, Integer.class, tempoDeAtividade.getFkNotebook());
+
+                    // MY SQL
+
+                    String mysqlInsert = "INSERT INTO TempoDeAtividade (id, fkNotebook, tempoDeAtividade, tempoInicializado) VALUES (?, ?, ?, ?)";
+
+                    conMySQL.update(mysqlInsert, id, tempoDeAtividade.getFkNotebook(), tempoDeAtividade.getTempoDeAtividade(), tempoDeAtividade.getTempoInicializado());
+
+
                 } else {
+
+                    // update
                     conSQLServer.update(sqlUpdate, tempoDeAtividade.getTempoDeAtividade(), tempoDeAtividade.getTempoInicializado(), tempoDeAtividade.getFkNotebook());
-                }
-
-
-
-                if (!tempoDeAtividadeExiste(tempoDeAtividade)) {
-                    conMySQL.update(sqlInsert, tempoDeAtividade.getFkNotebook(), tempoDeAtividade.getTempoDeAtividade(), tempoDeAtividade.getTempoInicializado());
-                } else {
                     conMySQL.update(sqlUpdate, tempoDeAtividade.getTempoDeAtividade(), tempoDeAtividade.getTempoInicializado(), tempoDeAtividade.getFkNotebook());
-                }
 
+                }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -40,27 +52,20 @@ public class TempoDeAtividadeDAO {
     }
 
     private boolean tempoDeAtividadeExiste(TempoDeAtividade tempoDeAtividade) {
-        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
-        JdbcTemplate conMySQL = conexaoMySQL.getConexaoDoBanco();
-
         ConexaoSQLServer conexaoSQLServer = new ConexaoSQLServer();
         JdbcTemplate conSQLServer = conexaoSQLServer.getConexaoDoBanco();
 
         String sql = "SELECT count(*) FROM TempoDeAtividade WHERE fkNotebook = ? AND tempoInicializado = ?";
-        Integer quantidade = 0;
+        Integer quantidade = null;
 
-        try {
+        quantidade = conSQLServer.queryForObject(sql, Integer.class, tempoDeAtividade.getFkNotebook(), tempoDeAtividade.getTempoInicializado());
 
-                quantidade = conMySQL.queryForObject(sql, Integer.class, tempoDeAtividade.getFkNotebook(), tempoDeAtividade.getTempoInicializado());
-
-                quantidade = conSQLServer.queryForObject(sql, Integer.class, tempoDeAtividade.getFkNotebook(), tempoDeAtividade.getTempoInicializado());
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (quantidade != null && quantidade > 0){
+            return true;
+        }else{
             return false;
         }
 
-        return quantidade != null && quantidade > 0;
     }
 
 }

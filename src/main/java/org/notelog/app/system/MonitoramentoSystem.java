@@ -324,7 +324,6 @@ public class MonitoramentoSystem {
             geoDAO.adicionaGeolocalizacao(notebook.getId(),geolocalizacao);
             tempoDeAtividadeDAO.adicionarTempoDeAtividade(tempoDeAtividade);
 
-
             //LogDAO - Instancias
             LogCpuDAO logCpuDAO = new LogCpuDAO();
             LogRamDAO logRamDAO = new LogRamDAO();

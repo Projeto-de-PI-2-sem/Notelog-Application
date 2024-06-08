@@ -35,27 +35,29 @@ public class DiscoRigidoDAO {
         ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
         JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
+        //SQL SERVER
 
         String sql = "INSERT INTO DiscoRigido (modelo, serial, tamanho, fkNotebook) VALUES (?, ?, ?, ?)";
         Object[] params = {discoRigido.getModelo(), discoRigido.getSerial(), discoRigido.getTamanho(), discoRigido.getFkNotebook()};
 
 
-            logger.info("Inserindo informações de Disco no Banco de dados (SQL Server)");
-            consqlserver.update(sql, params);
-
-            logger.info("Inserindo informações de Disco no Banco de dados (MySQL)");
-            conmysql.update(sql, params);
-
+        logger.info("Inserindo informações de Disco no Banco de dados (SQL Server)");
+        consqlserver.update(sql, params);
 
         // Obter ID do último disco inserido
         String selectSQLServer = "SELECT TOP 1 id FROM DiscoRigido WHERE fkNotebook = ? ORDER BY id DESC";
-        String selectMySQL = "SELECT id FROM DiscoRigido WHERE fkNotebook = ? ORDER BY id DESC LIMIT 1";
-
         Integer id = null;
+        id = consqlserver.queryForObject(selectSQLServer, Integer.class, discoRigido.getFkNotebook());
 
-            id = conmysql.queryForObject(selectMySQL, Integer.class, discoRigido.getFkNotebook());
 
-            id = consqlserver.queryForObject(selectSQLServer, Integer.class, discoRigido.getFkNotebook());
+        // MYSQL
+
+        String mysql = "INSERT INTO DiscoRigido (id, modelo, serial, tamanho, fkNotebook) VALUES (?, ?, ?, ?, ?)";
+        Object[] myparams = {id,discoRigido.getModelo(), discoRigido.getSerial(), discoRigido.getTamanho(), discoRigido.getFkNotebook()};
+
+
+        logger.info("Inserindo informações de Disco no Banco de dados (MySQL)");
+        conmysql.update(mysql, myparams);
 
 
         if (id != null) {
@@ -68,9 +70,6 @@ public class DiscoRigidoDAO {
 
 
     private boolean discoExiste(DiscoRigido disco) {
-        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
-        JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
-
         ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
         JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
@@ -78,54 +77,32 @@ public class DiscoRigidoDAO {
         Object[] params = {disco.getModelo(), disco.getSerial()};
         Integer quantidade = null;
 
-
-            quantidade = conmysql.queryForObject(sql, params, Integer.class);
-
-            quantidade = consqlserver.queryForObject(sql, params, Integer.class);
-
+        quantidade = consqlserver.queryForObject(sql, params, Integer.class);
 
         return quantidade != null && quantidade > 0;
     }
 
 
     public static List<DiscoRigido> buscarTodosOsDiscos() {
-        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
-        JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
-
         ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
         JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
         String sql = "SELECT * FROM DiscoRigido";
         List<DiscoRigido> discos = new ArrayList<>();
 
-            discos.addAll(conmysql.query(sql, new BeanPropertyRowMapper<>(DiscoRigido.class)));
-//
-            discos.addAll(consqlserver.query(sql, new BeanPropertyRowMapper<>(DiscoRigido.class)));
-
+        discos.addAll(consqlserver.query(sql, new BeanPropertyRowMapper<>(DiscoRigido.class)));
 
         return discos;
     }
 
 
     private DiscoRigido buscarDiscoPeloSerial(String serial) {
-        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
-        JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
-
         ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
         JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
         String sql = "SELECT * FROM DiscoRigido WHERE serial = ?";
         Object[] params = {serial};
         DiscoRigido disco = null;
-
-
-            try {
-                disco = conmysql.queryForObject(sql, params, new BeanPropertyRowMapper<>(DiscoRigido.class));
-            } catch (EmptyResultDataAccessException e) {
-                // Nenhum disco encontrado no MySQL, continuar a busca no SQL Server se estiver ativo
-            }
-
-
 
             try {
                 disco = consqlserver.queryForObject(sql, params, new BeanPropertyRowMapper<>(DiscoRigido.class));
@@ -153,7 +130,6 @@ public class DiscoRigidoDAO {
 
         for (Disco disco : discos) {
             DiscoRigido novoDiscoRigido = new DiscoRigido(null, disco.getModelo(), disco.getSerial(), grupoDeDiscos.getTamanhoTotal().toString(), fkNotebook);
-
 
             if (!discoExiste(novoDiscoRigido)) {
                 adicionarDisco(novoDiscoRigido);

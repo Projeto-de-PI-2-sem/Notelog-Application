@@ -23,12 +23,14 @@ public class LogDiscoDAO {
         this.jdbcTemplate = conexaoMySQL.getConexaoDoBanco();
     }
 
-    public void adicionarLogDisco(LogDisco logDisco, Integer fkDiscoRigido) {
+    public void adicionarLogDisco(LogDisco logDisco, Integer fkDiscoRigido) throws InterruptedException {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
         JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
 
         ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
         JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
+
+        // SQL SERVER
 
         String sql = """
         INSERT INTO LogDisco (fkDiscoRigido, usoDisco, dataLog)
@@ -37,22 +39,39 @@ public class LogDiscoDAO {
 
         Object[] params = {
                 fkDiscoRigido,
-                (Long.parseLong(logDisco.getLeituras()) + Long.parseLong(logDisco.getBytesLeitura()) +
-                        Long.parseLong(logDisco.getEscritas()) + Long.parseLong(logDisco.getBytesEscritas())),
+                (Long.parseLong(logDisco.getLeituras()) + Long.parseLong(logDisco.getBytesLeitura()) + Long.parseLong(logDisco.getEscritas()) + Long.parseLong(logDisco.getBytesEscritas())),
                 dataHoraAtual()
         };
 
-            conmysql.update(sql, params);
+        consqlserver.update(sql, params);
 
-            consqlserver.update(sql, params);
+        Thread.sleep(15000);
+
+        String sqlSelectSQLServer = "SELECT TOP 1 id FROM LogDisco WHERE fkDiscoRigido = ? ORDER BY id DESC";
+
+        Integer id = consqlserver.queryForObject(sqlSelectSQLServer, Integer.class, fkDiscoRigido);
+
+        // MY SQL
+
+        String mysql = """
+        INSERT INTO LogDisco (id, fkDiscoRigido, usoDisco, dataLog)
+        VALUES (?, ?, ?, ?)
+        """;
+
+        Object[] myparams = {
+                id,
+                fkDiscoRigido,
+                (Long.parseLong(logDisco.getLeituras()) + Long.parseLong(logDisco.getBytesLeitura()) + Long.parseLong(logDisco.getEscritas()) + Long.parseLong(logDisco.getBytesEscritas())),
+                dataHoraAtual()
+        };
+
+        conmysql.update(mysql, myparams);
+
 
     }
 
 
     private Boolean logDiscoExiste(LogDisco logDisco, Integer fkDiscoRigido) {
-        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
-        JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
-
         ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
         JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
@@ -60,35 +79,29 @@ public class LogDiscoDAO {
         Object[] params = {fkDiscoRigido, logDisco.getDataLog()};
         Integer count = null;
 
-
-            count = conmysql.queryForObject(sql, params, Integer.class);
-
-            count = consqlserver.queryForObject(sql, params, Integer.class);
-
+        count = consqlserver.queryForObject(sql, params, Integer.class);
 
         return count != null && count > 0;
     }
 
 
-    public void adicionarNovoLogDisco(Integer idNotebook) {
+    public void adicionarNovoLogDisco(Integer idNotebook) throws InterruptedException {
         Looca looca = new Looca();
         DiscoGrupo grupoDeDiscos = looca.getGrupoDeDiscos();
         List<Disco> discos = grupoDeDiscos.getDiscos();
+
+        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
+        JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
+
+        ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
+        JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
+
 
         for (Disco disco : discos) {
             Integer fkDiscoRigido = null;
             Integer fkNotebook = null;
 
-            ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
-            JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
-//
-            ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
-            JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
-
             try {
-
-                    fkDiscoRigido = conmysql.queryForObject("SELECT DiscoRigido.id FROM DiscoRigido WHERE DiscoRigido.serial = ?;", Integer.class, disco.getSerial());
-                    fkNotebook = conmysql.queryForObject("SELECT DiscoRigido.fkNotebook FROM DiscoRigido WHERE DiscoRigido.serial = ?;", Integer.class, disco.getSerial());
 
                     fkDiscoRigido = consqlserver.queryForObject("SELECT DiscoRigido.id FROM DiscoRigido WHERE DiscoRigido.serial = ?;", Integer.class, disco.getSerial());
                     fkNotebook = consqlserver.queryForObject("SELECT DiscoRigido.fkNotebook FROM DiscoRigido WHERE DiscoRigido.serial = ?;", Integer.class, disco.getSerial());

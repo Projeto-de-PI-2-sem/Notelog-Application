@@ -34,6 +34,7 @@ public class LoginService {
             for (Funcionario funcionario : userDAO.buscarFuncionarios(usuarioMaster.getFkEmpresa())) {
                 System.out.println(funcionario);
             }
+
             Notebook notebook = new Notebook(scanner.nextInt(), usuarioMaster.getFkEmpresa());
 
             if (notebookDAO.adicionarNotebook(notebook)){

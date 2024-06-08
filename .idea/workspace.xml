@@ -7,6 +7,7 @@
     <list default="true" id="309ba401-17a1-4be9-9fc5-bc86265d8e3a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/application.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/app/system/MonitoramentoSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/app/system/MonitoramentoSystem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/CpuDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/CpuDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/DiscoRigidoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/DiscoRigidoDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/EmpresaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/EmpresaDAO.java" afterDir="false" />
@@ -19,7 +20,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/NotebookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/NotebookDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/RamDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/RamDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/TempoDeAtividadeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/TempoDeAtividadeDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/util/database/ConexaoSQLServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/util/database/ConexaoSQLServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/service/LoginService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/CpuDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/CpuDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/DiscoRigidoDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/DiscoRigidoDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/EmpresaDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/EmpresaDAO.class" afterDir="false" />
@@ -32,7 +33,6 @@
       <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/NotebookDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/NotebookDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/RamDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/RamDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/TempoDeAtividadeDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/TempoDeAtividadeDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/util/database/ConexaoSQLServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/util/database/ConexaoSQLServer.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,6 +83,7 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "Application.SlackService.executor": "Run",
+    "Attach to process.pid 17012.executor": "ProcessAttachDebug",
     "Maven.app-note-log [clean].executor": "Run",
     "Maven.app-note-log [install].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -171,7 +172,7 @@
       <workItem from="1717040886431" duration="1075000" />
       <workItem from="1717344880492" duration="2900000" />
       <workItem from="1717507092189" duration="2326000" />
-      <workItem from="1717615266221" duration="14565000" />
+      <workItem from="1717615266221" duration="50800000" />
     </task>
     <servers />
   </component>
@@ -181,23 +182,15 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/org/notelog/dao/DiscoRigidoDAO.java</url>
-          <line>30</line>
-          <properties class="org.notelog.dao.DiscoRigidoDAO" method="adicionarDisco">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="4" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/notelog/app/system/MonitoramentoSystem.java</url>
+          <line>458</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/org/notelog/dao/GeolocalizacaoDAO.java</url>
-          <line>8</line>
-          <properties class="org.notelog.dao.GeolocalizacaoDAO" method="adicionaGeolocalizacao">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="6" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/notelog/app/system/MonitoramentoSystem.java</url>
+          <line>420</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

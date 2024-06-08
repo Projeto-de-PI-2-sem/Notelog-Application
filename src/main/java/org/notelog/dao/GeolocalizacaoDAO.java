@@ -17,6 +17,9 @@ public class GeolocalizacaoDAO {
         String jsonString = geolocalizacao.ObterGeoPorIP(publicIPAddress);
         geolocalizacao.preencherDados(jsonString);
 
+
+        // SQL SERVER
+
         String sql = """
         INSERT INTO Geolocalizacao (enderecoIp, pais, cidade, nomeRegiao, latitude, longitude, timezone, companiaInternet, fkNotebook)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -28,10 +31,29 @@ public class GeolocalizacaoDAO {
                 geolocalizacao.getTimeZone(), geolocalizacao.getAs(), fkNotebook
         };
 
+        consqlserver.update(sql, params);
 
-            conmysql.update(sql, params);
+        String selectSQLServer = "SELECT TOP 1 id FROM Geolocalizacao WHERE fkNotebook = ? ORDER BY id DESC";
 
-            consqlserver.update(sql, params);
+        Integer id = consqlserver.queryForObject(selectSQLServer, Integer.class, fkNotebook);
+
+
+        // MYSQL
+
+        String mysql = """
+        INSERT INTO Geolocalizacao (id, enderecoIp, pais, cidade, nomeRegiao, latitude, longitude, timezone, companiaInternet, fkNotebook)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """;
+
+        Object[] myparams = {
+                id, geolocalizacao.getIp(), geolocalizacao.getCountryName(), geolocalizacao.getCityName(),
+                geolocalizacao.getRegionName(), geolocalizacao.getLatitude(), geolocalizacao.getLongitude(),
+                geolocalizacao.getTimeZone(), geolocalizacao.getAs(), fkNotebook
+        };
+
+        conmysql.update(mysql, myparams);
+
+
 
     }
 

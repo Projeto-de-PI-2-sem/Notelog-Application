@@ -14,8 +14,6 @@ import static org.notelog.model.Notebook.pegarNumeroSerial;
 
 public class FuncionarioDAO {
     public Funcionario verificaUsuario(String email, String senha) {
-        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
-        JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
 
         ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
         JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
@@ -26,13 +24,6 @@ public class FuncionarioDAO {
 
         Object[] params = {email, senha};
         Funcionario usuario = null;
-
-            try {
-                usuario = conmysql.queryForObject(sql, params, new BeanPropertyRowMapper<>(Funcionario.class));
-            } catch (EmptyResultDataAccessException e) {
-                // Usuário não encontrado no MySQL, continuar a busca no SQL Server se estiver ativo
-            }
-
 
             try {
                 usuario = consqlserver.queryForObject(sql, params, new BeanPropertyRowMapper<>(Funcionario.class));
@@ -46,8 +37,6 @@ public class FuncionarioDAO {
 
 
     public Boolean temVinculo(String numeroSerial) {
-        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
-        JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
 
         ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
         JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
@@ -61,9 +50,7 @@ public class FuncionarioDAO {
         Object[] params = {numeroSerial};
         Integer funcionarioJaAtrelado = null;
 
-            funcionarioJaAtrelado = conmysql.queryForObject(sql, params, Integer.class);
-
-            funcionarioJaAtrelado = consqlserver.queryForObject(sql, params, Integer.class);
+        funcionarioJaAtrelado = consqlserver.queryForObject(sql, params, Integer.class);
 
 
         return funcionarioJaAtrelado != null && funcionarioJaAtrelado > 0;
@@ -71,13 +58,8 @@ public class FuncionarioDAO {
 
 
     public Funcionario pegaFuncionarioPeloNumeroSerial() {
-        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
-        JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
-
         ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
         JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
-
-
 
         String numeroSerial = pegarNumeroSerial(); // Implemente a função pegarNumeroSerial() conforme necessário
 
@@ -92,17 +74,6 @@ public class FuncionarioDAO {
 
 
             try {
-                funcionario = conmysql.queryForObject(sql, params, new BeanPropertyRowMapper<>(Funcionario.class));
-            } catch (EmptyResultDataAccessException e) {
-                // Continuar a busca no SQL Server se nenhum funcionário for encontrado no MySQL
-            } catch (Exception e) {
-                // Lidar com outras exceções, se necessário
-                e.printStackTrace();
-            }
-
-
-
-            try {
                 funcionario = consqlserver.queryForObject(sql, params, new BeanPropertyRowMapper<>(Funcionario.class));
             } catch (EmptyResultDataAccessException e) {
                 // Nenhum funcionário encontrado no SQL Server
@@ -111,14 +82,11 @@ public class FuncionarioDAO {
                 e.printStackTrace();
             }
 
-
         return funcionario;
     }
 
 
     public List<Funcionario> buscarFuncionarios(Integer fkEmpresa) {
-        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
-        JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
 
         ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
         JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
@@ -132,10 +100,7 @@ public class FuncionarioDAO {
         Object[] params = {fkEmpresa};
         List<Funcionario> funcionarios = null;
 
-
-            funcionarios = conmysql.query(sql, params, new BeanPropertyRowMapper<>(Funcionario.class));
-
-            funcionarios = consqlserver.query(sql, params, new BeanPropertyRowMapper<>(Funcionario.class));
+        funcionarios = consqlserver.query(sql, params, new BeanPropertyRowMapper<>(Funcionario.class));
 
 
         return funcionarios != null ? new ArrayList<>(funcionarios) : new ArrayList<>();

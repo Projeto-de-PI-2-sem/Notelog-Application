@@ -15,24 +15,27 @@ public class  RamDAO {
 
         String sqlInsert = "INSERT INTO Ram (totalMemoria, fkNotebook) VALUES (?, ?)";
         String sqlUpdate = "UPDATE Ram SET totalMemoria = ? WHERE fkNotebook = ?";
-        String sqlSelectMySQL = "SELECT id FROM Ram WHERE fkNotebook = ? ORDER BY id DESC LIMIT 1";
         String sqlSelectSQLServer = "SELECT TOP 1 id FROM Ram WHERE fkNotebook = ? ORDER BY id DESC";
 
         try {
             if (!ramExiste(ram)) {
+
+                    // SQL SERVER
                     conSQLServer.update(sqlInsert, ram.getTotalMemoria(), ram.getFkNotebook());
                     ram.setId(conSQLServer.queryForObject(sqlSelectSQLServer, Integer.class, ram.getFkNotebook()));
 
-                    conMySQL.update(sqlInsert, ram.getTotalMemoria(), ram.getFkNotebook());
-                    ram.setId(conMySQL.queryForObject(sqlSelectMySQL, Integer.class, ram.getFkNotebook()));
+                    Integer id = ram.getId();
+
+                    // MY SQL
+
+                    String mysqlInsert = "INSERT INTO Ram (id, totalMemoria, fkNotebook) VALUES (?, ?,?)";
+
+                    conMySQL.update(mysqlInsert, id, ram.getTotalMemoria(), ram.getFkNotebook());
 
             } else {
 
                     conSQLServer.update(sqlUpdate, ram.getTotalMemoria(), ram.getFkNotebook());
-                    ram.setId(conSQLServer.queryForObject(sqlSelectSQLServer, Integer.class, ram.getFkNotebook()));
-
                     conMySQL.update(sqlUpdate, ram.getTotalMemoria(), ram.getFkNotebook());
-                    ram.setId(conMySQL.queryForObject(sqlSelectMySQL, Integer.class, ram.getFkNotebook()));
 
             }
         } catch (Exception e) {
@@ -44,9 +47,6 @@ public class  RamDAO {
 
 
     private boolean ramExiste(Ram ram) {
-        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
-        JdbcTemplate conMySQL = conexaoMySQL.getConexaoDoBanco();
-
         ConexaoSQLServer conexaoSQLServer = new ConexaoSQLServer();
         JdbcTemplate conSQLServer = conexaoSQLServer.getConexaoDoBanco();
 
@@ -55,9 +55,7 @@ public class  RamDAO {
 
         try {
 
-                quantidade = conMySQL.queryForObject(sql, Integer.class, ram.getFkNotebook(), ram.getTotalMemoria());
-
-                quantidade = conSQLServer.queryForObject(sql, Integer.class, ram.getFkNotebook(), ram.getTotalMemoria());
+            quantidade = conSQLServer.queryForObject(sql, Integer.class, ram.getFkNotebook(), ram.getTotalMemoria());
 
         } catch (Exception e) {
             e.printStackTrace();
