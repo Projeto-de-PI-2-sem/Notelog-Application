@@ -39,7 +39,7 @@ public class FuncionarioDAO {
                 """;
                 Integer count = conmysql.queryForObject(sqluser, Integer.class, usuario.getFkEmpresa());
                 if (count == 0){
-                    String sqlUpdate = "update empresa set id = ? WHERE nome = 'Empresa' AND id = 1;";
+                    String sqlUpdate = "update Empresa set id = ? WHERE nome = 'Empresa' AND id = 1;";
                     conmysql.update(sqlUpdate, usuario.getFkEmpresa());
                 }
             }

@@ -34,10 +34,10 @@ public class NotebookDAO {
 
             // MYSQL
 
-            String sqlUpdate = "update funcionario set id = ? WHERE nome = 'Funcionario' AND id = 1";
+            String sqlUpdate = "update Funcionario set id = ? WHERE nome = 'Funcionario' AND id = 1";
             conMySQL.update(sqlUpdate, notebook.getFkFuncionario());
 
-            String sqlUpdate2 = "update funcionario set fkEmpresa = ? WHERE nome = 'Funcionario' AND id = 1";
+            String sqlUpdate2 = "update Funcionario set fkEmpresa = ? WHERE nome = 'Funcionario' AND id = 1";
             conMySQL.update(sqlUpdate2, notebook.getFkEmpresa());
 
             String mysql = "INSERT INTO Notebook (id, sistemaOperacional, fabricante, arquitetura, numeroSerial, fkFuncionario, fkEmpresa) VALUES (?, ?, ?, ?, ?, ?, ?)";

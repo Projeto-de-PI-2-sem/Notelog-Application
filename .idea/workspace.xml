@@ -6,16 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="309ba401-17a1-4be9-9fc5-bc86265d8e3a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/application.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/FuncionarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/FuncionarioDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/NotebookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/NotebookDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-note-log-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-note-log-1.0-SNAPSHOT-jar-with-dependencies.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-note-log-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-note-log-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/application.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/FuncionarioDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/FuncionarioDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/NotebookDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/NotebookDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +146,7 @@
       <workItem from="1717344880492" duration="2900000" />
       <workItem from="1717507092189" duration="2326000" />
       <workItem from="1717615266221" duration="55158000" />
-      <workItem from="1717817339492" duration="9014000" />
+      <workItem from="1717817339492" duration="10314000" />
     </task>
     <servers />
   </component>
