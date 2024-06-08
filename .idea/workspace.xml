@@ -8,31 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/application.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/app/system/MonitoramentoSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/app/system/MonitoramentoSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/CpuDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/CpuDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/DiscoRigidoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/DiscoRigidoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/EmpresaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/EmpresaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/FuncionarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/FuncionarioDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/GeolocalizacaoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/GeolocalizacaoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogCpuDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogCpuDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogDiscoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogDiscoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogJanelasDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogJanelasDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogRamDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogRamDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/NotebookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/NotebookDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/RamDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/RamDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/TempoDeAtividadeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/TempoDeAtividadeDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/service/LoginService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/CpuDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/CpuDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/DiscoRigidoDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/DiscoRigidoDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/EmpresaDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/EmpresaDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/FuncionarioDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/FuncionarioDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/GeolocalizacaoDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/GeolocalizacaoDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/LogCpuDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/LogCpuDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/LogDiscoDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/LogDiscoDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/LogJanelasDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/LogJanelasDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/LogRamDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/LogRamDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/NotebookDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/NotebookDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/RamDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/RamDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/TempoDeAtividadeDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/TempoDeAtividadeDAO.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +148,7 @@
       <workItem from="1717040886431" duration="1075000" />
       <workItem from="1717344880492" duration="2900000" />
       <workItem from="1717507092189" duration="2326000" />
-      <workItem from="1717615266221" duration="50800000" />
+      <workItem from="1717615266221" duration="53851000" />
     </task>
     <servers />
   </component>

@@ -358,7 +358,7 @@ public class MonitoramentoSystem {
                     Thread.sleep(2000);
 
                     //Geolocalização
-                    if (contador % 10 == 0 && contador > 0 ){
+                    if (contador == 0 || (contador % 10 == 0 && contador > 0)){
                         Geolocalizacao geolocalizacao = new Geolocalizacao();
                         String publicIPAddress = geolocalizacao.ObterIP();
                         String jsonString = geolocalizacao.ObterGeoPorIP(publicIPAddress);
@@ -443,7 +443,7 @@ public class MonitoramentoSystem {
                                             "  • Número de Série: *%s*\n\n" +
                                             "*Atenção:* O uso da CPU ultrapassou a *média recomendada de 5,5%%*. Por favor, verifique e tome as ações necessárias.\n" +
                                             "*Acesse o link:* http://54.158.158.60:80 - para obter detalhes da dashboard Notelog",
-                                    dataHoraAtual, porcentagemUsoCPU.get(porcentagemUsoCPU.size() - 1), usuarioNome, notebookModelo, notebookNumeroSerial
+                                    dataHoraAtual, mediaPorcentagemUsoCPU, usuarioNome, notebookModelo, notebookNumeroSerial
                             );
                             sendMensagemSlackCPU(mensagemDetalhada, logcpu.getFkCPU(), usuario, notebook);
                             Thread.sleep(2000);
@@ -480,7 +480,7 @@ public class MonitoramentoSystem {
                                             "  • Número de Série: *%s*\n\n" +
                                             "*Atenção:* O uso da RAM ultrapassou a *média recomendada de 10,5%%*. Por favor, verifique e tome as ações necessárias.\n" +
                                             "*Acesse o link:* http://54.158.158.60:80 - para obter detalhes da dashboard Notelog",
-                                    dataHoraAtual, porcentagemUsoRAM.get(porcentagemUsoRAM.size() - 1), usuarioNome, notebookModelo, notebookNumeroSerial
+                                    dataHoraAtual, mediaPorcentagemUsoCPU, usuarioNome, notebookModelo, notebookNumeroSerial
                             );
                             sendMensagemSlackRAM(mensagemDetalhada, logram.getFkRAM(), usuario, notebook);
                             Thread.sleep(2000);
