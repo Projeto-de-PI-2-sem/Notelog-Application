@@ -14,6 +14,8 @@ import static org.notelog.model.Notebook.pegarNumeroSerial;
 
 public class FuncionarioDAO {
     public Funcionario verificaUsuario(String email, String senha) {
+        ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
+        JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
 
         ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
         JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
@@ -29,6 +31,17 @@ public class FuncionarioDAO {
                 usuario = consqlserver.queryForObject(sql, params, new BeanPropertyRowMapper<>(Funcionario.class));
             } catch (EmptyResultDataAccessException e) {
                 // Usuário não encontrado no SQL Server
+            }
+
+            if(usuario != null){
+                String sqluser = """
+                    SELECT COUNT(*) FROM Empresa WHERE id = ?
+                """;
+                Integer count = conmysql.queryForObject(sqluser, Integer.class, usuario.getFkEmpresa());
+                if (count == 0){
+                    String sqlUpdate = "update empresa set id = ? WHERE nome = 'Empresa' AND id = 1;";
+                    conmysql.update(sqlUpdate, usuario.getFkEmpresa());
+                }
             }
 
 

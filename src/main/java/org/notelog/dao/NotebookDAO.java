@@ -32,10 +32,13 @@ public class NotebookDAO {
             conSQLServer.update(sql, params);
             notebook.setId(conSQLServer.queryForObject("SELECT TOP 1 id FROM Notebook ORDER BY id DESC", Integer.class));
 
-
-
-
             // MYSQL
+
+            String sqlUpdate = "update funcionario set id = ? WHERE nome = 'Funcionario' AND id = 1";
+            conMySQL.update(sqlUpdate, notebook.getFkFuncionario());
+
+            String sqlUpdate2 = "update funcionario set fkEmpresa = ? WHERE nome = 'Funcionario' AND id = 1";
+            conMySQL.update(sqlUpdate2, notebook.getFkEmpresa());
 
             String mysql = "INSERT INTO Notebook (id, sistemaOperacional, fabricante, arquitetura, numeroSerial, fkFuncionario, fkEmpresa) VALUES (?, ?, ?, ?, ?, ?, ?)";
             Object[] myparams = {notebook.getId(),notebook.getSistemaOperacional(), notebook.getFabricante(), notebook.getArquitetura(), notebook.getNumeroSerial(), notebook.getFkFuncionario(), notebook.getFkEmpresa()};
