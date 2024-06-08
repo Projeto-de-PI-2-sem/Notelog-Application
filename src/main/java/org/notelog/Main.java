@@ -36,7 +36,7 @@ public class Main {
                     System.out.print("Senha: ");
                     senha = scanner.nextLine();
                 }else{
-                    char[] senhaArray = console.readPassword("Insira sua senha");
+                    char[] senhaArray = console.readPassword("Senha: ");
 
                     senha = new String(senhaArray);
 
