@@ -45,7 +45,7 @@ public class LogDiscoDAO {
 
         consqlserver.update(sql, params);
 
-        Thread.sleep(15000);
+        Thread.sleep(5000);
 
         String sqlSelectSQLServer = "SELECT TOP 1 id FROM LogDisco WHERE fkDiscoRigido = ? ORDER BY id DESC";
 
@@ -112,13 +112,13 @@ public class LogDiscoDAO {
                 continue;  // Pular para o próximo disco se não encontrar nenhum resultado
             }
 
-            if (!idNotebook.equals(fkNotebook)) {
-
-                    consqlserver.update("UPDATE DiscoRigido SET fkNotebook = ? WHERE serial = ?;", idNotebook, disco.getSerial());
-
-                    conmysql.update("UPDATE DiscoRigido SET fkNotebook = ? WHERE serial = ?;", idNotebook, disco.getSerial());
-
-            }
+//            if (!idNotebook.equals(fkNotebook)) {
+//
+//                    consqlserver.update("UPDATE DiscoRigido SET fkNotebook = ? WHERE serial = ?;", idNotebook, disco.getSerial());
+//
+//                    conmysql.update("UPDATE DiscoRigido SET fkNotebook = ? WHERE serial = ?;", idNotebook, disco.getSerial());
+//
+//            }
 
             LogDisco novoLogDiscoRigido = new LogDisco(null, disco.getLeituras().toString(),
                     disco.getBytesDeLeitura().toString(),
