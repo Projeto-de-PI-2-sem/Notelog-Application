@@ -15,10 +15,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 
 public class DiscoRigidoDAO {
 
     SimpleLogger logger;
+
+    private static final String METADATA_URL = "http://169.254.169.254/latest/meta-data/";
 
     {
         try {
@@ -128,12 +136,66 @@ public class DiscoRigidoDAO {
 
         List<Disco> discos = grupoDeDiscos.getDiscos();
 
-        for (Disco disco : discos) {
-            DiscoRigido novoDiscoRigido = new DiscoRigido(null, disco.getModelo(), disco.getSerial(), grupoDeDiscos.getTamanhoTotal().toString(), fkNotebook);
+        boolean isAwsInstance = isRunningOnAws();
+        String instanceId = null;
+        String instanceType = null;
 
-            if (!discoExiste(novoDiscoRigido)) {
-                adicionarDisco(novoDiscoRigido);
+        if (isAwsInstance){
+            instanceId = getInstanceId();
+            instanceType = getInstanceType();
+
+            for (Disco disco : discos) {
+
+                DiscoRigido novoDiscoRigido = new DiscoRigido(null, instanceType, instanceId, grupoDeDiscos.getTamanhoTotal().toString(), fkNotebook);
+
+                if (!discoExiste(novoDiscoRigido)) {
+                    adicionarDisco(novoDiscoRigido);
+                }
+            }
+        }else{
+            for (Disco disco : discos) {
+
+                DiscoRigido novoDiscoRigido = new DiscoRigido(null, disco.getModelo(), disco.getSerial(), grupoDeDiscos.getTamanhoTotal().toString(), fkNotebook);
+
+                if (!discoExiste(novoDiscoRigido)) {
+                    adicionarDisco(novoDiscoRigido);
+                }
             }
         }
+
     }
+
+    public static boolean isRunningOnAws() {
+        return getMetadata("instance-id") != null;
+    }
+
+    public static String getInstanceId() {
+        return getMetadata("instance-id");
+    }
+
+    public static String getInstanceType() {
+        return getMetadata("instance-type");
+    }
+
+    private static String getMetadata(String path) {
+        try {
+            URL url = new URL(METADATA_URL + path);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setConnectTimeout(2000); // 2 seconds timeout
+            connection.setReadTimeout(2000); // 2 seconds timeout
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == 200) {
+                try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+                    return in.readLine();
+                }
+            }
+        } catch (IOException e) {
+            // Handle exception if necessary, but return null if metadata is not accessible
+        }
+        return null;
+    }
+
+
 }
