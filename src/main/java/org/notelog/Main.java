@@ -54,9 +54,9 @@ public class Main {
                     Thread.sleep(3000);
                     vincularFuncionario(usuario);
                 } else {
-                    logger.warning("Login mal-sucedido!");
                     System.out.println();
                     System.out.println("Email ou senha incorretos. Tente novamente.");
+                    logger.warning("Login mal-sucedido!");
 
                 }
             }

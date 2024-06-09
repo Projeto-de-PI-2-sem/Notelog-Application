@@ -1,5 +1,6 @@
 package org.notelog.dao;
 
+import org.notelog.SimpleLogger;
 import org.notelog.util.database.ConexaoMySQL;
 import org.notelog.model.Funcionario;
 import org.notelog.util.database.ConexaoSQLServer;
@@ -7,12 +8,24 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.notelog.model.Notebook.pegarNumeroSerial;
 
 public class FuncionarioDAO {
+
+    SimpleLogger logger;
+
+    {
+        try {
+            logger = new SimpleLogger("application.log");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public Funcionario verificaUsuario(String email, String senha) {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
         JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
@@ -31,6 +44,7 @@ public class FuncionarioDAO {
                 usuario = consqlserver.queryForObject(sql, params, new BeanPropertyRowMapper<>(Funcionario.class));
             } catch (EmptyResultDataAccessException e) {
                 // Usuário não encontrado no SQL Server
+                logger.warning(usuario +"não encontrado no sistema");
             }
 
             if(usuario != null){
@@ -38,6 +52,7 @@ public class FuncionarioDAO {
                     SELECT COUNT(*) FROM Empresa WHERE id = ?
                 """;
                 Integer count = conmysql.queryForObject(sqluser, Integer.class, usuario.getFkEmpresa());
+                logger.info(usuario + "encontrado no sistema");
                 if (count == 0){
                     String sqlUpdate = "update Empresa set id = ? WHERE nome = 'Empresa' AND id = 1;";
                     conmysql.update(sqlUpdate, usuario.getFkEmpresa());

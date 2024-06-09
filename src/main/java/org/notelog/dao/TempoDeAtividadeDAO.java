@@ -1,11 +1,25 @@
 package org.notelog.dao;
 
+import org.notelog.SimpleLogger;
 import org.notelog.util.database.ConexaoMySQL;
 import org.notelog.model.TempoDeAtividade;
 import org.notelog.util.database.ConexaoSQLServer;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.io.IOException;
+
 public class TempoDeAtividadeDAO {
+
+    SimpleLogger logger;
+
+    {
+        try {
+            logger = new SimpleLogger("application.log");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void adicionarTempoDeAtividade(TempoDeAtividade tempoDeAtividade) {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
         JdbcTemplate conMySQL = conexaoMySQL.getConexaoDoBanco();
@@ -24,6 +38,7 @@ public class TempoDeAtividadeDAO {
 
                     // insert
                     conSQLServer.update(sqlInsert, tempoDeAtividade.getFkNotebook(), tempoDeAtividade.getTempoDeAtividade(), tempoDeAtividade.getTempoInicializado());
+                    logger.info("Inserindo informações de Tempo de Atividade no Banco de dados (SQLServer)");
 
                     String selectSQLServer = "SELECT TOP 1 id FROM TempoDeAtividade WHERE fkNotebook = ? ORDER BY id DESC";
 
@@ -34,7 +49,7 @@ public class TempoDeAtividadeDAO {
                     // MY SQL
 
                     String mysqlInsert = "INSERT INTO TempoDeAtividade (id, fkNotebook, tempoDeAtividade, tempoInicializado) VALUES (?, ?, ?, ?)";
-
+                    logger.info("Inserindo informações de Tempo de Atividade no Banco de dados (MySQL)");
                     conMySQL.update(mysqlInsert, id, tempoDeAtividade.getFkNotebook(), tempoDeAtividade.getTempoDeAtividade(), tempoDeAtividade.getTempoInicializado());
 
 

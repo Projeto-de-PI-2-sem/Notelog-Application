@@ -1,11 +1,24 @@
 package org.notelog.dao;
 
+import org.notelog.SimpleLogger;
 import org.notelog.util.database.ConexaoMySQL;
 import org.notelog.model.Ram;
 import org.notelog.util.database.ConexaoSQLServer;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.io.IOException;
+
 public class  RamDAO {
+    SimpleLogger logger;
+
+    {
+        try {
+            logger = new SimpleLogger("application.log");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public Integer adicionarRam(Ram ram) {
         ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
         JdbcTemplate conMySQL = conexaoMySQL.getConexaoDoBanco();
@@ -23,14 +36,15 @@ public class  RamDAO {
                     // SQL SERVER
                     conSQLServer.update(sqlInsert, ram.getTotalMemoria(), ram.getFkNotebook());
                     ram.setId(conSQLServer.queryForObject(sqlSelectSQLServer, Integer.class, ram.getFkNotebook()));
-
+                logger.info("Inserindo informações de RAM no Banco de dados (SQLServer)");
                     Integer id = ram.getId();
 
                     // MY SQL
 
                     String mysqlInsert = "INSERT INTO Ram (id, totalMemoria, fkNotebook) VALUES (?, ?,?)";
-
+                logger.info("Inserindo informações de RAM no Banco de dados (MySQL)");
                     conMySQL.update(mysqlInsert, id, ram.getTotalMemoria(), ram.getFkNotebook());
+
 
             } else {
 
