@@ -129,73 +129,59 @@ public class DiscoRigidoDAO {
         }
     }
 
-    public void adiconarNovoDisco(Integer fkNotebook) {
+    public void adiconarNovoDisco(Integer fkNotebook) throws IOException, InterruptedException {
 
         Looca looca = new Looca();
         DiscoGrupo grupoDeDiscos = looca.getGrupoDeDiscos();
 
         List<Disco> discos = grupoDeDiscos.getDiscos();
 
-        boolean isAwsInstance = isRunningOnAws();
-        String instanceId = null;
-        String instanceType = null;
-
-        if (isAwsInstance){
-            instanceId = getInstanceId();
-            instanceType = getInstanceType();
-
             for (Disco disco : discos) {
 
-                DiscoRigido novoDiscoRigido = new DiscoRigido(null, instanceType, instanceId, grupoDeDiscos.getTamanhoTotal().toString(), fkNotebook);
+                if (disco.getSerial() == "unknown" || disco.getSerial() == "" || disco.getSerial() == null && disco.getModelo() == "unknown" || disco.getModelo() == "" || disco.getModelo() == null ){
+                    String instanceId = getInstanceMetadata("instance-id");
+                    String instanceType = getInstanceMetadata("instance-type");
 
-                if (!discoExiste(novoDiscoRigido)) {
-                    adicionarDisco(novoDiscoRigido);
+                    DiscoRigido novoDiscoRigido = new DiscoRigido(null, instanceType, instanceId, grupoDeDiscos.getTamanhoTotal().toString(), fkNotebook);
+
+                    if (!discoExiste(novoDiscoRigido)) {
+                        adicionarDisco(novoDiscoRigido);
+                    }
+
+                }else {
+                    DiscoRigido novoDiscoRigido = new DiscoRigido(null, disco.getModelo(), disco.getSerial(), grupoDeDiscos.getTamanhoTotal().toString(), fkNotebook);
+
+                    if (!discoExiste(novoDiscoRigido)) {
+                        adicionarDisco(novoDiscoRigido);
+                    }
                 }
-            }
-        }else{
-            for (Disco disco : discos) {
 
-                DiscoRigido novoDiscoRigido = new DiscoRigido(null, disco.getModelo(), disco.getSerial(), grupoDeDiscos.getTamanhoTotal().toString(), fkNotebook);
-
-                if (!discoExiste(novoDiscoRigido)) {
-                    adicionarDisco(novoDiscoRigido);
-                }
             }
+
+
+    }
+
+
+    static String getInstanceMetadata(String path) throws IOException, InterruptedException {
+        // Obtain the IMDSv2 token
+        ProcessBuilder tokenBuilder = new ProcessBuilder("curl", "-s", "-X", "PUT", "http://169.254.169.254/latest/api/token", "-H", "X-aws-ec2-metadata-token-ttl-seconds: 21600");
+        Process tokenProcess = tokenBuilder.start();
+        BufferedReader tokenReader = new BufferedReader(new InputStreamReader(tokenProcess.getInputStream()));
+        String token = tokenReader.readLine();
+        tokenProcess.waitFor();
+
+        if (token == null || token.isEmpty()) {
+            throw new IOException("Failed to obtain IMDSv2 token.");
         }
 
+        // Use the token to get the instance metadata
+        ProcessBuilder metadataBuilder = new ProcessBuilder("curl", "-s", "-H", "X-aws-ec2-metadata-token: " + token, "http://169.254.169.254/latest/meta-data/" + path);
+        Process metadataProcess = metadataBuilder.start();
+        BufferedReader metadataReader = new BufferedReader(new InputStreamReader(metadataProcess.getInputStream()));
+        String metadata = metadataReader.readLine();
+        metadataProcess.waitFor();
+
+        return metadata;
     }
-
-    public static boolean isRunningOnAws() {
-        return getMetadata("instance-id") != null;
-    }
-
-    public static String getInstanceId() {
-        return getMetadata("instance-id");
-    }
-
-    public static String getInstanceType() {
-        return getMetadata("instance-type");
-    }
-
-    private static String getMetadata(String path) {
-        try {
-            URL url = new URL(METADATA_URL + path);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.setConnectTimeout(2000); // 2 seconds timeout
-            connection.setReadTimeout(2000); // 2 seconds timeout
-
-            int responseCode = connection.getResponseCode();
-            if (responseCode == 200) {
-                try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
-                    return in.readLine();
-                }
-            }
-        } catch (IOException e) {
-            // Handle exception if necessary, but return null if metadata is not accessible
-        }
-        return null;
-    }
-
 
 }

@@ -5,6 +5,7 @@ import org.notelog.dao.NotebookDAO;
 import org.notelog.model.Funcionario;
 import org.notelog.model.Notebook;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import static org.notelog.app.system.MonitoramentoSystem.escolherMonitoramento;
@@ -21,6 +22,8 @@ public class LoginService {
             try {
                 escolherMonitoramento(userDAO.pegaFuncionarioPeloNumeroSerial(), notebookJaCadastrado);
             } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
                 throw new RuntimeException(e);
             }
 
@@ -41,7 +44,7 @@ public class LoginService {
                 Funcionario usuario = userDAO.pegaFuncionarioPeloNumeroSerial();
                 try {
                     escolherMonitoramento(usuario, notebook);
-                } catch (InterruptedException e) {
+                } catch (InterruptedException | IOException e) {
                     throw new RuntimeException(e);
                 }
             } else System.out.println("ERRO!!! Funcionário inexistente vinculado a empresa");
