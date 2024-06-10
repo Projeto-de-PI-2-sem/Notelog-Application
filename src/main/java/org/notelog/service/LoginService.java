@@ -15,20 +15,9 @@ public class LoginService {
     public static void vincularFuncionario(Funcionario usuarioMaster) {
         FuncionarioDAO userDAO = new FuncionarioDAO();
         NotebookDAO notebookDAO = new NotebookDAO();
+        String numeroSerial = pegarNumeroSerial();
 
-
-        if (userDAO.temVinculo(pegarNumeroSerial())){
-            Notebook notebookJaCadastrado = notebookDAO.consultaNotebook(userDAO.pegaFuncionarioPeloNumeroSerial().getId());
-            try {
-                escolherMonitoramento(userDAO.pegaFuncionarioPeloNumeroSerial(), notebookJaCadastrado);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-        } else{
-
+        if (userDAO.temVinculo(numeroSerial) == false){
             Scanner scanner = new Scanner(System.in);
 
             ASCIIService ascii = new ASCIIService();
@@ -48,6 +37,16 @@ public class LoginService {
                     throw new RuntimeException(e);
                 }
             } else System.out.println("ERRO!!! Funcionário inexistente vinculado a empresa");
-        };
+
+        } else{
+            Notebook notebookJaCadastrado = notebookDAO.consultaNotebook(userDAO.pegaFuncionarioPeloNumeroSerial().getId());
+            try {
+                escolherMonitoramento(userDAO.pegaFuncionarioPeloNumeroSerial(), notebookJaCadastrado);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

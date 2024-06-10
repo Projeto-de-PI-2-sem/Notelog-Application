@@ -7,12 +7,13 @@
     <list default="true" id="309ba401-17a1-4be9-9fc5-bc86265d8e3a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/application.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/CpuDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/CpuDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/FuncionarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/FuncionarioDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/RamDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/RamDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/TempoDeAtividadeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/TempoDeAtividadeDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/NotebookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/NotebookDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/model/Notebook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/model/Notebook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/service/LoginService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/FuncionarioDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/FuncionarioDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/NotebookDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/NotebookDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/service/LoginService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/service/LoginService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,6 +155,7 @@
       <workItem from="1717507092189" duration="2326000" />
       <workItem from="1717615266221" duration="55158000" />
       <workItem from="1717817339492" duration="10314000" />
+      <workItem from="1718020652736" duration="1535000" />
     </task>
     <servers />
   </component>
