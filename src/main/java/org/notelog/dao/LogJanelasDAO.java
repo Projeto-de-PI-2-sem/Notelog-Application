@@ -21,11 +21,11 @@ public class LogJanelasDAO {
 
         Integer quantidade = null;
 
-        quantidade = consqlserver.queryForObject("SELECT COUNT(*) FROM LogJanelas WHERE idJanela = ? AND fkNotebook = ?", Integer.class, janela.getIdJanela(), janela.getFkNotebook());
+        quantidade = consqlserver.queryForObject("SELECT COUNT(*) FROM LogJanelas WHERE nomeJanela = ? AND fkNotebook = ?", Integer.class, janela.getNomeJanela(), janela.getFkNotebook());
 
-        if (quantidade != null && quantidade > 0){
+        if (quantidade != null && quantidade > 0) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
@@ -39,9 +39,42 @@ public class LogJanelasDAO {
         for (Janela janela : janelas) {
             LogJanelas novaLogJanela = new LogJanelas(null, janela.getPid().toString(), janela.getTitulo(), 0, fkNotebook);
 
-                    if (logJanelasExiste(novaLogJanela) == false) {
-                        adicionarLogJanelas(novaLogJanela);
-                    }
+            if (logJanelasExiste(novaLogJanela) == false) {
+                adicionarLogJanelas(novaLogJanela);
+            } else {
+                ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
+                JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
+
+                ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
+                JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
+
+                // SQL SERVER
+
+                String sql = String.format("""
+                                UPDATE LogJanelas SET idJanela = '%s' WHERE nomeJanela = '%s' AND fkNotebook = %d;
+                                """,
+                        novaLogJanela.getIdJanela(),
+                        novaLogJanela.getNomeJanela().isEmpty() ? '.' : novaLogJanela.getNomeJanela(),
+                        novaLogJanela.getFkNotebook()
+                );
+                consqlserver.update(sql);
+
+                String sqlSelect = "SELECT TOP 1 id FROM LogJanelas WHERE fkNotebook = ? ORDER BY id DESC";
+
+                Integer id = consqlserver.queryForObject(sqlSelect, Integer.class, novaLogJanela.getFkNotebook());
+
+                // MY SQL
+
+                String mysql = String.format("""
+                                UPDATE LogJanelas SET idJanela = '%s' WHERE nomeJanela = '%s' AND fkNotebook = %d;
+                                """,
+                        novaLogJanela.getIdJanela(),
+                        novaLogJanela.getNomeJanela().isEmpty() ? '.' : novaLogJanela.getNomeJanela(),
+                        novaLogJanela.getFkNotebook()
+                );
+
+                conmysql.update(mysql);
+            }
 
         }
     }
@@ -64,18 +97,18 @@ public class LogJanelasDAO {
                 0,
                 logJanelas.getFkNotebook()
         );
-            consqlserver.update(sql);
+        consqlserver.update(sql);
 
-            String sqlSelect = "SELECT TOP 1 id FROM LogJanelas WHERE fkNotebook = ? ORDER BY id DESC";
+        String sqlSelect = "SELECT TOP 1 id FROM LogJanelas WHERE fkNotebook = ? ORDER BY id DESC";
 
-            Integer id = consqlserver.queryForObject(sqlSelect, Integer.class, logJanelas.getFkNotebook());
+        Integer id = consqlserver.queryForObject(sqlSelect, Integer.class, logJanelas.getFkNotebook());
 
         // MY SQL
 
         String mysql = String.format(
                 """
-                INSERT INTO LogJanelas (id ,idJanela, nomeJanela, bloqueado, fkNotebook) VALUES (%d,'%s', '%s', %d, %d);
-                """,
+                        INSERT INTO LogJanelas (id ,idJanela, nomeJanela, bloqueado, fkNotebook) VALUES (%d,'%s', '%s', %d, %d);
+                        """,
                 id,
                 logJanelas.getIdJanela(),
                 logJanelas.getNomeJanela().isEmpty() ? '.' : logJanelas.getNomeJanela(),
@@ -87,7 +120,7 @@ public class LogJanelasDAO {
         conmysql.update(mysql);
     }
 
-    public List<LogJanelas> selecionarJanelas(Integer idNotebook){
+    public List<LogJanelas> selecionarJanelas(Integer idNotebook) {
         ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
         JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
 
@@ -95,7 +128,7 @@ public class LogJanelasDAO {
 
         List<LogJanelas> listaLogJanelas = new ArrayList<>();
 
-            listaLogJanelas = consqlserver.query(sql, new BeanPropertyRowMapper<>(LogJanelas.class), idNotebook);
+        listaLogJanelas = consqlserver.query(sql, new BeanPropertyRowMapper<>(LogJanelas.class), idNotebook);
 
 
         return listaLogJanelas;

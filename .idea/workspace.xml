@@ -7,9 +7,12 @@
     <list default="true" id="309ba401-17a1-4be9-9fc5-bc86265d8e3a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/application.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/model/Notebook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/model/Notebook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogDiscoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogDiscoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogJanelasDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogJanelasDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/NotebookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/NotebookDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Notelog.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/app-note-log-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/model/Notebook.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/model/Notebook.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/app-note-log-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-note-log-1.0-SNAPSHOT.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

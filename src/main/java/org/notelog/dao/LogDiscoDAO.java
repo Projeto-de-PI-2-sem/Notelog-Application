@@ -101,7 +101,6 @@ public class LogDiscoDAO {
 
             for (Disco disco : discos) {
                 Integer fkDiscoRigido = null;
-                Integer fkNotebook = null;
 
                 if (disco.getSerial() == "unknown" || disco.getSerial() == "" || disco.getSerial() == null && disco.getModelo() == "unknown" || disco.getModelo() == "" || disco.getModelo() == null ){
                     String instanceId = getInstanceMetadata("instance-id");
@@ -109,7 +108,6 @@ public class LogDiscoDAO {
                     try {
 
                         fkDiscoRigido = consqlserver.queryForObject("SELECT DiscoRigido.id FROM DiscoRigido WHERE DiscoRigido.serial = ?;", Integer.class, instanceId);
-                        fkNotebook = consqlserver.queryForObject("SELECT DiscoRigido.fkNotebook FROM DiscoRigido WHERE DiscoRigido.serial = ?;", Integer.class, instanceId);
 
 
                     } catch (EmptyResultDataAccessException e) {
@@ -133,8 +131,6 @@ public class LogDiscoDAO {
                     try {
 
                         fkDiscoRigido = consqlserver.queryForObject("SELECT DiscoRigido.id FROM DiscoRigido WHERE DiscoRigido.serial = ?;", Integer.class, disco.getSerial());
-                        fkNotebook = consqlserver.queryForObject("SELECT DiscoRigido.fkNotebook FROM DiscoRigido WHERE DiscoRigido.serial = ?;", Integer.class, disco.getSerial());
-
 
                     } catch (EmptyResultDataAccessException e) {
                         logger.warning("Nenhum disco rígido encontrado para o serial " + disco.getSerial());
