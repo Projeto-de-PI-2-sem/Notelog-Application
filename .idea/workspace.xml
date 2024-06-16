@@ -7,12 +7,19 @@
     <list default="true" id="309ba401-17a1-4be9-9fc5-bc86265d8e3a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/application.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/app/system/MonitoramentoSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/app/system/MonitoramentoSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/GeolocalizacaoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/GeolocalizacaoDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogDiscoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogDiscoDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogJanelasDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/LogJanelasDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/dao/NotebookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/dao/NotebookDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Notelog.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-note-log-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/notelog/model/LogDisco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/notelog/model/LogDisco.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/app-note-log-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-note-log-1.0-SNAPSHOT-jar-with-dependencies.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/app-note-log-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-note-log-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/target/application.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/app/system/MonitoramentoSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/app/system/MonitoramentoSystem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/GeolocalizacaoDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/GeolocalizacaoDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/LogDiscoDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/LogDiscoDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/dao/LogJanelasDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/dao/LogJanelasDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/notelog/model/LogDisco.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/notelog/model/LogDisco.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,27 +166,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/notelog/app/system/MonitoramentoSystem.java</url>
-          <line>476</line>
+          <line>477</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/notelog/app/system/MonitoramentoSystem.java</url>
-          <line>438</line>
+          <line>439</line>
           <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/notelog/app/system/MonitoramentoSystem.java</url>
-          <line>365</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/org/notelog/app/system/MonitoramentoSystem.java</url>
-          <line>23</line>
-          <properties class="org.notelog.app.system.MonitoramentoSystem" method="escolherMonitoramento">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -41,41 +41,7 @@ public class LogJanelasDAO {
 
             if (logJanelasExiste(novaLogJanela) == false) {
                 adicionarLogJanelas(novaLogJanela);
-            } else {
-                ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
-                JdbcTemplate conmysql = conexaoMySQL.getConexaoDoBanco();
-
-                ConexaoSQLServer conSQLServer = new ConexaoSQLServer();
-                JdbcTemplate consqlserver = conSQLServer.getConexaoDoBanco();
-
-                // SQL SERVER
-
-                String sql = String.format("""
-                                UPDATE LogJanelas SET idJanela = '%s' WHERE nomeJanela = '%s' AND fkNotebook = %d;
-                                """,
-                        novaLogJanela.getIdJanela(),
-                        novaLogJanela.getNomeJanela().isEmpty() ? '.' : novaLogJanela.getNomeJanela(),
-                        novaLogJanela.getFkNotebook()
-                );
-                consqlserver.update(sql);
-
-                String sqlSelect = "SELECT TOP 1 id FROM LogJanelas WHERE fkNotebook = ? ORDER BY id DESC";
-
-                Integer id = consqlserver.queryForObject(sqlSelect, Integer.class, novaLogJanela.getFkNotebook());
-
-                // MY SQL
-
-                String mysql = String.format("""
-                                UPDATE LogJanelas SET idJanela = '%s' WHERE nomeJanela = '%s' AND fkNotebook = %d;
-                                """,
-                        novaLogJanela.getIdJanela(),
-                        novaLogJanela.getNomeJanela().isEmpty() ? '.' : novaLogJanela.getNomeJanela(),
-                        novaLogJanela.getFkNotebook()
-                );
-
-                conmysql.update(mysql);
             }
-
         }
     }
 
@@ -91,10 +57,10 @@ public class LogJanelasDAO {
 
         String sql = String.format(
                 """
-                        INSERT INTO LogJanelas (idJanela, nomeJanela, bloqueado, fkNotebook) VALUES ('%s', '%s', %d, %d);""",
+                        INSERT INTO LogJanelas (idJanela, nomeJanela, datalog, fkNotebook) VALUES ('%s', '%s', '%s', %d);""",
                 logJanelas.getIdJanela(),
                 logJanelas.getNomeJanela().isEmpty() ? '.' : logJanelas.getNomeJanela(),
-                0,
+                logJanelas.dataHoraAtual(),
                 logJanelas.getFkNotebook()
         );
         consqlserver.update(sql);
@@ -107,12 +73,12 @@ public class LogJanelasDAO {
 
         String mysql = String.format(
                 """
-                        INSERT INTO LogJanelas (id ,idJanela, nomeJanela, bloqueado, fkNotebook) VALUES (%d,'%s', '%s', %d, %d);
+                        INSERT INTO LogJanelas (id ,idJanela, nomeJanela, datalog, fkNotebook) VALUES (%d, '%s', '%s', '%s', %d);
                         """,
                 id,
                 logJanelas.getIdJanela(),
                 logJanelas.getNomeJanela().isEmpty() ? '.' : logJanelas.getNomeJanela(),
-                0,
+                logJanelas.dataHoraAtual(),
                 logJanelas.getFkNotebook()
         );
 
