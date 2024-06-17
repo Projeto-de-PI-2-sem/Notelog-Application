@@ -127,7 +127,7 @@ public class Geolocalizacao {
 
     public String ObterIP() {
         try {
-            URL url = new URL("https://api64.ipify.org?format=text");
+            URL url = new URL("https://api.myip.com");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
 
@@ -139,11 +139,14 @@ public class Geolocalizacao {
                 response.append(line);
             }
 
-            String IP = response.toString();
             reader.close();
             connection.disconnect();
 
-            return IP;
+            // Extraindo o IP da resposta JSON
+            String jsonResponse = response.toString();
+            String ip = jsonResponse.split("\"ip\":\"")[1].split("\"")[0];
+
+            return ip;
         } catch (IOException e) {
             e.printStackTrace();
         }
