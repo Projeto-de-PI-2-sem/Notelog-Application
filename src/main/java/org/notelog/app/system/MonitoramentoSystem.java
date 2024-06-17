@@ -417,24 +417,24 @@ public class MonitoramentoSystem {
                     Thread.sleep(2000);
                     List<LogJanelas> listaJanelas = logJanelasDAO.selecionarJanelas(notebook.getId());
 
-                    for (LogJanelas process : listaJanelas) {
-                        if (verificaProcessoEmExecucao(Integer.parseInt(process.getIdJanela()))) {
-                            if (process.getBloqueado() > 0) {
-                                try {
-                                    int idJanela = Integer.parseInt(process.getIdJanela());
-                                    process.encerraProcesso(idJanela);
-                                    System.out.println("Janela " + process.getNomeJanela() + " foi encerrada por ação de um técnico especializado, por violar as políticas da empresa.");
-                                    Thread.sleep(1500); // Pausa de 1,5 segundos
-                                } catch (NumberFormatException e) {
-                                    System.out.println("ID da janela inválido: " + process.getIdJanela());
-                                } catch (InterruptedException e) {
-                                    Thread.currentThread().interrupt();
-                                    System.out.println("Thread interrompida.");
-                                }
-                            }
-                        }
-
-                    }
+//                    for (LogJanelas process : listaJanelas) {
+//                        if (verificaProcessoEmExecucao(Integer.parseInt(process.getIdJanela()))) {
+//                            if (process.getBloqueado() > 0) {
+//                                try {
+//                                    int idJanela = Integer.parseInt(process.getIdJanela());
+//                                    process.encerraProcesso(idJanela);
+//                                    System.out.println("Janela " + process.getNomeJanela() + " foi encerrada por ação de um técnico especializado, por violar as políticas da empresa.");
+//                                    Thread.sleep(1500); // Pausa de 1,5 segundos
+//                                } catch (NumberFormatException e) {
+//                                    System.out.println("ID da janela inválido: " + process.getIdJanela());
+//                                } catch (InterruptedException e) {
+//                                    Thread.currentThread().interrupt();
+//                                    System.out.println("Thread interrompida.");
+//                                }
+//                            }
+//                        }
+//
+//                    }
 
                     Thread.sleep(3500);
 
